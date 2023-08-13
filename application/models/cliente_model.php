@@ -1,6 +1,6 @@
 <?php
     class Cliente_model extends CI_Model{
-        public function listacliente()
+        public function listaclientes()
         {
             $this->db->select('*');
             $this->db->from('cliente');
