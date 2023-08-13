@@ -1,17 +1,36 @@
-  <!-- Vendor JS Files -->
-  <script src="<?php echo base_url();?>bootstrap/js/purecounter_vanilla.js"></script>
-  <script src="<?php echo base_url();?>bootstrap/jsaos.js"></script>
-  <script src="<?php echo base_url();?>bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="<?php echo base_url();?>bootstrap/js/glightbox.min.js"></script>
-  <script src="<?php echo base_url();?>bootstrap/js/isotope.pkgd.min.js"></script>
-  <script src="<?php echo base_url();?>bootstrap/js/assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="<?php echo base_url();?>bootstrap/js/typed.umd.js"></script>
-  <script src="<?php echo base_url();?>bootstrap/js/noframework.waypoints.js"></script>
-  <script src="<?php echo base_url();?>bootstrap/js/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="<?php echo base_url();?>bootstrap/js/main2.js"></script>
-
+<footer class="footer text-center"> 2021 © Ample Admin brought to you by <a
+                    href="https://www.wrappixel.com/">wrappixel.com</a>
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="<?php echo base_url();?>bootstrap/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="<?php echo base_url();?>bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url();?>bootstrap/js/app-style-switcher.js"></script>
+    <script src="<?php echo base_url();?>bootstrap/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
+    <!--Wave Effects -->
+    <script src="<?php echo base_url();?>bootstrap/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="<?php echo base_url();?>bootstrap/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="<?php echo base_url();?>bootstrap/js/custom.js"></script>
+    <!--This page JavaScript -->
+    <!--chartis chart-->
+    <script src="<?php echo base_url();?>bootstrap/plugins/bower_components/chartist/dist/chartist.min.js"></script>
+    <script src="<?php echo base_url();?>bootstrap/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <script src="<?php echo base_url();?>bootstrap/js/pages/dashboards/dashboard1.js"></script>
 </body>
 
 </html>

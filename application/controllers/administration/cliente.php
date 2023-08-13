@@ -1,19 +1,18 @@
 <?php
     defined('BASEPATH') OR exit('No direct script access allowed'); //linea de seguridad - no admite ejecucion directa de scrips
 
-    class Usuario extends CI_Controller
+    class Cliente extends CI_Controller
     {
         public function index()
         {
             //              modelo        metodo listausuarios
-            $lista=$this->usuario_model->listausuarios();
+            $lista=$this->cliente_model->listacliente();
             //      nombre de posicion usuarios
-            $data['usuarios']=$lista;
+            $data['clientes']=$lista;
 
             $this->load->view('view_administration/admidesing/headboard');
-            $this->load->view('view_administration/admidesing/menuSuperior');
-            $this->load->view('view_administration/admidesing/menuLateral');
-            $this->load->view('view_administration/contenido',$data);//ahi llega la informacion.
+            $this->load->view('view_administration/admidesing/panel');
+            $this->load->view('view_administration/cliente_lista',$data);//ahi llega la informacion.
             $this->load->view('view_administration/admidesing/foot');
         }
 
