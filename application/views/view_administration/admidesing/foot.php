@@ -1,5 +1,5 @@
-<footer class="footer text-center"> 2021 © Ample Admin brought to you by <a
-                    href="https://www.wrappixel.com/">wrappixel.com</a>
+<footer class="footer text-center"> Sistema Web de Ventas 2023. <a
+                    href="https://www.wrappixel.com/">muebleriaLara.com</a>
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->

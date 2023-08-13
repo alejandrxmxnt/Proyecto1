@@ -21,7 +21,8 @@
         {
             //mostar un formulario(vista) para agregar nuevo usuario.
             $this->load->view('view_administration/admidesing/headboard');
-            $this->load->view('view_administration/admidesing/panel');
+            $this->load->view('view_administration/admidesing/menuSuperior');
+            $this->load->view('view_administration/admidesing/menuLateral');
             $this->load->view('view_administration/usuario_formulario');
             $this->load->view('view_administration/admidesing/foot');
         }
