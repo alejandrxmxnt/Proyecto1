@@ -1,27 +1,107 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-2">
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">Profile page</h4>
+            </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                <div class="d-md-flex">
+                    <ol class="breadcrumb ms-auto">
+                        <li><a href="#" class="fw-normal">Dashboard</a></li>
+                    </ol>
+                    <a href="https://www.wrappixel.com/templates/ampleadmin/" target="_blank"
+                        class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Upgrade
+                        to Pro</a>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
     </div>
-    <div class="col-md-10"> <br>
-        <h2 class="titulos_centro"> CREAR USUARIO. </h2>
-       <form action="<?php echo base_url(); ?>index.php/administration/usuario/agregarbd" method="POST">
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <!-- Row -->
+    <div class="row">
+        <!-- Column -->
+        <div class="col-lg-0 col-xlg-3 col-md-12">
 
-          <input type="text" name="nombre" placeholder="Escribir el nombre." class="form-control"> <br>
-          <input type="text" name="apellido1" placeholder="Escribir primer Apellido." class="form-control"> <br>
-          <input type="text" name="apellido2" placeholder="Escribir segundo Apellido." class="form-control"> <br>
-          <input type="text" name="celular" placeholder="Escribir numero celular." class="form-control"> <br>
-          <input type="text" name="ci" placeholder="Escribir el Ci." class="form-control"> <br>
-          <input type="text" name="nombreUsuario" placeholder="Escribir nombre de usuario." class="form-control"> <br>
-          <input type="text" name="contrasenia" placeholder="Escribir la contraseña del usuario." class="form-control"> <br>
-          <select name="rol" class="form-control" > <br>
-            <option value="" ></option>
-          </select> <br>
-          <button type="submit" class="btn btn-success" placeholder="ROL DE USUARIO.">
-            AGREGAR
-          </button>
+        </div>
+        <!-- Column -->
+        <!-- Column -->
+        <div class="col-lg-12 col-xlg-9 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form class="form-horizontal form-material">
+                        <div class="form-group mb-4">
+                            <label class="col-md-12 p-0">Full Name</label>
+                            <div class="col-md-12 border-bottom p-0">
+                                <input type="text" placeholder="Johnathan Doe"
+                                    class="form-control p-0 border-0"> </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="example-email" class="col-md-12 p-0">Email</label>
+                            <div class="col-md-12 border-bottom p-0">
+                                <input type="email" placeholder="johnathan@admin.com"
+                                    class="form-control p-0 border-0" name="example-email"
+                                    id="example-email">
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="col-md-12 p-0">Password</label>
+                            <div class="col-md-12 border-bottom p-0">
+                                <input type="password" value="password" class="form-control p-0 border-0">
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="col-md-12 p-0">Phone No</label>
+                            <div class="col-md-12 border-bottom p-0">
+                                <input type="text" placeholder="123 456 7890"
+                                    class="form-control p-0 border-0">
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="col-md-12 p-0">Message</label>
+                            <div class="col-md-12 border-bottom p-0">
+                                <textarea rows="5" class="form-control p-0 border-0"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="col-sm-12">Select Country</label>
 
-      </form>  
-        
-    </div>  
-  </div>
+                            <div class="col-sm-12 border-bottom">
+                                <select class="form-select shadow-none p-0 border-0 form-control-line">
+                                    <option>London</option>
+                                    <option>India</option>
+                                    <option>Usa</option>
+                                    <option>Canada</option>
+                                    <option>Thailand</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <div class="col-sm-12">
+                                <button class="btn btn-success">Update Profile</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+    </div>
+    <!-- Row -->
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right sidebar -->
+    <!-- ============================================================== -->
+    <!-- .right-sidebar -->
+    <!-- ============================================================== -->
+    <!-- End Right sidebar -->
+    <!-- ============================================================== -->
 </div>
