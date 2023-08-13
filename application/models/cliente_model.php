@@ -6,4 +6,8 @@
             $this->db->from('cliente');
             return $this->db->get(); 
         } 
+        public function agregarcliente($data)
+        {//INSERTAR DATOS.
+            $this->db->insert('cliente',$data);
+        }
     }
