@@ -4,20 +4,20 @@
     </div>
     <div class="col-md-10">
       <br>
-      <a href="<?php echo base_url(); ?>index.php/administration/usuario/agregar">
+      <a href="<?php echo base_url(); ?>index.php/administration/cliente/agregar">
         <button type="button" class="btn btn-primary">
-          Crear Usuario
+          Agregar Cliente
         </button>
       </a> <br> <br>
-      <h2 class="titulos_centro"> TABLA DE USUARIOS </h2>
+      <h2 class="titulos_centro"> TABLA DE CLIENTES </h2>
       <table class="table">
         <thead>
           <tr>
             <th>#</th>
-            <th>NOMBRE COMPLETO</th>
-            <th>NOMBRE COMPLETO</th>
-            <th>NOMBRE COMPLETO</th>
-            <th>CI/NIT</th>
+            <th>NOMBRE</th>
+            <th>1° APELLIDO</th>
+            <th>2° APELLIDO</th>
+            <th>CI / NIT</th>
             <th>SEXO</th>
             <th>TELEFONO</th>
             <th>REFERENCIAS</th>
@@ -40,6 +40,7 @@
             <td><?php echo $row->primerApellido; ?></td>
             <td><?php echo $row->segundoApellido; ?></td>
             <td><?php echo $row->ciNit; ?></td>
+            <td><?php echo $row->sexo; ?></td>
             <td><?php echo $row->telefono; ?></td>
             <td><?php echo $row->direccion; ?></td>
             <td><?php echo $row->razonSocial; ?></td>
