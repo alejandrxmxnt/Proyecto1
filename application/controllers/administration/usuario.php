@@ -13,7 +13,7 @@
             $this->load->view('view_administration/admidesing/headboard');
             $this->load->view('view_administration/admidesing/menuSuperior');
             $this->load->view('view_administration/admidesing/menuLateral');
-            $this->load->view('view_administration/contenido',$data);//ahi llega la informacion.
+            $this->load->view('view_administration/usuario_lista',$data);//ahi llega la informacion.
             $this->load->view('view_administration/admidesing/foot');
         }
 
@@ -26,6 +26,17 @@
             $this->load->view('view_administration/usuario_formulario');
             $this->load->view('view_administration/admidesing/foot');
         }
+
+        public function iconos()
+        {
+            //mostar un formulario(vista) para agregar nuevo usuario.
+            $this->load->view('view_administration/admidesing/headboard');
+            $this->load->view('view_administration/admidesing/menuSuperior');
+            $this->load->view('view_administration/admidesing/menuLateral');
+            $this->load->view('view_administration/iconos_lista');
+            $this->load->view('view_administration/admidesing/foot');
+        }
+
 
         public function agregarbd(){//se llena con los valores que vienen de usuario_formulario.php
 
