@@ -18,7 +18,6 @@
             <th>1° APELLIDO</th>
             <th>2° APELLIDO</th>
             <th>CI / NIT</th>
-            <th>SEXO</th>
             <th>TELEFONO</th>
             <th>REFERENCIAS</th>
             <th>RAZON SOCIAL</th>
@@ -40,7 +39,6 @@
             <td><?php echo $row->primerApellido; ?></td>
             <td><?php echo $row->segundoApellido; ?></td>
             <td><?php echo $row->ciNit; ?></td>
-            <td><?php echo $row->sexo; ?></td>
             <td><?php echo $row->telefono; ?></td>
             <td><?php echo $row->direccion; ?></td>
             <td><?php echo $row->razonSocial; ?></td>
