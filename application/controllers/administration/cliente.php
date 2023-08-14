@@ -43,4 +43,12 @@
             redirect('administration/cliente/index','refresh');//con el refresh refrescamos de forma forsoza si es que hay problema
 
         }
+
+        public function eliminarbd()
+        { // variable         formulario
+            $idcliente=$_POST['idcliente'];
+            $this->cliente_model->eliminarcliente($idcliente);
+            redirect('administration/cliente/index','refresh');
+        }
+
     }
