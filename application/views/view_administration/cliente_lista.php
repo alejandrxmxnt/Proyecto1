@@ -22,6 +22,7 @@
             <th>REFERENCIAS</th>
             <th>RAZON SOCIAL</th>
             <th>FECHA DE REGISTRO</th>
+            <th>Hard Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -43,6 +44,20 @@
             <td><?php echo $row->direccion; ?></td>
             <td><?php echo $row->razonSocial; ?></td>
             <td><?php echo $row->fechaRegistro; ?></td>
+            <td>
+
+            <?php
+                echo form_open_multipart('administration/cliente/eliminarbd');
+            ?>
+
+              <input type="hidden" value="<?php echo $row->id; ?>" name="idcliente">
+              <button type="submit" class="btn btn-danger">Eliminar</button>
+
+            <?php
+                echo form_close();
+            ?>
+
+            </td>
           </tr>
 
           <?php
