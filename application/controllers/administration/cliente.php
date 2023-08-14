@@ -51,4 +51,35 @@
             redirect('administration/cliente/index','refresh');
         }
 
+        public function modificar()
+        {   // variable         formulario
+            $idcliente=$_POST['idcliente'];
+            //variable de transferencia de informacion 
+            $data['infocliente']=$this->cliente_model->recuperarclientes($idcliente); //asi hago llegar el idcliente al modelo
+
+            //cargar la vista
+            $this->load->view('view_administration/admidesing/headboard');
+            $this->load->view('view_administration/admidesing/menuSuperior');
+            $this->load->view('view_administration/admidesing/menuLateral');
+            $this->load->view('view_administration/cliente_modificar',$data);//ahi llega la informacion.
+            $this->load->view('view_administration/admidesing/foot');
+        }
+
+        public function modificarbd()
+        {// variable         formulario
+            $idcliente=$_POST['idcliente'];//almacena el id
+            // BDD              formulario
+            $data['nombre']=$_POST['nombre'];
+            $data['primerApellido']=$_POST['apellido1'];
+            $data['segundoApellido']=$_POST['apellido2'];
+            $data['ciNit']=$_POST['cinit'];
+            $data['telefono']=$_POST['celular'];
+            $data['direccion']=$_POST['direccion'];
+            $data['razonSocial']=$_POST['razonSocial'];
+
+            $this->cliente_model->modificarcliente($idcliente,$data);
+
+            redirect('administration/cliente/index','refresh');
+        }
+
     }
