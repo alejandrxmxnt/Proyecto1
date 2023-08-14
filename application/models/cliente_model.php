@@ -10,4 +10,10 @@
         {//INSERTAR DATOS.
             $this->db->insert('cliente',$data);
         }
+
+        public function eliminarcliente($idcliente)
+        {       //          BDD     formulario
+            $this->db->where('id',$idcliente);
+            $this->db->delete('cliente');
+        }
     }
