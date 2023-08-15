@@ -81,5 +81,33 @@
 
             redirect('administration/cliente/index','refresh');
         }
+        public function deshabilitarbd(){
+            $idcliente=$_POST['idcliente'];
+            $data['estado']='0';
 
+            $this->cliente_model->modificarcliente($idcliente,$data);
+
+            redirect('administration/cliente/index','refresh');
+        }
+        //Los clientes dados de baja se enlistaran en una lista de clientes deshabilitados.
+        public function deshabilitados(){
+            //              modelo        metodo listaclientes
+            $lista=$this->cliente_model->listaclientesdeshabilitados();
+            //      nombre de posicion usuarios
+            $data['clientes']=$lista;
+
+            $this->load->view('view_administration/admidesing/headboard');
+            $this->load->view('view_administration/admidesing/menuSuperior');
+            $this->load->view('view_administration/admidesing/menuLateral');
+            $this->load->view('view_administration/cliente_lista_deshabilitados',$data);//ahi llega la informacion de todos los clientes deshabilitados.
+            $this->load->view('view_administration/admidesing/foot');
+        }
+        public function habilitarbd(){
+            $idcliente=$_POST['idcliente'];
+            $data['estado']='1';
+
+            $this->cliente_model->modificarcliente($idcliente,$data);
+
+            redirect('administration/cliente/deshabilitados','refresh');
+        }
     }

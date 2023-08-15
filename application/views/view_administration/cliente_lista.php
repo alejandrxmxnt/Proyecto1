@@ -8,13 +8,19 @@
         <button type="button" class="btn btn-primary">
           Agregar Cliente
         </button>
-      </a> <br> <br>
+      </a>
+      <a href="<?php echo base_url(); ?>index.php/administration/cliente/deshabilitados">
+        <button type="button" class="btn btn-warning">
+          Lista Deshalibitados
+        </button>
+      </a>
+      <br> <br>
       <h2 class="titulos_centro"> TABLA DE CLIENTES </h2>
       <table class="table">
         <thead>
           <tr>
             <th>#</th>
-            <th>NOMBRE</th>
+            <th>NOMBRES</th>
             <th>1° APELLIDO</th>
             <th>2° APELLIDO</th>
             <th>CI / NIT</th>
@@ -23,6 +29,7 @@
             <th>RAZON SOCIAL</th>
             <th>FECHA DE REGISTRO</th>
             <th>ACTUALIZAR</th>
+            <th>SOFT DELETE</th>
             <th>HARD DELETE</th>
           </tr>
         </thead>
@@ -57,6 +64,22 @@
                 echo form_close();
             ?>
             </td>
+
+            <td>
+              
+              <?php
+                echo form_open_multipart('administration/cliente/deshabilitarbd');
+            ?>
+
+              <input type="hidden" value="<?php echo $row->id; ?>" name="idcliente">
+              <button type="submit" class="btn btn-warning">Deshabilitar</button>
+
+            <?php
+                echo form_close();
+            ?>
+
+            </td>
+
             <td>
 
             <?php
