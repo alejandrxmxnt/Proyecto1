@@ -20,9 +20,12 @@
             <th>Celular</th>
             <th>Ci</th>
             <th>Usuario</th>
-            <th>Contraseña</th>
             <th>Rol</th>
             <th>Fecha de Registro</th>
+            <th>Modificar</th>
+            <th>Soft Delete</th>
+            <th>Hard Delete</th>
+
           </tr>
         </thead>
         <tbody>
@@ -42,9 +45,52 @@
             <td><?php echo $row->celular; ?></td>
             <td><?php echo $row->ci; ?></td>
             <td><?php echo $row->userName; ?></td>
-            <td><?php echo $row->password; ?></td>
             <td><?php echo $row->idRol; ?></td>
             <td><?php echo $row->fechaRegistro; ?></td>
+
+            <td>
+              <?php
+                echo form_open_multipart('administration/cliente/modificar');
+            ?>
+
+              <input type="hidden" value="<?php echo $row->id; ?>" name="idcliente">
+              <button type="submit" class="btn btn-success">Modificar</button>
+
+            <?php
+                echo form_close();
+            ?>
+            </td>
+
+            <td>
+              
+              <?php
+                echo form_open_multipart('administration/cliente/deshabilitarbd');
+            ?>
+
+              <input type="hidden" value="<?php echo $row->id; ?>" name="idcliente">
+              <button type="submit" class="btn btn-warning">Deshabilitar</button>
+
+            <?php
+                echo form_close();
+            ?>
+
+            </td>
+
+            <td>
+
+            <?php
+                echo form_open_multipart('administration/cliente/eliminarbd');
+            ?>
+
+              <input type="hidden" value="<?php echo $row->id; ?>" name="idcliente">
+              <button type="submit" class="btn btn-danger">Eliminar</button>
+
+            <?php
+                echo form_close();
+            ?>
+
+            </td>
+
           </tr>
 
           <?php

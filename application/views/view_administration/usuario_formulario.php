@@ -5,17 +5,7 @@
     <div class="page-breadcrumb bg-white">
         <div class="row align-items-center">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h4 class="page-title">Profile page</h4>
-            </div>
-            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                <div class="d-md-flex">
-                    <ol class="breadcrumb ms-auto">
-                        <li><a href="#" class="fw-normal">Dashboard</a></li>
-                    </ol>
-                    <a href="https://www.wrappixel.com/templates/ampleadmin/" target="_blank"
-                        class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Upgrade
-                        to Pro</a>
-                </div>
+                <h4 class="page-title">Creacion de Usuarios.</h4>
             </div>
         </div>
         <!-- /.col-lg-12 -->
@@ -35,59 +25,58 @@
         <div class="col-lg-12 col-xlg-9 col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form class="form-horizontal form-material">
+<?php
+echo form_open_multipart('administration/usuario/agregarbd');
+?>
+                    <div class="form-group mb-4">
+                            <label class="col-md-12 p-0">Nombre Completo</label>
+                            <div class="col-md-4 border-bottom p-0">
+                                <input type="text" placeholder="Nombres"
+                                    class="form-control p-0 border-0" name="nombre"> 
+                            </div>
+                            <div class="col-md-4 border-bottom p-0">
+                                <input type="text" placeholder="Primer Apellido"
+                                    class="form-control p-0 border-0" name="apellido1"> 
+                            </div>
+                            <div class="col-md-4 border-bottom p-0">
+                                <input type="text" placeholder="segundo Apellido"
+                                    class="form-control p-0 border-0" name="apellido2"> 
+                            </div>
+                        </div>
+                            <br>
                         <div class="form-group mb-4">
-                            <label class="col-md-12 p-0">Full Name</label>
+                            <label class="col-md-12 p-0">Telefono/Celular</label>
                             <div class="col-md-12 border-bottom p-0">
-                                <input type="text" placeholder="Johnathan Doe"
+                                <input type="text" placeholder="Ingrese el numero de Celular o Telefono." name="celular"
                                     class="form-control p-0 border-0"> </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="example-email" class="col-md-12 p-0">Email</label>
+                            <label class="col-md-12 p-0">Nombre de Usuario</label>
                             <div class="col-md-12 border-bottom p-0">
-                                <input type="email" placeholder="johnathan@admin.com"
-                                    class="form-control p-0 border-0" name="example-email"
-                                    id="example-email">
-                            </div>
+                                <input type="text" placeholder="Ingrese el Nombre de Usuario." name="cinit"
+                                    class="form-control p-0 border-0"> </div>
                         </div>
                         <div class="form-group mb-4">
                             <label class="col-md-12 p-0">Password</label>
                             <div class="col-md-12 border-bottom p-0">
-                                <input type="password" value="password" class="form-control p-0 border-0">
+                                <input type="password" placeholder="Ingrese la Contraseña del nuevo Usuario." class="form-control p-0 border-0">
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label class="col-md-12 p-0">Phone No</label>
+                            <label class="col-md-12 p-0">Rol.</label>
                             <div class="col-md-12 border-bottom p-0">
-                                <input type="text" placeholder="123 456 7890"
-                                    class="form-control p-0 border-0">
-                            </div>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label class="col-md-12 p-0">Message</label>
-                            <div class="col-md-12 border-bottom p-0">
-                                <textarea rows="5" class="form-control p-0 border-0"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label class="col-sm-12">Select Country</label>
-
-                            <div class="col-sm-12 border-bottom">
-                                <select class="form-select shadow-none p-0 border-0 form-control-line">
-                                    <option>London</option>
-                                    <option>India</option>
-                                    <option>Usa</option>
-                                    <option>Canada</option>
-                                    <option>Thailand</option>
-                                </select>
-                            </div>
+                                <input type="" placeholder="Ingrese el Nombre de Usuario." name="cinit"
+                                    class="form-control p-0 border-0"> </div>
                         </div>
                         <div class="form-group mb-4">
                             <div class="col-sm-12">
-                                <button class="btn btn-success">Update Profile</button>
+                                <button type="submit" class="btn btn-success">Registrar</button>
                             </div>
                         </div>
-                    </form>
+<?php
+echo form_close();
+?>
+
                 </div>
             </div>
         </div>
