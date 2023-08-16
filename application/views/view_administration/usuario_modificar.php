@@ -26,21 +26,23 @@
             <div class="card">
                 <div class="card-body">
 <?php
-echo form_open_multipart('administration/usuario/agregarbd');
+    foreach ($infousuario->result() as $row) {
+    echo form_open_multipart('administration/usuario/modificarbd');
 ?>
+<input type="hidden" class="form-control p-0 border-0" name="idusuario" value="<?php echo $row->id; ?>"> 
                     <div class="form-group mb-4">
                             <label class="col-md-12 p-0">Nombre Completo</label>
                             <div class="col-md-4 border-bottom p-0">
                                 <input type="text" placeholder="Nombres"
-                                    class="form-control p-0 border-0" name="nombre"> 
+                                    class="form-control p-0 border-0" name="nombre" value="<?php echo $row->nombre; ?>"> 
                             </div>
                             <div class="col-md-4 border-bottom p-0">
                                 <input type="text" placeholder="Primer Apellido"
-                                    class="form-control p-0 border-0" name="apellido1"> 
+                                    class="form-control p-0 border-0" name="apellido1" value="<?php echo $row->primerApellido; ?>"> 
                             </div>
                             <div class="col-md-4 border-bottom p-0">
                                 <input type="text" placeholder="segundo Apellido"
-                                    class="form-control p-0 border-0" name="apellido2"> 
+                                    class="form-control p-0 border-0" name="apellido2" value="<?php echo $row->segundoApellido; ?>"> 
                             </div>
                         </div>
                             <br>
@@ -48,24 +50,24 @@ echo form_open_multipart('administration/usuario/agregarbd');
                             <label class="col-md-12 p-0">Telefono/Celular</label>
                             <div class="col-md-12 border-bottom p-0">
                                 <input type="text" placeholder="Ingrese el numero de Celular o Telefono." name="celular"
-                                    class="form-control p-0 border-0"> </div>
+                                    class="form-control p-0 border-0" value="<?php echo $row->celular; ?>"> </div>
                         </div>
                         <div class="form-group mb-4">
                             <label class="col-md-12 p-0">Cedula de Identidad</label>
                             <div class="col-md-12 border-bottom p-0">
                                 <input type="text" placeholder="Ingrese el numero de Celular o Telefono." name="ci"
-                                    class="form-control p-0 border-0"> </div>
+                                    class="form-control p-0 border-0" value="<?php echo $row->ci; ?>"> </div>
                         </div>
                         <div class="form-group mb-4">
                             <label class="col-md-12 p-0">Nombre de Usuario</label>
                             <div class="col-md-12 border-bottom p-0">
                                 <input type="text" placeholder="Ingrese el Nombre de Usuario." name="userName"
-                                    class="form-control p-0 border-0"> </div>
+                                    class="form-control p-0 border-0" value="<?php echo $row->login; ?>"> </div>
                         </div>
                         <div class="form-group mb-4">
                             <label class="col-md-12 p-0">Password</label>
                             <div class="col-md-12 border-bottom p-0">
-                                <input type="password" placeholder="Ingrese la Contraseña del nuevo Usuario." class="form-control p-0 border-0">
+                                <input name="password" type="password" placeholder="Ingrese Nueva Contraseña." class="form-control p-0 border-0">
                             </div>
                         </div>
                         <div class="form-group mb-4">
@@ -84,6 +86,7 @@ echo form_open_multipart('administration/usuario/agregarbd');
                         </div>
 <?php
 echo form_close();
+    }
 ?>
 
                 </div>

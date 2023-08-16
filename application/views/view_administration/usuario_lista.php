@@ -23,8 +23,7 @@
             <th>Rol</th>
             <th>Fecha de Registro</th>
             <th>Modificar</th>
-            <th>Soft Delete</th>
-            <th>Hard Delete</th>
+            <th>Eliminar</th>
 
           </tr>
         </thead>
@@ -44,16 +43,16 @@
             <td><?php echo $row->segundoApellido; ?></td>
             <td><?php echo $row->celular; ?></td>
             <td><?php echo $row->ci; ?></td>
-            <td><?php echo $row->userName; ?></td>
-            <td><?php echo $row->idRol; ?></td>
+            <td><?php echo $row->login; ?></td>
+            <td><?php echo $row->tipo; ?></td>
             <td><?php echo $row->fechaRegistro; ?></td>
 
             <td>
               <?php
-                echo form_open_multipart('administration/cliente/modificar');
+                echo form_open_multipart('administration/usuario/modificar');
             ?>
 
-              <input type="hidden" value="<?php echo $row->id; ?>" name="idcliente">
+              <input type="hidden" value="<?php echo $row->id; ?>" name="idusuario">
               <button type="submit" class="btn btn-success">Modificar</button>
 
             <?php
@@ -64,25 +63,10 @@
             <td>
               
               <?php
-                echo form_open_multipart('administration/cliente/deshabilitarbd');
+                echo form_open_multipart('administration/usuario/deshabilitarbd');
             ?>
 
-              <input type="hidden" value="<?php echo $row->id; ?>" name="idcliente">
-              <button type="submit" class="btn btn-warning">Deshabilitar</button>
-
-            <?php
-                echo form_close();
-            ?>
-
-            </td>
-
-            <td>
-
-            <?php
-                echo form_open_multipart('administration/cliente/eliminarbd');
-            ?>
-
-              <input type="hidden" value="<?php echo $row->id; ?>" name="idcliente">
+              <input type="hidden" value="<?php echo $row->id; ?>" name="idusuario">
               <button type="submit" class="btn btn-danger">Eliminar</button>
 
             <?php

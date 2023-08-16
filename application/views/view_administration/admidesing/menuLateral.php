@@ -63,9 +63,9 @@
                             </a>
                         </li>
                         <li class="text-center p-20 upgrade-btn">
-                            <a href="https://www.wrappixel.com/templates/ampleadmin/"
+                            <a href="<?php echo base_url();?>index.php/administration/usuarios/logout"
                                 class="btn d-grid btn-danger text-white" target="_blank">
-                                Ver Mas.</a>
+                                Salir.</a>
                         </li>
                     </ul>
 
