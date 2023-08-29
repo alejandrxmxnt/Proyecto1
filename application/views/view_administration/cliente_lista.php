@@ -5,7 +5,7 @@
     <div class="col-md-10">
       <br>
       <a href="<?php echo base_url(); ?>index.php/administration/cliente/agregar">
-        <button type="button" class="btn btn-primary">
+        <button type="button" class="btn btn-primary" style="color">
           Agregar Cliente
         </button>
       </a>
@@ -15,9 +15,9 @@
         </button>
       </a>
       <br> <br>
-      <h2 class="titulos_centro"> TABLA DE CLIENTES </h2>
-      <table class="table">
-        <thead>
+      <h2 class="titulos_centro" > TABLA DE CLIENTES </h2>
+      <table class="table" > <!-- FONDO A LA TABLA -->
+        <thead >
           <tr>
             <th>#</th>
             <th>NOMBRES</th>
