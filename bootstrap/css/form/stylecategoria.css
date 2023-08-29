@@ -1,0 +1,96 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/*Fondo Oscuro*/
+.regform{
+    width: 800px;
+    background-color: rgb(0, 0, 0, 0.7);
+    margin: auto;
+    color: #FFFFFF;
+    padding: 10px 0px 10px 0px;
+    text-align: center;
+    border-radius: 15px 15px 0px 0px;
+}
+.main{
+    background-color:rgb(0, 0, 0, 0.5);
+    width: 800px;
+    margin: auto;
+}
+
+/*linea 15*/
+#name{
+    width: 100%;
+    height: 100%;
+}
+/*linea 16*/
+.name{
+    margin-left: 25px;
+    margin-top: 2px;
+    top: -200px;
+    width: 125px;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+}
+/*para el input:text primernomber
+linea 17
+*/
+.Nombres{
+    position: relative;
+    left: 200px;
+    width: 500px;
+    top: -20px; /*separacion de un texto con otro por asi desirce interlineado*/
+    line-height: 40px;
+    border-radius: 6px;
+    padding: 0 22px;
+    font-size: 16px;
+}
+
+.firstlabel{
+    position: relative;
+    color: #E5E5E5;
+    text-transform: capitalize;
+    font-size: 14px;
+    left: 203px;
+    top: -23px; /*separacion de un texto con otro por asi desirce interlineado*/
+}
+
+.Detalle{
+    position: relative;
+    left: 198px;
+    top: -50px; /*separacion de un texto con otro por asi desirce interlineado*/
+    line-height: 40px;
+    width: 500px; /*tamaño del texbox*/
+    height: 170px;
+    border-radius: 6px;
+    padding: 0 22px;
+    font-size: 16px;
+    color: #555;
+}
+
+.description{
+    position: relative;
+    color: #E5E5E5;
+    text-transform: capitalize;
+    font-size: 14px;
+    left: -303px;
+    top: -35px; /*separacion de un texto con otro por asi desirce interlineado*/
+}
+
+button{
+    background-color: #C18D21;
+    display: block;
+    margin: 20px 0px 0px 20px;
+    text-align: center;
+    border-radius: 12px;
+    border: 2px solid gold;
+    padding: 14px 110px;
+    outline: none;
+    color: white;
+    cursor: pointer; /*mostrar figura de manito*/
+    transition: 0.25px;
+}
+button:hover{
+    background-color: #885410;
+}
