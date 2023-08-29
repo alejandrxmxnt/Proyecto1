@@ -18,5 +18,4 @@
             $this->load->view('view_administration/admidesing/foot');
         }
 
-        
     }

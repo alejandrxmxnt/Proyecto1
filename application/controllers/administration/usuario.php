@@ -21,7 +21,7 @@
         public function agregar()
         {
             //mostar un formulario(vista) para agregar nuevo usuario.
-            $this->load->view('view_administration/admidesing/headboard');
+            $this->load->view('view_administration/admidesing/userFormHeader');
             $this->load->view('view_administration/admidesing/menuSuperior');
             $this->load->view('view_administration/admidesing/menuLateral');
             $this->load->view('view_administration/usuario_formulario');
@@ -48,7 +48,7 @@
             $data['ci']=$_POST['ci'];
             $data['login']=$_POST['userName'];
             $data['password']=md5($_POST['password']);
-            $data['tipo']=$_POST['rol'];
+            $data['tipo']=$_POST['subject']; //el name es el mismo tanto para el css y el php
 
             $this->usuario_model->agregarusuario($data); //hasta ahi ya guarda en BDD
 
@@ -63,7 +63,7 @@
             $data['infousuario']=$this->usuario_model->recuperarusuarios($idusuario); //asi hago llegar el idcliente al modelo
 
             //cargar la vista
-            $this->load->view('view_administration/admidesing/headboard');
+            $this->load->view('view_administration/admidesing/userFormHeader');
             $this->load->view('view_administration/admidesing/menuSuperior');
             $this->load->view('view_administration/admidesing/menuLateral');
             $this->load->view('view_administration/usuario_modificar',$data);//ahi llega la informacion.
@@ -81,7 +81,7 @@
             $data['ci']=$_POST['ci'];
             $data['login']=$_POST['userName'];
             $data['password']=md5($_POST['password']);
-            $data['tipo']=$_POST['rol'];
+            $data['tipo']=$_POST['subject']; //el name es el mismo tanto para el css y el php
             //$data['fechaActualizacion']="CURRENT_TIMESTAMP()";
 
             $this->usuario_model->modificarusuario($idusuario,$data);

@@ -42,7 +42,7 @@
                 redirect('administration/usuarios/index','refresh'); //lo volvera a mandar al login del metodo index
             }
         }
-
+/*
         public function panel(){
             //TODOS LOS USUARIOS CORRECTAMENTA AUTENTICADOS.
             if($this->session->userdata('login'))//controla si existe esta variable.
@@ -54,6 +54,25 @@
                 redirect('administration/usuarios/index','refresh');//cargara el login
             }
         }
+*/
+        public function panel(){
+            //TODOS LOS USUARIOS CORRECTAMENTA AUTENTICADOS.
+            if($this->session->userdata('login'))//controla si existe esta variable.
+            {//verdadero - redirecciona a una ventada de un usuario correctamente autentificado.
+                $tipo= $this->session->userdata('tipo');
+                if($tipo=='ADMINISTRADOR'){
+                    redirect('administration/usuario/index','refresh');
+                }else{
+                    redirect('administration/empleado/index','refresh');
+                }
+            }
+            else
+            {//falso volvera 
+                redirect('administration/usuarios/index','refresh');//cargara el login
+            }
+        }
+
+
         //CADA QUE EL USUARIO CIERRE SESION
         public function logout(){
             $this->session->sess_destroy();//desctruir variables de session
