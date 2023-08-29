@@ -1,5 +1,5 @@
-<footer class="footer text-center"> Sistema Web de Ventas 2023. <a
-                    href="https://www.wrappixel.com/">muebleriaLara.com</a>
+<footer class="footer text-center" style="background-image: url('<?php echo base_url();?>img/menu/texturamadera.jpg'); color: white; font-weight: bold;"> Sistema Web de Ventas 2023. <a
+                    href="https://www.wrappixel.com/" style="color: white; font-weight: bold;">muebleriaLara.com</a>
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->

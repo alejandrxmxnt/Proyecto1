@@ -4,25 +4,35 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords"
-        content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Ample lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Ample admin lite dashboard bootstrap 5 dashboard template">
-    <meta name="description"
-        content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
-    <meta name="robots" content="noindex,nofollow">
     <title>MUEBLERIA LARA</title>
-    <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
+    <!--
+    <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" /> -->
     <!-- Favicon icon -->
     <link rel="icon" type="Usuario" sizes="16x16" href="<?php echo base_url();?>img/logos/logomuebleria.jpeg">
-    <!-- Custom CSS -->
+    <!-- Custom CSS 
     <link href="<?php echo base_url();?>bootstrap/plugins/bower_components/chartist/dist/chartist.min.css" rel="stylesheet">
+    -->
+<!--
     <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css">
-    <!-- Custom CSS -->
+     Custom CSS -->
     <link href="<?php echo base_url();?>bootstrap/css/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/tablas/tablas.css">
+    <!-- Imagen de fondo -->
+    <style>
+        /* Imagen de fondo */
+        body {
+            background-image: url('<?php echo base_url();?>img/logos/fondo.jpeg');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            backdrop-filter: blur(3px);  /* borroso */
+            transition: 0.5s;
+            opacity: 1;
+        }
+
+    </style>
 </head>
 
-<body>
+<body class="bodyy">
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->

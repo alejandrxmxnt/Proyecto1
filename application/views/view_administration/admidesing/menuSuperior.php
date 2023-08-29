@@ -1,5 +1,5 @@
 <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <div class="navbar-header" data-logobg="skin6">
+                <div class="navbar-header" data-logobg="skin6" style="background-image: url('<?php echo base_url();?>img/menu/texturamadera.jpg');">
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
@@ -7,7 +7,7 @@
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!-- Dark Logo icon -->
-                            <img src="<?php echo base_url();?>img/logos/titulo3dd.png" alt="homepage" />
+                            <img src="<?php echo base_url();?>img/logos/titulo3dd.png" style="border-radius: 50px;" alt="homepage" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
@@ -24,7 +24,7 @@
                 <!-- ============================================================== -->
                 <!-- End Logo -->
                 <!-- ============================================================== -->
-                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5" style="background-image: url('<?php echo base_url();?>img/menu/texturamadera.jpg');">
                    
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
