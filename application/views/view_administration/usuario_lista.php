@@ -14,9 +14,7 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Nombre</th>
-            <th>1° Apellido</th>
-            <th>2° Apellido</th>
+            <th>Nombre Completo</th>
             <th>Celular</th>
             <th>Ci</th>
             <th>Usuario</th>
@@ -38,9 +36,7 @@
           
           <tr>
             <th><?php echo $indice; ?></th>
-            <td><?php echo $row->nombre; ?></td>
-            <td><?php echo $row->primerApellido; ?></td>
-            <td><?php echo $row->segundoApellido; ?></td>
+            <td><?php echo $row->nombre." ".$row->primerApellido." ".$row->segundoApellido ?></td>
             <td><?php echo $row->celular; ?></td>
             <td><?php echo $row->ci; ?></td>
             <td><?php echo $row->login; ?></td>

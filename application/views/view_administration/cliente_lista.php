@@ -20,17 +20,14 @@
         <thead >
           <tr>
             <th>#</th>
-            <th>NOMBRES</th>
-            <th>1° APELLIDO</th>
-            <th>2° APELLIDO</th>
+            <th>NOMBRE COMPLETO</th>
             <th>CI / NIT</th>
             <th>TELEFONO</th>
             <th>REFERENCIAS</th>
             <th>RAZON SOCIAL</th>
             <th>FECHA DE REGISTRO</th>
             <th>ACTUALIZAR</th>
-            <th>SOFT DELETE</th>
-            <th>HARD DELETE</th>
+            <th>DESHABILITAR</th>
           </tr>
         </thead>
         <tbody>
@@ -44,9 +41,7 @@
           
           <tr>
             <th><?php echo $indice; ?></th>
-            <td><?php echo $row->nombre; ?></td>
-            <td><?php echo $row->primerApellido; ?></td>
-            <td><?php echo $row->segundoApellido; ?></td>
+            <td><?php echo $row->nombre." ".$row->primerApellido." ".$row->segundoApellido ?></td>
             <td><?php echo $row->ciNit; ?></td>
             <td><?php echo $row->telefono; ?></td>
             <td><?php echo $row->direccion; ?></td>
@@ -73,21 +68,6 @@
 
               <input type="hidden" value="<?php echo $row->id; ?>" name="idcliente">
               <button type="submit" class="btn btn-warning">Deshabilitar</button>
-
-            <?php
-                echo form_close();
-            ?>
-
-            </td>
-
-            <td>
-
-            <?php
-                echo form_open_multipart('administration/cliente/eliminarbd');
-            ?>
-
-              <input type="hidden" value="<?php echo $row->id; ?>" name="idcliente">
-              <button type="submit" class="btn btn-danger">Eliminar</button>
 
             <?php
                 echo form_close();
