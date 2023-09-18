@@ -20,7 +20,7 @@
         public function agregar(){
             //mostrar un formulario para agregar nuevo Cliente.
             //este formulario va estar una vista
-            $this->load->view('view_administration/admidesing/userFormHeader');
+            $this->load->view('view_administration/admidesing/clienteFormHeader');
             $this->load->view('view_administration/admidesing/menuSuperior');
             $this->load->view('view_administration/admidesing/menuLateral');
             $this->load->view('view_administration/cliente_formulario');//direccion de vista.
@@ -58,7 +58,7 @@
             $data['infocliente']=$this->cliente_model->recuperarclientes($idcliente); //asi hago llegar el idcliente al modelo
 
             //cargar la vista
-            $this->load->view('view_administration/admidesing/userFormHeader');
+            $this->load->view('view_administration/admidesing/clienteFormHeader');
             $this->load->view('view_administration/admidesing/menuSuperior');
             $this->load->view('view_administration/admidesing/menuLateral');
             $this->load->view('view_administration/cliente_modificar',$data);//ahi llega la informacion.
