@@ -13,26 +13,28 @@
                 ?>
                 <div id="name">
                     <h2 class="name">Nombre Completo:</h2>
-                    <input type="text" placeholder="Ingrse nombres" class="Nombres" name="nombre"> <br>
+                    <input type="text" placeholder="Ingrese nombres" class="Nombres" name="nombre" value="<?php echo set_value('nombre'); ?>" autofocus required> <br>
+                    <?php echo form_error('nombre'); ?>
                     <label class="firstlabel">Nombres</label>
-                    <input type="text" placeholder="Ingrese Apellido" class="Apellido1" name="apellido1"> 
+                    <input type="text" placeholder="Ingrese Apellido" class="Apellido1" name="apellido1" value="<?php echo set_value('apellido1'); ?>" required> 
+                    <?php echo form_error('apellido1'); ?>
                     <label class="ape1">Primer Apellido</label>
-                    <input type="text" placeholder="Ingrese Apellido" class="Apellido2" name="apellido2">
+                    <input type="text" placeholder="Ingrese Apellido" class="Apellido2" name="apellido2" value="<?php echo set_value('apellido2'); ?>">
+                    <?php echo form_error('apellido2'); ?>
                     <label class="ape2">Segundo Apellido</label> 
                 </div>
                 <br>
                 <div>
                     <h2 class="name">Telefono/Celular</h2>
-                    <input type="text" placeholder="Ingrese el numero." name="celular" class="Telefono">
-
+                    <input type="text" placeholder="Ingrese el numero." name="celular" class="Telefono" value="<?php echo set_value('celular'); ?>" required>
+                    <?php echo form_error('celular'); ?>
                     <h2 class="name">Cedula de Identidad</h2>
-                    <input type="text" placeholder="Cedula de indentidad." name="ci" class="Ci">
+                    <input type="text" placeholder="Cedula de indentidad." name="ci" class="Ci"  required>
                 </div>
-                    <h2 class="name">Nombre de Usuario</h2>
-                    <input type="text" placeholder="Ingrese el Nombre de Usuario." name="userName" class="UserName">
-
-                    <h2 class="name">Contraseña</h2>
-                    <input type="password" placeholder="Ingrese la Contraseña del nuevo Usuario." name="password" class="Password">
+                    <h2 class="name">Correo Electronico</h2>
+                    <input type="email" placeholder="Ingrese el @gmail.com" name="correo" class="UserName" required>
+                    <input type="hidden" name="password" class="Password">
+                    <input type="hidden" name="userName" class="Password">
                 
                     <h2 class="name">Rol</h2>
                         <select name="subject" class="option" required>
