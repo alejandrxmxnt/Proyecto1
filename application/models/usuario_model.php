@@ -1,6 +1,6 @@
 <?php
     class Usuario_model extends CI_Model{
-        
+        //Visualizacion de todos los usuarios presentes
         public function listausuarios()
         {
             $this->db->select('*');
@@ -9,11 +9,12 @@
             return $this->db->get();
         } 
 
-        //para validar usuarios
+        //para validar usuarios-LOGIN
         public function validar($login,$password)
-        {
+        {//usuario correctamente validado
             $this->db->select('*');
             $this->db->from('usuario');//conmo el BDD
+            //BDD   |   $login y $password que esta llegando por el formulario
             $this->db->where('login',$login);//condiciones
             $this->db->where('password',$password);//condiciones
             return $this->db->get();
