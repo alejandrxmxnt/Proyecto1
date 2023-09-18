@@ -32,11 +32,13 @@
                         echo form_open_multipart('administration/usuarios/validarusuario',array('class'=>'auth-form login-form'));
                     ?>        
 							<div class="text mb-3">
-								<input id="text" name="login" type="text" class="form-control" placeholder="Nombre de Usuario">
+								<input id="text" name="login" type="text" class="form-control" placeholder="Nombre de Usuario" value="<?php echo set_value('login'); ?>" >
+								<?php echo form_error('login'); ?>
 							</div><!--//form-group-->
 
 							<div class="password mb-3">
-								<input id="signin-password" name="password" type="password" class="form-control signin-password" placeholder="Password">
+								<input id="signin-password" name="password" type="password" class="form-control signin-password" placeholder="Password" value="<?php echo set_value('password'); ?>">
+								<?php echo form_error('password'); ?>
 							</div><!--//form-group-->
 
 							<div class="text-center">
@@ -46,7 +48,7 @@
 echo form_close();
 ?>
 						
-						<div class="auth-option text-center pt-5">No Account? Sign up <a class="text-link" href="signup.html" >here</a>.</div>
+						<div class="auth-option text-center pt-5"> Cambiar Credenciales: <a class="text-link" href="signup.html" >Actualizar</a>.</div>
 					</div><!--//auth-form-container-->	
 
 			    </div><!--//auth-body-->
