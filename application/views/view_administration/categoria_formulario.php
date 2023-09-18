@@ -13,7 +13,7 @@
             ?>
                 <div id="name">
                     <h2 class="name">Nombre</h2>
-                    <input type="text" placeholder="Ingrese el nombre" class="Nombres" name="nombre"> <br>
+                    <input type="text" placeholder="Ingrese el nombre" class="Nombres" name="nombre" required> <br>
                     <label class="firstlabel">Nombre</label>
                 </div>
                 <br>
