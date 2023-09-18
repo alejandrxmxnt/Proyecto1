@@ -74,6 +74,7 @@ linea 17
     color: #E5E5E5;
     text-transform: capitalize;
     font-size: 14px;
+    line-height: 1.5em;
     left: -303px;
     top: -35px; /*separacion de un texto con otro por asi desirce interlineado*/
 }

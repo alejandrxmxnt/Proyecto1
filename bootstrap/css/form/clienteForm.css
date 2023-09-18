@@ -44,7 +44,7 @@ linea 17
     top: -37px; /*separacion de un texto con otro por asi desirce interlineado*/
     line-height: 40px;
     border-radius: 6px;
-    padding: 0 22px;
+    padding: 0 22px; /*ceparacion a los costados*/
     font-size: 16px;
 }
 /*linea 19*/
@@ -100,7 +100,7 @@ linea 17
 .Telefono{
     position: relative;
     left: 198px;
-    top: -100px; /*separacion de un texto con otro por asi desirce interlineado*/
+    top: -50px; /*separacion de un texto con otro por asi desirce interlineado*/
     line-height: 40px;
     width: 320px; /*tamaño del texbox*/
     border-radius: 6px;
@@ -111,7 +111,7 @@ linea 17
 .Ci{
     position: relative;
     left: 200px;
-    top: -120px; /*separacion de un texto con otro por asi desirce interlineado*/
+    top: -60px; /*separacion de un texto con otro por asi desirce interlineado*/
     line-height: 40px;
     width: 320px; /*tamaño del texbox*/
     border-radius: 6px;
@@ -119,22 +119,11 @@ linea 17
     font-size: 16px;
     color: #555;
 }
-.Correos{
-    position: relative;
-    left: 200px;
-    top: -120px; /*separacion de un texto con otro por asi desirce interlineado*/
-    line-height: 40px;
-    width: 320px; /*tamaño del texbox*/
-    border-radius: 6px;
-    padding: 0 22px;
-    font-size: 16px;
-    color: #555;
-}
-/*correo*/
+
 .UserName{
     position: relative;
     left: 200px;
-    top: -140px; /*separacion de un texto con otro por asi desirce interlineado*/
+    top: -50px; /*separacion de un texto con otro por asi desirce interlineado*/
     line-height: 40px;
     width: 320px; /*tamaño del texbox*/
     border-radius: 6px;
@@ -145,7 +134,7 @@ linea 17
 .Password{
     position: relative;
     left: 200px;
-    top: -140px; /*separacion de un texto con otro por asi desirce interlineado*/
+    top: -50px; /*separacion de un texto con otro por asi desirce interlineado*/
     line-height: 40px;
     width: 320px; /*tamaño del texbox*/
     border-radius: 6px;

@@ -40,44 +40,88 @@ linea 17
 .Nombres{
     position: relative;
     left: 200px;
-    width: 180px;
+    width: 530px;
     top: -37px; /*separacion de un texto con otro por asi desirce interlineado*/
     line-height: 40px;
     border-radius: 6px;
-    padding: 0 22px;
+    padding: 0 22px; /*ceparacion a los costados de texto*/
+    font-size: 16px;
+}
+
+.descripcion{
+    position: relative;
+    left: 200px;
+    width: 530px;
+    top: -37px; /*separacion de un texto con otro por asi desirce interlineado*/
+    line-height: 1.5em;/*interlineado para no tener tan reparadas las lineas unas de otras*/
+    height: 200px; /*largo del textarea*/
+    border-radius: 6px;
+    padding: 0 22px; /*ceparacion a los costados de texto*/
     font-size: 16px;
 }
 /*linea 19*/
-.Apellido1{
+.PrecioUnitario{
     position: relative;
-    left: 335px;
-    width: 180px;
+    left: 200px;
+    width: 130px;
+    top: -37px; /*separacion de un texto con otro por asi desirce interlineado*/
+    line-height: 40px;
+    border-radius: 6px;
+    padding: 0 22px; /*ceparacion a los costados de texto*/
+    font-size: 16px;
+}
+
+.Stock{
+    position: relative;
+    left: 280px;
+    width: 150px;
     top: -80px; /*separacion de un texto con otro por asi desirce interlineado*/
     line-height: 40px;
     border-radius: 6px;
-    padding: 0 22px;
+    padding: 0 15px;
     font-size: 16px;
     color: #555;
 }
-.Apellido2{
+.Codigo{
     position: relative;
-    left: 250px;
-    width: 180px;
+    left: 200px;
+    width: 170px;
     top: -80px; /*separacion de un texto con otro por asi desirce interlineado*/
     line-height: 40px;
     border-radius: 6px;
-    padding: 0 22px;
+    padding: 0 18px;
     font-size: 16px;
     color: #555;
 }
-/*linea 18*/
+
+.Imagen{
+    position: relative;
+    left: 180px;
+    width: 400px;
+    top: -30px; /*separacion de un texto con otro por asi desirce interlineado*/
+    line-height: 40px;
+    border-radius: 15px;
+    padding: 0 18px;
+    font-size: 16px;
+    color: white;
+}
+/*linea 20*/
+.tituloImagen{
+    position: relative;
+    color: #E5E5E5;
+    text-transform: capitalize;
+    font-size: 14px;
+    left: -203px;
+    top: 2px; /*separacion de un texto con otro por asi desirce interlineado*/
+}
+/*nombre del producto*/
 .firstlabel{
     position: relative;
     color: #E5E5E5;
     text-transform: capitalize;
     font-size: 14px;
     left: 203px;
-    top: -45px; /*separacion de un texto con otro por asi desirce interlineado*/
+    top: -40px; /*separacion de un texto con otro por asi desirce interlineado*/
 }
 /*linea 20*/
 .ape1{
@@ -96,56 +140,11 @@ linea 17
     left: 70px;
     top: -45px; /*separacion de un texto con otro por asi desirce interlineado*/
 }
-/*linea 24*/
-.Telefono{
-    position: relative;
-    left: 198px;
-    top: -100px; /*separacion de un texto con otro por asi desirce interlineado*/
-    line-height: 40px;
-    width: 320px; /*tamaño del texbox*/
-    border-radius: 6px;
-    padding: 0 22px;
-    font-size: 16px;
-    color: #555;
-}
-.Ci{
-    position: relative;
-    left: 200px;
-    top: -120px; /*separacion de un texto con otro por asi desirce interlineado*/
-    line-height: 40px;
-    width: 320px; /*tamaño del texbox*/
-    border-radius: 6px;
-    padding: 0 22px;
-    font-size: 16px;
-    color: #555;
-}
-.Correos{
-    position: relative;
-    left: 200px;
-    top: -120px; /*separacion de un texto con otro por asi desirce interlineado*/
-    line-height: 40px;
-    width: 320px; /*tamaño del texbox*/
-    border-radius: 6px;
-    padding: 0 22px;
-    font-size: 16px;
-    color: #555;
-}
-/*correo*/
-.UserName{
-    position: relative;
-    left: 200px;
-    top: -140px; /*separacion de un texto con otro por asi desirce interlineado*/
-    line-height: 40px;
-    width: 320px; /*tamaño del texbox*/
-    border-radius: 6px;
-    padding: 0 22px;
-    font-size: 16px;
-    color: #555;
-}
+
 .Password{
     position: relative;
     left: 200px;
-    top: -140px; /*separacion de un texto con otro por asi desirce interlineado*/
+    top: -50px; /*separacion de un texto con otro por asi desirce interlineado*/
     line-height: 40px;
     width: 320px; /*tamaño del texbox*/
     border-radius: 6px;
