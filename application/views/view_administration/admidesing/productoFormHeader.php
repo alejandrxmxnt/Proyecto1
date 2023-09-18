@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css">
      Custom CSS -->
     <link href="<?php echo base_url();?>bootstrap/css/style.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/form/usuarioForm.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/form/productoForm.css">
     <!-- Imagen de fondo -->
     <style>
         /* Imagen de fondo */

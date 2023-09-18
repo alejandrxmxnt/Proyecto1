@@ -1,5 +1,8 @@
 <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <div class="navbar-header" data-logobg="skin6" style="background-image: url('<?php echo base_url();?>img/menu/texturamadera.jpg');">
+                <div class="navbar-header" data-logobg="skin6" style="
+                    background-image: url('<?php echo base_url();?>img/menu/texturamadera.jpg'); 
+                    background-repeat: no-repeat; 
+                    background-size: 100% 100%; ">
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
@@ -24,7 +27,8 @@
                 <!-- ============================================================== -->
                 <!-- End Logo -->
                 <!-- ============================================================== -->
-                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5" style="background-image: url('<?php echo base_url();?>img/menu/texturamadera.jpg');">
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5" style="background-image: url('<?php echo base_url();?>img/menu/texturamadera.jpg'); background-repeat: no-repeat; 
+                    background-size: 100% 100%;">
                    
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
@@ -48,7 +52,9 @@
                         <li>
                             <a class="profile-pic" href="#">
                                 <img src="<?php echo base_url();?>img/logos/logomuebleria.jpeg" alt="user-img" width="36"
-                                    class="img-circle"><span class="text-white font-medium">User Name</span></a>
+                                    class="img-circle"><span class="text-white font-medium">
+                                        Usuario: <?php echo $this->session->userdata('login'); ?>
+                                    </span></a>
                         </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
