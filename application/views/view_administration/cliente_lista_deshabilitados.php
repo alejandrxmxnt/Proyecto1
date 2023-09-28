@@ -11,7 +11,7 @@
       </a>
       <br> <br>
       <h2 class="titulos_centro"> TABLA DE CLIENTES DESHABILITADOS </h2>
-      <table class="table">
+      <table class="table" id="my-table">
         <thead>
           <tr>
             <th>#</th>
@@ -68,6 +68,36 @@
           
         </tbody>
       </table>
+
+      <!--PARA ALMACENAR LOS VALORES DE PAGINAS SIGUIENTES-->
+      <div class="pagination" id="pagination-container">
+      </div> <br> <br>
+
     </div>
   </div>
 </div>
+
+<!--STYLE PARA EL CAMBIO DE PAGINA-->
+<style>
+
+  .pagination {
+      display: inline-block;
+  }
+  .pagination a {
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 16px;
+      background-color: #f2f2f2;
+      color: black;
+      border: 1px solid #ddd;
+      border-radius: 20%;
+  }
+  .pagination a.active {
+      background-color: gray;
+      color: white;
+  }
+</style>
+
+<!--JS-->
+
+<script src="<?php echo base_url();?>bootstrap/js/tablas/pagina.js"></script>
