@@ -29,12 +29,15 @@
 
         public function agregarbd()
         {
+            echo '
+            <script src="<?php echo base_url();?>bootstrap/js/formulario/formularioCliente.js"></script> 
+            ';
             //  atributo.  BDD = name de formulario
             $data['nombre']=$_POST['nombre'];
-            $data['primerApellido']=$_POST['apellido1'];
-            $data['segundoApellido']=$_POST['apellido2'];
-            $data['ciNit']=$_POST['cinit'];
-            $data['telefono']=$_POST['celular'];
+            $data['primerApellido']=$_POST['primerApellido'];
+            $data['segundoApellido']=$_POST['segundoApellido'];
+            $data['ciNit']=$_POST['ciNit'];
+            $data['telefono']=$_POST['telefono'];
             $data['direccion']=$_POST['direccion'];
             $data['razonSocial']=$_POST['razonSocial'];
 
