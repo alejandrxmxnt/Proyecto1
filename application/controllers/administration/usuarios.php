@@ -20,8 +20,8 @@
         //METEDO PARA VALIDAR USUARIO. - ACCESO POR LOGIN.
         public function validarusuario(){
             $this->load->library('form_validation');
-            $this->form_validation->set_rules('login','Nombre de Usuario','required|min_length[5]|max_length[15]',array('required'=>'Llene bien el formulario','min_length'=>'Escriba bien sus credenciales','max_length'=>'Escriba bien sus credenciales'));
-            $this->form_validation->set_rules('password','Password','required|min_length[1]|max_length[15]',array('required'=>'Llene bien el formulario','min_length'=>'Contraseña no valida','max_length'=>'Escriba bien sus credenciales'));
+            $this->form_validation->set_rules('login','Nombre de Usuario','required|min_length[7]|max_length[30]',array('required'=>'Paramatro obligatorio','min_length'=>'Nombre de usurio no valido','max_length'=>'Escriba bien sus credenciales'));
+            $this->form_validation->set_rules('password','Password','required|min_length[1]|max_length[30]',array('required'=>'Parametro obligatorio','min_length'=>'Contraseña no valida','max_length'=>'Verifique sus credenciales'));
             if($this->form_validation->run()==FALSE){
                 $this->load->view('view_administration/login');//carga el login
             }
@@ -103,7 +103,7 @@
             }
         }
 
-
+        
         //CADA QUE EL USUARIO CIERRE SESION
         public function logout(){
             $this->session->sess_destroy();//desctruir variables de session

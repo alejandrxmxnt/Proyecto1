@@ -164,7 +164,7 @@
             if($this->session->userdata('login'))//controla si existe esta variable.
             {//verdadero - redirecciona a una ventada de un usuario correctamente autentificado.
                 $tipo= $this->session->userdata('tipo');
-                if($tipo=='ADMINISTRADOR')
+                if($tipo=='ADMINISTRADOR') //agregar estado
                 {
                     
                     //$mailer = new EmailSender(true); 
