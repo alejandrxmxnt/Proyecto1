@@ -1,8 +1,10 @@
 <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <div class="navbar-header" data-logobg="skin6" style="
+                <div class="navbar-header" data-logobg="skin6" style="/*
                     background-image: url('<?php echo base_url();?>img/menu/texturamadera.jpg'); 
                     background-repeat: no-repeat; 
-                    background-size: 100% 100%; ">
+                    background-size: 100% 100%; */
+                    background-color: black;
+                    ">
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->

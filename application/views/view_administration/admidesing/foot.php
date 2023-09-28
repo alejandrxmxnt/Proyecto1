@@ -1,6 +1,9 @@
-<footer class="footer text-center" style="background-image: url('<?php echo base_url();?>img/menu/texturamadera.jpg'); color: white; font-weight: bold;"> Sistema Web de Ventas 2023. <a
+<!--
+<footer class="footer text-center" style="background-image: url('<?php echo base_url();?>img/menu/texturamadera.jpg'); color: white; font-weight: bold; "> Sistema Web de Ventas 2023. <a
                     href="https://www.wrappixel.com/" style="color: white; font-weight: bold;">muebleriaLara.com</a>
             </footer>
+
+            -->
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->
@@ -14,6 +17,10 @@
     <!-- ============================================================== -->
     <!-- ============================================================== -->
     <!-- All Jquery -->
+    
+    
+    <!--DETALLES EN LOS FORMULARIOS-->
+    <script src="<?php echo base_url();?>bootstrap/js/formulario/detalles/kit_fontawesone.js" crossorigin="anonymous"></script>
     <!-- ============================================================== -->
     <script src="<?php echo base_url();?>bootstrap/plugins/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
