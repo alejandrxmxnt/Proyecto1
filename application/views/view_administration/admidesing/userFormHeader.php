@@ -10,12 +10,17 @@
     <!-- Favicon icon -->
     <link rel="icon" type="Usuario" sizes="16x16" href="<?php echo base_url();?>img/logos/logomuebleria.jpeg">
     <!-- Custom CSS 
-    <link href="<?php echo base_url();?>bootstrap/plugins/bower_components/chartist/dist/chartist.min.css" rel="stylesheet">
+    <link href="<?php// echo base_url();?>bootstrap/plugins/bower_components/chartist/dist/chartist.min.css" rel="stylesheet">
     -->
-<!--
+    <!--LIBRERIA NUEVA PARA PLUGINS DE VALIDACIONES
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Validation-Engine/2.6.4/validationEngine.jquery.min.css" integrity="sha512-fvBUZJJBrJrzrFYM/EN2isPokoNnx331y30ZXIxRRlop1aq6rT6d8oY6WJVsiXZoso0dIZ2nbQjtGLi6Kkxr/Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    -->
+    
+    <!--
     <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css">
      Custom CSS -->
     <link href="<?php echo base_url();?>bootstrap/css/style.min.css" rel="stylesheet">
+    <!--Estilo propio del formulario-->
     <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/form/usuarioForm.css">
     <!-- Imagen de fondo -->
     <style>
