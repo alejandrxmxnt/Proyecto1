@@ -19,7 +19,7 @@
                     echo form_open_multipart('administration/producto/subir', array('id' => 'formulario', 'class' => 'formulario', 'method' => 'post'));
                 ?>
                     <!-- Grupo: PRODUCTO -->
-                    <input type="hidden" name="id" value="<?php echo $id; ?>">
+                    <input type="hidden" name="id" value="<?php echo $id; ?>"> 
 
                     <!-- Grupo: CARGA DE IMAGENES -->
                     <div class="formulario__grupo" id="grupo__foto">
