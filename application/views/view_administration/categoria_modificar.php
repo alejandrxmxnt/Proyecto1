@@ -1,37 +1,56 @@
+<style>
+    p{
+        color: red;
+        font-weight: 200;
+        padding-top: -1px;
+    }
+</style>
 <div class="container">
     <div class="row">
         <div class="col-md-2">
         </div>
         <div class="col-md-10">
             <div class="regform">
-                <h1>ACTUALIZAR REGISTRO DE CATEGORIAS</h1>
+            <h1>ACTUALIZAR REGISTRO DE CATEGORIAS</h1>
             </div>
 
-            <div class="main">
-            <?php
-                foreach ($infocategoria->result() as $row) {
-                echo form_open_multipart('administration/categoria/modificarbd');
-            ?>
-            <input type="hidden" class="form-control p-0 border-0" name="idcategoria" value="<?php echo $row->id; ?>">
-                <div id="name">
-                    <h2 class="name">Nombre</h2>
-                    <input type="text" placeholder="Ingrese el nombre" class="Nombres" name="nombre" value="<?php echo $row->nombre; ?>"> <br>
-                    <label class="firstlabel">Nombre</label>
-                </div>
-                <br>
-                <div>
-                <h2 class="name">Descripcion</h2>
-                <textarea placeholder="Ingrese el numero." name="detalle" class="Detalle" ><?php echo $row->descripcion; ?></textarea>
-                <label class="description">Descripcion</label>
-                        <div class="form-group mb-4">
-                            <button type="submit">Registrar</button>
+            <main class="main">
+                <?php
+                    foreach ($infocategoria->result() as $row) {
+                    echo form_open_multipart('administration/categoria/modificarbd', array('id' => 'formulario', 'class' => 'formulario', 'method' => 'post'));
+                ?>
+                <input type="hidden" class="form-control p-0 border-0" name="idcategoria" value="<?php echo $row->id; ?>">
+                        <div class="formulario__grupo" id="grupo__nombre">
+                            <label for="nombre" class="formulario__label">Nombre:</label>
+                            <div class="formulario__grupo-input">
+                                <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese el Nombre" value="<?php echo $row->nombre; ?>" >
+                            </div>
+                            <p><?php echo form_error('nombre'); ?></p>
                         </div>
-                    </div>
-                    <?php
-                        echo form_close();
-                        }
-                    ?>
-            </div>
+
+                        <!-- Grupo: Descripcion -->
+                        <div class="formulario__grupo" id="grupo__detalle">
+                            <label for="detalle" class="formulario__label">Descripcion:</label>
+                            <div class="formulario__grupo-input">
+                                <textarea placeholder="Ingrese los detalles de categoria" id="detalle" name="detalle" class="detalle"><?php echo $row->descripcion; ?></textarea>
+                                <!-- <input type="text" class="formulario__input" name="primerApellido" id="primerApellido" placeholder="Primer Apellido" value="<?php // echo set_value('primerApellido'); ?>"> -->
+                            </div>
+                            <p><?php echo form_error('detalle'); ?></p>
+                        </div>
+            
+                        <div class="formulario__grupo formulario__grupo-btn-enviar">
+                            <button type="submit" class="formulario__btn">Registrar</button>
+                        </div>
+                <?php
+                    echo form_close();
+                    }
+                ?>
+            </main>
+
         </div>
     </div>
 </div>
+<!--
+<script src="<?php echo base_url();?>bootstrap/js/formulario/formularioCliente.js"></script>  
+<script src="<?php echo base_url();?>bootstrap/js/formulario/validacionCliente.js"></script>  -->
+<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>

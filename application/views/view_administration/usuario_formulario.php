@@ -1,3 +1,10 @@
+<style>
+    p{
+        color: red;
+        font-weight: 200;
+        padding-top: -1px;
+    }
+</style>
 <div class="container">
     <div class="row">
         <div class="col-md-2">
@@ -7,61 +14,89 @@
                 <h1>Registro de Usuarios</h1>
             </div>
 
-            <div class="main">
-                <?php
-                echo form_open_multipart('administration/usuario/agregarbd', array('id' => 'formulario__usuario'));
-                ?>
-                <div id="name">
-                    <h2 class="name">Nombre Completo:</h2>
-                    <input type="text" placeholder="Ingrese nombres" class="Nombres" name="nombre" autofocus> <br>
-                    <label class="firstlabel">Nombres</label>
-                    <input type="text" placeholder="Ingrese Apellido" class="Apellido1" name="apellido1"> 
-                    <label class="ape1">Primer Apellido</label>
-                    <input type="text" placeholder="Ingrese Apellido" class="Apellido2" name="apellido2">
-                    <label class="ape2">Segundo Apellido</label> 
-                </div>
-                <br>
-                <div>
-                    <h2 class="name">Telefono/Celular</h2>
-                    <input type="text" placeholder="Ingrese el numero." name="celular" class="Telefono">
-                    <?php echo form_error('celular'); ?>
-                    <h2 class="name">Cedula de Identidad</h2>
-                    <input type="text" placeholder="Cedula de indentidad." name="ci" class="Ci" >
-                </div>
-                    <h2 class="name">Correo Electronico</h2>
-                    <input type="email" placeholder="Ingrese el @gmail.com" name="correo" class="UserName">
-                    <input type="hidden" name="password" class="Password">
-                    <input type="hidden" name="userName" class="Password">
-                
-                    <h2 class="name">Rol</h2>
-                        <select name="subject" class="option">
-                            <option value="INVITADO">Invitado</option>
-                            <option value="ADMINISTRADOR">Administrador</option>
-                        </select>
+            <main class="main">
 
-                        <div class="form-group mb-4">
-                            <button type="submit">Registrar</button>
+                <?php
+                    echo form_open_multipart('administration/usuario/agregarbd', array('id' => 'formulario', 'class' => 'formulario', 'method' => 'post'));
+                ?>
+                        <div class="formulario__grupo" id="grupo__nombre">
+                            <label for="nombre" class="formulario__label">Nombre:</label>
+                            <div class="formulario__grupo-input">
+                                <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese el Nombre" value="<?php echo set_value('nombre'); ?>">
+                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p><?php echo form_error('nombre'); ?></p>
                         </div>
-                    </div>
 
+                        <!-- Grupo: Primer Apellido -->
+                        <div class="formulario__grupo" id="grupo__primerApellido">
+                            <label for="primerApellido" class="formulario__label">Primer Apellido:</label>
+                            <div class="formulario__grupo-input">
+                                <input type="text" class="formulario__input" name="primerApellido" id="primerApellido" placeholder="Primer Apellido" value="<?php echo set_value('primerApellido'); ?>">
+                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p><?php echo form_error('primerApellido'); ?></p>
+                        </div>
+                        <!-- Grupo: Segundo Apellido -->
+                        <div class="formulario__grupo" id="grupo__segundoApellido">
+                            <label for="segundoApellido" class="formulario__label">Segundo Apellido:</label>
+                            <div class="formulario__grupo-input">
+                                <input type="text" class="formulario__input" name="segundoApellido" id="segundoApellido" placeholder="Segundo Apellido" value="<?php echo set_value('segundoApellido'); ?>">
+                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p><?php echo form_error('segundoApellido'); ?></p>
+                        </div>
+                        <!-- Grupo: Telefono/Celular -->
+                        <div class="formulario__grupo" id="grupo__telefono">
+                            <label for="telefono" class="formulario__label">Celular/Telefono:</label>
+                            <div class="formulario__grupo-input">
+                                <input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="Celular/telefono" value="<?php echo set_value('telefono'); ?>">
+                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p><?php echo form_error('telefono'); ?></p>
+                        </div>
+                        <!-- Grupo: Cedula de Identidad -->
+                        <div class="formulario__grupo" id="grupo__ciNit">
+                            <label for="ciNit" class="formulario__label">Cedula de Identidad:</label>
+                            <div class="formulario__grupo-input">
+                                <input type="text" class="formulario__input" name="ci" id="ci" placeholder="Cedula de identidad" value="<?php echo set_value('ci'); ?>">
+                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p><?php echo form_error('ci'); ?>.</p>
+                        </div>
+                        <!-- Grupo: Correo -->
+                        <div class="formulario__grupo" id="grupo__correo">
+                            <label for="correo" class="formulario__label">Correo Electronico:</label>
+                            <div class="formulario__grupo-input">
+                                <input type="email" class="formulario__input" name="correo" id="correo" placeholder="correo@correo.com" value="<?php echo set_value('correo'); ?>">
+                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p><?php echo form_error('correo'); ?></p>
+                        </div>
+
+                        <div class="formulario__grupo" id="grupo__rol">
+                            <label for="rol" class="formulario__label">Rol:</label>
+                            <div class="formmulario__grupo-input">
+                                <select name="subject" class="option">
+                                    <option value="INVITADO">Invitado</option>
+                                    <option value="ADMINISTRADOR">Administrador</option>
+                                </select>
+                            </div>
+                        </div>
+                    
+                        <div class="formulario__mensaje" id="formulario__mensaje">
+                            <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+                        </div>
+            
+                        <div class="formulario__grupo formulario__grupo-btn-enviar">
+                            <button type="submit" class="formulario__btn">Registrar</button>
+                        </div>
                 <?php
-                echo form_close();
+                    echo form_close();
                 ?>
-            </div>
+            </main>
+
         </div>
     </div>
 </div>
-
-<!-- VALIDACION FORMULARIO JQUERY -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Validation-Engine/2.6.4/jquery-1.8.2.min.js" integrity="sha512-TioVFI1HfPAFh7BGAsuCB76vIrmMroWB+yRNKnTan26OBCdpdH9DWYoTxZbjW8kCKH3QDItheAEVso5N7+w75g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<!-- PARA EL QUE LOS MENSAJES SANGAN EN ESPAÑOL-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Validation-Engine/2.6.4/languages/jquery.validationEngine-es.min.js" integrity="sha512-GCKyaseskD91hTJv68w+ldDh2vU5iURF1/pIDyAY+Bv3MZhceURuVe3GZMgPXYUb+W41oTHz2CRrTOhkdvE6SQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<!--LIBRERIA DE JQUERY-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Validation-Engine/2.6.4/jquery.validationEngine.min.js" integrity="sha512-MKqdT8JgKftxlK6oK4S+Hh44ivKyaPncl6qN9JZEGKJGQZJMiSoPzehLcbvd/1XMieEP1Q4A3wzzhTrvBUUcUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
-<script>
-    $(document).ready(() => {
-        $('#formulario__usuario').validationEngine();
-    });
-</script>
+<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>

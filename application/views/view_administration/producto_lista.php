@@ -49,22 +49,21 @@
                 <?php 
                 $foto=$row->foto;
                 if($foto=="")//si foto esta igual a vacion sin imagen
-                {
+                {//cargar una imagen en caso de no tener una imagen que sea vacio
                     ?>
                     <img width="100" src="<?php echo base_url(); ?>uploads/productos/vacio.jpg">
                     <?php
-                }
-                
-                else
-                {
+                }else {//caso contrario se proyectara la imagen
                     ?>
                     <img width="100" src="<?php echo base_url(); ?>uploads/productos/<?php echo $foto; ?>">
                     <?php
                 }
                 ?>
                 <?php
-
-                ?>
+                  echo form_open_multipart('administration/producto/subirfoto');
+                ?> <!--crear un boton para subir imagenes-->
+                <input type="hidden" name="id" value="<?php echo $row->id; ?>">
+                <button type="submit" class="btn btn-primary">Subir</button>
             
             </td>
             <td><?php echo $row->fechaRegistro; ?></td>
