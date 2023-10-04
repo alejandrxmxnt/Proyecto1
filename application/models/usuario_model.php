@@ -40,4 +40,11 @@
             $this->db->where('id',$idusuario); //coinsida el id con el que le llega
             $this->db->update('usuario',$data);
         }
+
+        public function modificarpassword($idusuario,$oldpassword,$newpassword)
+        {
+            //$query="CALL ufcUpdatePassword($idusuario,'$oldpassword','$newpassword')";
+            $query="CALL ufcUpdatePassword($idusuario,MD5('$oldpassword'),MD5('$newpassword'))";
+            //return $this->db->query($query);
+        }
     }
