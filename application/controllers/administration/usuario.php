@@ -159,123 +159,45 @@
 
         public function agregarbd()
         {
-             
-            
             if($this->session->userdata('login'))//controla si existe esta variable.
             {//verdadero - redirecciona a una ventada de un usuario correctamente autentificado.
                 $tipo= $this->session->userdata('tipo');
                 if($tipo=='ADMINISTRADOR') //agregar estado
                 {
-                    
-                    //$mailer = new EmailSender(true); 
-                    //carga de valores para poder cargar las funciones de generar contrasenia y usuario
-                    //variable | formulario
-                    $nombre=$_POST['nombre'];
-                    $apellido1=$_POST['apellido1'];
-                    $ci=$_POST['ci'];
-                    $correo=$_POST['correo'];
-
-                    //  atributo.  BDD = name de formulario
-                    $data['nombre']=$_POST['nombre'];
-                    $data['primerApellido']=$_POST['apellido1'];
-                    $data['segundoApellido']=$_POST['apellido2'];
-                    $data['celular']=$_POST['celular'];
-                    $data['ci']=$_POST['ci'];
-                    $data['correo']=$_POST['correo'];
-
-                    //registrar nombre de usuario y contrasenia para luego agregar a la data y enviar a la base de datos
-                    $nombreUsuario = $this->generarUsuario($nombre, $apellido1, $ci);
-                    $contraseniaSegura = $this->generarContrasenia(8,substr($nombre,0,3), substr($apellido1,0,3), substr($ci,2,5));//envio de cartacteres recortados
-
-                    //$mailer->enviarDatos($correo,$nombreUsuario,$contraseniaSegura);
-                    $this->enviarDatos($correo,$nombreUsuario,$contraseniaSegura);
-
-                    $data['login']= $nombreUsuario;
-                    $data['password']=md5($contraseniaSegura);
-                    /*
-                    $data['login']=$_POST['userName'];
-                    $data['password']=md5($_POST['password']);*/
-                    $data['tipo']=$_POST['subject']; //el name es el mismo tanto para el css y el php
-
-                    $this->usuario_model->agregarusuario($data); //hasta ahi ya guarda en BDD
-
-                    redirect('administration/usuario/index','refresh');//con el refresh refrescamos de forma forsoza si es que hay problema 
-                }
-                else
-                {
-                    redirect('administration/empleado/index','refresh'); //si no hay sesion abierta direcciona al login
-                }
-            }
-            else
-            {//falso volvera 
-                redirect('administration/usuarios/index','refresh');//cargara el login
-            }
-            
-        }
-
-        
-/*
-            //AGREGAR USUARIOS APLICANDO VALIDACIONES
-        public function agregarbd()
-        {
-             
-            
-            if($this->session->userdata('login'))//controla si existe esta variable.
-            {//verdadero - redirecciona a una ventada de un usuario correctamente autentificado.
-                $tipo= $this->session->userdata('tipo');
-                if($tipo=='ADMINISTRADOR'){
-                    $this->load->library('form_validation');
-                    $this->form_validation->set_rules('nombre','Nombres','min_length[2]|max_length[50]|regex_match[/^*+¿()\?/&%$#"!@]+/]',
-                            array(
-                            //'required'=>'Llene este parametro',
-                            'min_length'=>'Nombre no valido demasiado corto',
-                            'max_length'=>'Nombre demasiado largo',
-                            'regex_match'=>'No se permiten caracteres especiales'));
-
-                    $this->form_validation->set_rules('apellido1','Primer Apellido','min_length[2]|max_length[50]|regex_match[/^[^*+¿()\?/&%$#"!@]+$/]',
-                            array(
-                            //'required'=>'Llene bien el formulario',
-                            'min_length'=>'Apellido no valido demasiado corto',
-                            'max_length'=>'Escriba bien sus credenciales',
-                            'regex_match'=>'No se permiten caracteres especiales'));
-
-                    $this->form_validation->set_rules('apellido2','Segundo Apellido','regex_match[/^[^*+¿()\?/&%$#"!@]+$/]',
-                            array(
-                            'regex_match'=>'No se permiten caracteres especiales'));
-
-                    $this->form_validation->set_rules('celular','Telefono/Celular','|min_length[7]|max_length[20]|regex_match[/^[^*¿()\?/&%$#"!@]+$/]',
-                            array(
-                            'min_length'=>'numero telefono demaciado corto',
-                            'max_length'=>'Verifique sus credenciales',
-                            'regex_match'=>'No se permiten caracteres especiales'));      
-
-
+                    $this->form_validation->set_rules('nombre','Ingrese el nombre','required|min_length[1]|max_length[50]|regex_match[/^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/]',array('required'=>'Ingrese el nombre','min_length'=>'Por lo menos debe haber 2 letras','max_length'=>'Cantidad maxima 50 letras','regex_match'=>'Solo se perminten letras'));
+                    //validación primer Apellido
+                    $this->form_validation->set_rules('primerApellido','Ingrese un apellido','required|min_length[1]|max_length[50]|regex_match[/^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/]',array('required'=>'Se requiere un apellido','min_length'=>'Por lo menos debe haber 2 letras','max_length'=>'Cantidad maxima 50 letras','regex_match'=>'Solo se perminten letras'));
+                    //validación segundo Apellido
+                    $this->form_validation->set_rules('segundoApellido','Ingrese otro apellido','min_length[1]|max_length[50]|regex_match[/^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/]',array('min_length'=>'Por lo menos debe haber 2 letras','max_length'=>'Cantidad maxima 50 letras','regex_match'=>'Solo se perminten letras'));
+                    //validación Telefono
+                    $this->form_validation->set_rules('telefono','Ingrese celular/telefono','min_length[0]|max_length[50]|regex_match[/^[0-9]+$/]',array('min_length'=>'debe ser mayor a 7 digitos','max_length'=>'Solo puedes registras 3 lineas de telefono o celular','regex_match'=>'Solo se perminten numeros'));
+                    //validación ciNit
+                    $this->form_validation->set_rules('ci','Ingrese cedula de indentidad','required|min_length[0]|max_length[20]|regex_match[/^[a-zA-Z0-9-]+$/]',array('required'=>'Se requiere CI','min_length'=>'Debe ser mayor a 7 caracteres','max_length'=>'capacidad maxima 20 caractes','regex_match'=>'Solo puede ingresar letras, numeros y guiones'));
+                    //validación correo
+                    $this->form_validation->set_rules('correo','correo@correo.com','required|min_length[5]|max_length[100]|regex_match[/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/]',array('required'=>'correo@correo.com','min_length'=>'Correo no valido','max_length'=>'Longitud maxima de correo de 100 caracteres','regex_match'=>'Puedes utilizar letras, números y puntos y la direccion de correo.'));
 
                     if($this->form_validation->run()==FALSE){
-                        redirect('administration/usuario/agregar','refresh');
-                        /*
+                        //SI NO SUPERA LA VALIDACION CARGA NUEVAMENTE EL FORMULARIO
                         $this->load->view('view_administration/admidesing/userFormHeader');
                         $this->load->view('view_administration/admidesing/menuSuperior');
                         $this->load->view('view_administration/admidesing/menuLateral');
                         $this->load->view('view_administration/usuario_formulario');
                         $this->load->view('view_administration/admidesing/foot');
-                        //$this->load->view('view_administration/login');//redirecciona a formulario
-                    }
-                    else
-                    {
-                       //$mailer = new EmailSender(true); 
+                        
+                    }else{
+                        //$mailer = new EmailSender(true); 
                         //carga de valores para poder cargar las funciones de generar contrasenia y usuario
                         //variable | formulario
                         $nombre=$_POST['nombre'];
-                        $apellido1=$_POST['apellido1'];
+                        $apellido1=$_POST['primerApellido'];
                         $ci=$_POST['ci'];
                         $correo=$_POST['correo'];
 
                         //  atributo.  BDD = name de formulario
                         $data['nombre']=$_POST['nombre'];
-                        $data['primerApellido']=$_POST['apellido1'];
-                        $data['segundoApellido']=$_POST['apellido2'];
-                        $data['celular']=$_POST['celular'];
+                        $data['primerApellido']=$_POST['primerApellido'];
+                        $data['segundoApellido']=$_POST['segundoApellido'];
+                        $data['celular']=$_POST['telefono'];
                         $data['ci']=$_POST['ci'];
                         $data['correo']=$_POST['correo'];
 
@@ -290,16 +212,17 @@
                         $data['password']=md5($contraseniaSegura);
                         /*
                         $data['login']=$_POST['userName'];
-                        $data['password']=md5($_POST['password']);
+                        $data['password']=md5($_POST['password']);*/
                         $data['tipo']=$_POST['subject']; //el name es el mismo tanto para el css y el php
 
                         $this->usuario_model->agregarusuario($data); //hasta ahi ya guarda en BDD
 
                         redirect('administration/usuario/index','refresh');//con el refresh refrescamos de forma forsoza si es que hay problema 
                     }
-                    
-                }else{
-                    redirect('administration/empleado/index','refresh'); //si no hay sesion abierta direcciona al login
+                }
+                else
+                {
+                    redirect('administration/empleado/index','refresh'); //carga panel de empleado
                 }
             }
             else
@@ -307,7 +230,7 @@
                 redirect('administration/usuarios/index','refresh');//cargara el login
             }
             
-        }*/
+        }
 
         public function modificar()
         {   
@@ -349,6 +272,109 @@
                     $idusuario=$_POST['idusuario'];//almacena el id
                     // BDD              formulario
                     $data['nombre']=$_POST['nombre'];
+                    $data['primerApellido']=$_POST['primerApellido'];
+                    $data['segundoApellido']=$_POST['segundoApellido'];
+                    $data['celular']=$_POST['telefono'];
+                    $data['ci']=$_POST['ci'];
+                    $data['correo']=$_POST['correo'];
+                    //$data['login']=$_POST['userName'];
+                    //$data['password']=md5($_POST['password']);
+                    $data['tipo']=$_POST['subject']; //el name es el mismo tanto para el css y el php
+                    //$data['fechaActualizacion']="CURRENT_TIMESTAMP()";
+
+                    $this->usuario_model->modificarusuario($idusuario,$data);
+
+                    redirect('administration/usuario/index','refresh');
+                    
+                    
+                    /*
+                    //validación nombre
+                    $this->form_validation->set_rules('nombre','Ingrese el nombre','required|min_length[1]|max_length[50]|regex_match[/^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/]',array('required'=>'Ingrese el nombre','min_length'=>'Por lo menos debe haber 2 letras','max_length'=>'Cantidad maxima 50 letras','regex_match'=>'Solo se perminten letras'));
+                    //validación primer Apellido
+                    $this->form_validation->set_rules('primerApellido','Ingrese un apellido','required|min_length[1]|max_length[50]|regex_match[/^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/]',array('required'=>'Se requiere un apellido','min_length'=>'Por lo menos debe haber 2 letras','max_length'=>'Cantidad maxima 50 letras','regex_match'=>'Solo se perminten letras'));
+                    //validación segundo Apellido
+                    $this->form_validation->set_rules('segundoApellido','Ingrese otro apellido','min_length[1]|max_length[50]|regex_match[/^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/]',array('min_length'=>'Por lo menos debe haber 2 letras','max_length'=>'Cantidad maxima 50 letras','regex_match'=>'Solo se perminten letras'));
+                    //validación Telefono
+                    $this->form_validation->set_rules('telefono','Ingrese celular/telefono','min_length[7]|max_length[50]|regex_match[/^[0-9]+$/]',array('min_length'=>'debe ser mayor a 7 digitos','max_length'=>'Solo puedes registras 3 lineas de telefono o celular','regex_match'=>'Solo se perminten numeros'));
+                    //validación ciNit
+                    $this->form_validation->set_rules('ci','Ingrese cedula de indentidad','required|min_length[5]|max_length[20]|regex_match[/^[a-zA-Z0-9-]+$/]',array('required'=>'Se requiere CI','min_length'=>'Debe ser mayor a 7 caracteres','max_length'=>'capacidad maxima 20 caractes','regex_match'=>'Solo puede ingresar letras, numeros y guiones'));
+                    //validación correo
+                    $this->form_validation->set_rules('correo','correo@correo.com','required|min_length[5]|max_length[100]|regex_match[/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/]',array('required'=>'correo@correo.com','min_length'=>'Correo no valido','max_length'=>'Longitud maxima de correo de 100 caracteres','regex_match'=>'Puedes utilizar letras, números y puntos y la direccion de correo.'));
+                    if($this->form_validation->run()==FALSE){
+                        // variable         formulario
+                        $idusuario=$_POST['idusuario'];
+                        //variable de transferencia de informacion 
+                        $data['infousuario']=$this->usuario_model->recuperarusuarios($idusuario); //asi hago llegar el idcliente al modelo
+                        //cargar la vista
+                        $this->load->view('view_administration/admidesing/userFormHeader');
+                        $this->load->view('view_administration/admidesing/menuSuperior');
+                        $this->load->view('view_administration/admidesing/menuLateral');
+                        $this->load->view('view_administration/usuario_modificar',$data);//ahi llega la informacion.
+                        $this->load->view('view_administration/admidesing/foot');
+                        
+                    }else{
+                        // variable         formulario
+                        $idusuario=$_POST['idusuario'];//almacena el id
+                        // BDD              formulario
+                        $data['nombre']=$_POST['nombre'];
+                        $data['primerApellido']=$_POST['primerApellido'];
+                        $data['segundoApellido']=$_POST['segundoApellido'];
+                        $data['celular']=$_POST['telefono'];
+                        $data['ci']=$_POST['ci'];
+                        $data['correo']=$_POST['correo'];
+                        //$data['login']=$_POST['userName'];
+                        //$data['password']=md5($_POST['password']);
+                        $data['tipo']=$_POST['subject']; //el name es el mismo tanto para el css y el php
+                        //$data['fechaActualizacion']="CURRENT_TIMESTAMP()";
+
+                        $this->usuario_model->modificarusuario($idusuario,$data);
+
+                        redirect('administration/usuario/index','refresh');
+                    } */
+                }else{
+                    redirect('administration/empleado/index','refresh'); //si no hay sesion abierta direcciona al login
+                }
+            }
+            else
+            {
+                redirect('administration/usuarios/index','refresh');//cargara el login
+            }
+            
+        }
+
+        /*
+        public function modificarbd()
+        {
+            if($this->session->userdata('login'))
+            {
+                $tipo= $this->session->userdata('tipo');
+                
+                if($tipo=='ADMINISTRADOR'){
+                    //validación nombre
+                    $this->form_validation->set_rules('nombre','Ingrese el nombre','required|min_length[1]|max_length[50]|regex_match[/^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/]',array('required'=>'Ingrese el nombre','min_length'=>'Por lo menos debe haber 2 letras','max_length'=>'Cantidad maxima 50 letras','regex_match'=>'Solo se perminten letras'));
+                    //validación primer Apellido
+                    $this->form_validation->set_rules('primerApellido','Ingrese un apellido','required|min_length[1]|max_length[50]|regex_match[/^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/]',array('required'=>'Se requiere un apellido','min_length'=>'Por lo menos debe haber 2 letras','max_length'=>'Cantidad maxima 50 letras','regex_match'=>'Solo se perminten letras'));
+                    //validación segundo Apellido
+                    $this->form_validation->set_rules('segundoApellido','Ingrese otro apellido','min_length[1]|max_length[50]|regex_match[/^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/]',array('min_length'=>'Por lo menos debe haber 2 letras','max_length'=>'Cantidad maxima 50 letras','regex_match'=>'Solo se perminten letras'));
+                    //validación Telefono
+                    $this->form_validation->set_rules('telefono','Ingrese celular/telefono','min_length[0]|max_length[50]|regex_match[/^[0-9]+$/]',array('min_length'=>'debe ser mayor a 7 digitos','max_length'=>'Solo puedes registras 3 lineas de telefono o celular','regex_match'=>'Solo se perminten numeros'));
+                    //validación ciNit
+                    $this->form_validation->set_rules('ci','Ingrese cedula de indentidad','required|min_length[0]|max_length[20]|regex_match[/^[a-zA-Z0-9-]+$/]',array('required'=>'Se requiere CI','min_length'=>'Debe ser mayor a 7 caracteres','max_length'=>'capacidad maxima 20 caractes','regex_match'=>'Solo puede ingresar letras, numeros y guiones'));
+                    //validación correo
+                    $this->form_validation->set_rules('correo','correo@correo.com','required|min_length[5]|max_length[100]|regex_match[/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/]',array('required'=>'correo@correo.com','min_length'=>'Correo no valido','max_length'=>'Longitud maxima de correo de 100 caracteres','regex_match'=>'Puedes utilizar letras, números y puntos y la direccion de correo.'));
+                    if(){
+
+                    }else{
+
+                    }
+                    
+                    
+                    
+                    
+                    // variable         formulario
+                    $idusuario=$_POST['idusuario'];//almacena el id
+                    // BDD              formulario
+                    $data['nombre']=$_POST['nombre'];
                     $data['primerApellido']=$_POST['apellido1'];
                     $data['segundoApellido']=$_POST['apellido2'];
                     $data['celular']=$_POST['celular'];
@@ -372,39 +398,7 @@
             }
             
         }
-/*
-        public function modificarbd()
-        {
-            //carga de valores para poder cargar las funciones de generar contrasenia y usuario
-            //variable | formulario
-            $nombre=$_POST['nombre'];
-            $apellido1=$_POST['apellido1'];
-            $ci=$_POST['ci'];
-            
-            // variable         formulario
-            $idusuario=$_POST['idusuario'];//almacena el id
-            // BDD              formulario
-            $data['nombre']=$_POST['nombre'];
-            $data['primerApellido']=$_POST['apellido1'];
-            $data['segundoApellido']=$_POST['apellido2'];
-            $data['celular']=$_POST['celular'];
-            $data['ci']=$_POST['ci'];
-            $data['correo']=$_POST['correo'];
-
-            $nombreUsuario = generarUsuario($nombre, $apellido1, $ci);
-            $contraseniaSegura = generarContrasenia(8,substr($nombre,0,3), substr($apellido1,0,3), substr($ci,2,5));//envio de cartacteres recortados
-            
-            //$data['login']=$_POST['userName'];
-            //$data['password']=md5($_POST['password']);
-            $data['login']=$nombreUsuario;
-            $data['password']=$contraseniaSegura;
-            $data['tipo']=$_POST['subject']; //el name es el mismo tanto para el css y el php
-            //$data['fechaActualizacion']="CURRENT_TIMESTAMP()";
-
-            $this->usuario_model->modificarusuario($idusuario,$data);
-
-            redirect('administration/usuario/index','refresh');
-        }*/
+        */ 
 
         public function deshabilitarbd(){
             if($this->session->userdata('login'))
@@ -427,6 +421,27 @@
                 redirect('administration/usuarios/index','refresh');//cargara el login
             }
             
+        }
+
+        public function usuario_update_password(){
+            //cargar la vista
+            $this->load->view('view_administration/admidesing/updatePasswordFormHeader');
+            $this->load->view('view_administration/admidesing/menuSuperior');
+            $this->load->view('view_administration/admidesing/menuLateral');
+            $this->load->view('view_administration/usuario_update_password');//ahi llega la informacion.
+            $this->load->view('view_administration/admidesing/foot');
+        }
+
+        public function updatepassword(){
+            ?>
+                <script src="<?php echo base_url();?>bootstrap/js/formulario/formularioUpdatePassword.js"></script> 
+            <?php
+            $idusuario=$_POST['idUsuario'];
+            $oldpassword=md5($_POST['password']);
+            $newpassword=md5($_POST['password2']);
+            $this->usuario_model->modificarpassword($idusuario,$oldpassword,$newpassword);
+            $this->session->sess_destroy();//desctruir variables de session
+            redirect('administration/usuarios/index','refresh');//redirige a login 
         }
         
 

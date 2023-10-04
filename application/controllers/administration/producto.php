@@ -30,39 +30,81 @@
 
         public function agregarbd()
         {
-            $nombrearchivo=$_POST['nombre'].".jpg";
-            $config['upload_path']='./uploads/productos/'; //direccion donde se almacenara el producto
-            $config['file_name']=$nombrearchivo;
-            $direccion="./uploads/productos/".$nombrearchivo;
 
-            if(file_exists($direccion)){
-                unlink($direccion);//si existe el archivo se remplaza por esta
-            }
-            $config['allowed_types']='jpg|jpeg';//tipos de archivos que voy a permitir
-            $this->load->library('upload',$config); //carga de libreria
+            //Validación nombre
+            $this->form_validation->set_rules('nombre','Ingrese el nombre','required|min_length[4]|max_length[250]|regex_match[/^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ\d,.\-]+$/]',array('required'=>'Ingrese el nombre del producto','min_length'=>'Nombre de producto demasiado corto','max_length'=>'Nombre demasiado largo','regex_match'=>'Solo se perminte texto'));
+            //Validación precio unitario
+            $this->form_validation->set_rules('precioUnitario','Precio de producto','required|min_length[2]|max_length[16]|regex_match[/^\d+(\.\d{1,2})?$/]',array('required'=>'Se requiere del precio','min_length'=>'Defina un precio','max_length'=>'Capacidad maxima de recibir 16 números','regex_match'=>'Solo se permiten números y punto'));
+            //Validación Stock
+            $this->form_validation->set_rules('stock','Stock disponible','required|min_length[1]|max_length[3]|regex_match[/^\d+(\.\d{1,2})?$/]',array('required'=>'Ingrese almenos el valor de 1 para el stock','min_length'=>'Ingrese un valor numerico','max_length'=>'logintud maxima de 3 digitos','regex_match'=>'Solo se permiten números enteros'));
+            //Validación Codigo
+            $this->form_validation->set_rules('codigo','Codigo de producto','min_length[4]|max_length[50]|regex_match[/^[a-zA-Z0-9-\sáéíóúÁÉÍÓÚñÑ]+$/]',array('min_length'=>'Codigo debe ser mayor a 4 caracteres','max_length'=>'Codigo excede de los 50 caracteres','regex_match'=>'Solo se permite letras mayúsculas y minúsculas, y números del 0 al 9'));
 
-            if(!$this->upload->do_upload())//si no se logra subir la foto
-            {
-                $data['error']=$this->upload->display_errors();//almacena todos los errores que salgan
-                //archivos pesados
-                //no hay permisos
-            }
-            else{
+            if($this->form_validation->run()==FALSE){
+                //mostar un formulario(vista) para agregar nuevo usuario.
+                $this->load->view('view_administration/admidesing/productoFormHeader');
+                $this->load->view('view_administration/admidesing/menuSuperior');
+                $this->load->view('view_administration/admidesing/menuLateral');
+                $this->load->view('view_administration/producto_formulario');
+                $this->load->view('view_administration/admidesing/foot');
+                
+            }else{
                 $data['nombre']=$_POST['nombre'];
                 $data['descripcion']=$_POST['descripcion'];
                 $data['precioUnitario']=$_POST['precioUnitario'];
                 $data['stock']=$_POST['stock'];
                 $data['codigo']=$_POST['codigo'];
 
-                $data['foto']=$nombrearchivo;
+                //$data['foto']=$nombrearchivo;
                 //$databdd['foto']=$nombrearchivo;
 
                 $this->producto_model->agregarproducto($data); //hasta ahi ya guarda en BDD
-                $this->upload->data();//subir la imagen
+                redirect('administration/producto/index','refresh');//con el refresh refrescamos de forma forsoza 
             }
-            
-            redirect('administration/producto/index','refresh');//con el refresh refrescamos de forma forsoza si es que hay problema
+        }
 
+        public function subirfoto()
+        {
+            //  recibir el id del producto  
+            //$variable['BDD']=FORMULARIO
+            $data['id']=$_POST['id'];
+
+            $this->load->view('view_administration/admidesing/productoFormHeader');
+            $this->load->view('view_administration/admidesing/menuSuperior');
+            $this->load->view('view_administration/admidesing/menuLateral');
+            $this->load->view('view_administration/subirproducto',$data);//ahi llega la informacion.
+            $this->load->view('view_administration/admidesing/foot');
+        }
+
+        public function subir()
+        {
+            //$variable['BDD']=FORMULARIO
+            $idproducto=$_POST['id']; //resepcionar el id del producto
+            $nombrearchivo=$idproducto.".jpg"; //nos aseguramos que el archivo tenga un nombre unico
+            //configuracion de subida
+            $config['upload_path']='./uploads/productos/';  //direccion de subida // ./ dice que trabaja con la raiz del sistema
+            $config['file_name']=$nombrearchivo; //juntamos la direccion del archivo
+            $direccion='./uploads/productos/'.$nombrearchivo;//donde va estar ese archivo
+
+            if(file_exists($direccion)){//si existe el archivo se borrara el anterior y agrega el nuevo
+                unlink($direccion);
+            }//si no existe significa que es la primera vez que se esta cargando una imagen
+            $config['allowed_types']='jpg|png'; //tipos de archivos que voy a permitir |gif
+            $this->load->library('upload',$config); //libreria upload nativa del modelo vista controlador con todos nuestros parametros de configuracion
+            //PRUEBA DE SUBIDA
+            if(!$this->upload->do_upload())
+            {//si no se logra subir la foto //do_upload() hace el intento de subir
+                //si no se ejecuta de manera efectiva
+                $data['error']=$this->upload->display_errors(); //almancena todos los errores que salgan
+                //archivos pesados, archivo no compatible
+            }else{
+                $data['foto']=$nombrearchivo; //data en el campo foto va almacenar el nombre del archivo que cuenta con la direccion 
+                //trabajar en base de datos
+                $this->producto_model->modificarproducto($idproducto,$data);
+                //subir el archibo
+                $this->upload->data();
+            }
+            redirect('administration/producto/index','refresh');
         }
 
         public function modificar()
