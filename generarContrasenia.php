@@ -31,6 +31,7 @@ $apellido2="Soliz";
 $ci="9483550";
 
 $nombreUsuario = generarUsuario($nombre, $apellido1, $ci);
+$new='Adri2002';
 $contraseniaSegura = generarContrasenia(8,substr($nombre,0,3), substr($apellido1,0,3), substr($ci,2,5));//envio de cartacteres recortados
 echo "El nombre de usuario generado es: " . $nombreUsuario;
 ?>
@@ -41,4 +42,8 @@ echo "Contraseña: $contraseniaSegura";
 <br>
 <?php
 echo "Encriptado: ".md5($contraseniaSegura);
+?>
+<br>
+<?php
+echo "eca3a049372ee62f971245da9163c4b9: ".MD5($new);
 ?>

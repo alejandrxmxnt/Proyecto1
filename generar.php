@@ -35,3 +35,5 @@ public function agregarbd(){
                     $data['login']= $nombreUsuario;
                     $data['password']=md5($contraseniaSegura);
 }
+echo '<br> <br>'
+MD5('Adri2002');
