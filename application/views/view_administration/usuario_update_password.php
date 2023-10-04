@@ -72,6 +72,6 @@
     </div>
 </div>
 <!--
-<script src="<?php echo base_url();?>bootstrap/js/formulario/formularioCliente.js"></script>  -->
+<script src="<?php echo base_url();?>bootstrap/js/formulario/formularioCliente.js"></script>   -->
 <script src="<?php echo base_url();?>bootstrap/js/formulario/validarUpdatePassword.js"></script> 
 <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
