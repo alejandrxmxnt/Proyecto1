@@ -2,51 +2,26 @@ const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
-	nombre: /^[a-zA-ZÀ-ÿ\s]{1,50}$/, // Letras y espacios, pueden llevar acentos.
-    primerApellido: /^[a-zA-ZÀ-ÿ\s]{1,50}$/, // Letras y espacios, pueden llevar acentos.
-    segundoApellido: /^[a-zA-ZÀ-ÿ\s]{1,50}$/, // Letras y espacios, pueden llevar acentos.
-	ciNit: /^[a-zA-Z0-9\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
-    telefono: /^\d{7,20}$/, // 7 a 14 numeros.
-    direccion: /^[a-zA-ZÀ-ÿ\s\-\.\,\/]{1,1000}$/, // Letras y espacios, pueden llevar acentos.
-    razonSocial: /^[a-zA-Z0-9\_\-]{4,16}$/ // Letras, numeros, guion y guion_bajo	
+	usuario: /^[a-zA-Z0-9\_\-]{0,20}$/, // Letras, numeros, guion y guion_bajo
+	password: /^.{6,20}$/, // 4 a 12 digitos.
 }
 
 const campos = {
-    nombre: false,
-    primerApellido: false,
-    segundoApellido: false,
-    ciNit: false,
-    telefono: false,
-    direccion: false,
-    razonSocial: false
+	usuario: false,
+	password: false
 }
 
 const validarFormulario = (e) => {
 	switch (e.target.name) {
-        case "nombre":
-			validarCampo(expresiones.nombre, e.target, 'nombre');
+		case "usuario":
+			validarCampo(expresiones.usuario, e.target, 'usuario');
 		break;
-        case "primerApellido":
-			validarCampo(expresiones.primerApellido, e.target, 'primerApellido');
+		case "password":
+			validarCampo(expresiones.password, e.target, 'password');
+			validarPassword2();
 		break;
-        case "segundoApellido":/*
-			if(validarCampo(expresiones.segundoApellido, e.target, 'segundoApellido') || validarCampo(segundoApellido = "")){
-				campos.segundoApellido=true;
-			}*/
-			validarCampo(expresiones.segundoApellido, e.target, 'segundoApellido');
-		break;
-        
-        case "ciNit":
-			validarCampo(expresiones.ciNit, e.target, 'ciNit');
-		break;
-        case "telefono":
-			validarCampo(expresiones.telefono, e.target, 'telefono');
-		break;
-        case "direccion":
-			validarCampo(expresiones.direccion, e.target, 'direccion');
-		break;
-        case "razonSocial":
-			validarCampo(expresiones.razonSocial, e.target, 'razonSocial');
+		case "password2":
+			validarPassword2();
 		break;
 	}
 }
@@ -69,28 +44,47 @@ const validarCampo = (expresion, input, campo) => {
 	}
 }
 
+const validarPassword2 = () => {
+	const inputPassword1 = document.getElementById('password');
+	const inputPassword2 = document.getElementById('password2');
+
+	if(inputPassword1.value !== inputPassword2.value){
+		document.getElementById(`grupo__password2`).classList.add('formulario__grupo-incorrecto');
+		document.getElementById(`grupo__password2`).classList.remove('formulario__grupo-correcto');
+		document.querySelector(`#grupo__password2 i`).classList.add('fa-times-circle');
+		document.querySelector(`#grupo__password2 i`).classList.remove('fa-check-circle');
+		document.querySelector(`#grupo__password2 .formulario__input-error`).classList.add('formulario__input-error-activo');
+		campos['password'] = false;
+	} else {
+		document.getElementById(`grupo__password2`).classList.remove('formulario__grupo-incorrecto');
+		document.getElementById(`grupo__password2`).classList.add('formulario__grupo-correcto');
+		document.querySelector(`#grupo__password2 i`).classList.remove('fa-times-circle');
+		document.querySelector(`#grupo__password2 i`).classList.add('fa-check-circle');
+		document.querySelector(`#grupo__password2 .formulario__input-error`).classList.remove('formulario__input-error-activo');
+		campos['password'] = true;
+	}
+}
+
 inputs.forEach((input) => {
 	input.addEventListener('keyup', validarFormulario);
 	input.addEventListener('blur', validarFormulario);
 });
 
 formulario.addEventListener('submit', (e) => {
-	//e.preventDefault();
+	e.preventDefault();
 
-	//const terminos = document.getElementById('terminos');
-	if(campos.nombre && campos.primerApellido /*&& campos.segundoApellido &&*/ /*campos.telefono && campos.ciNit && campos.direccion && campos.razonSocial*/ ){
-		//formulario.reset();
-/*
+	const terminos = document.getElementById('terminos');
+	if(campos.usuario && campos.password){
+		formulario.reset();
+
 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');
-		setTimeout(() => { //duracion de tiempo de mensaje exitoso
+		setTimeout(() => {
 			document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo');
-		}, 5000);//tiempo que se ejecuta 5 segundos
+		}, 5000);
 
 		document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
 			icono.classList.remove('formulario__grupo-correcto');
 		});
-		*/
-		//window.location.href = 'cliente_formulario','refresh';
 	} else {
 		document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
 	}

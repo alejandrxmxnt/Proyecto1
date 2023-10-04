@@ -44,9 +44,18 @@ main {
     grid-template-columns: 1fr 1fr;
 }
 
-#grupo__direccion,
-#grupo__razonSocial{
-    grid-column: span 3;
+#grupo__correo{
+    grid-column: span 2;
+}
+#grupo__rol{
+    grid-column: span 2;
+}
+select {
+    width: 100%;
+    height: 1.2cm;
+    border-radius: 5px;
+    border-color: #000;
+    /*height: 100%;*/
 }
 
 .formulario__label {
@@ -74,6 +83,11 @@ main {
 
 .formulario__input:focus {
 	border: 3px solid #0075FF;
+	outline: none;
+	box-shadow: 3px 0px 30px rgba(163,163,163, 0.4);
+}
+select:focus {
+    border: 3px solid #0075FF;
 	outline: none;
 	box-shadow: 3px 0px 30px rgba(163,163,163, 0.4);
 }
@@ -178,12 +192,6 @@ main {
 @media screen and (max-width: 800px) {
 	.formulario {
 		grid-template-columns: 1fr;
-	}
-
-	.formulario__grupo-terminos, 
-	.formulario__mensaje,
-	.formulario__grupo-btn-enviar {
-		grid-column: 1;
 	}
 
 	.formulario__btn {

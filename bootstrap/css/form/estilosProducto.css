@@ -24,7 +24,6 @@ body {
     margin: auto;
 }
 
-
 main {
 	max-width: 800px;
 	width: 90%;
@@ -38,14 +37,35 @@ main {
 	gap: 20px;
 }
 
-#grupo__telefono,
-#grupo__ciNit
+#grupo__nombre
 {
-    grid-template-columns: 1fr 1fr;
+    grid-column: span 3;
 }
 
-#grupo__direccion,
-#grupo__razonSocial{
+
+
+#grupo__descripcion{
+    grid-column: span 3;
+}
+/*lineas agregadas recien para ampliar el texarea*/
+textarea{
+	width: 100%;
+    height: 150px;
+    min-width: 80%;
+    resize: vertical;
+    top: -50px; /*separacion de un texto con otro por asi desirce interlineado*/
+    color: black;
+}
+#descripcion{
+    width: 100%;
+    height: 150px;
+    min-width: 80%;
+    resize: vertical;
+    top: -50px; /*separacion de un texto con otro por asi desirce interlineado*/
+    color: black;
+}
+/*hasta aca*/
+#grupo__foto{
     grid-column: span 3;
 }
 
@@ -178,9 +198,7 @@ main {
 @media screen and (max-width: 800px) {
 	.formulario {
 		grid-template-columns: 1fr;
-	}
-
-	.formulario__grupo-terminos, 
+	} 
 	.formulario__mensaje,
 	.formulario__grupo-btn-enviar {
 		grid-column: 1;
@@ -189,8 +207,4 @@ main {
 	.formulario__btn {
 		width: 100%;
 	}
-}
-
-.formulario__grupo-error {
-	color: red;
 }

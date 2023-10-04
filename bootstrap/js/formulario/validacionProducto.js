@@ -3,22 +3,18 @@ const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
 	nombre: /^[a-zA-ZÀ-ÿ\s]{1,50}$/, // Letras y espacios, pueden llevar acentos.
-    primerApellido: /^[a-zA-ZÀ-ÿ\s]{1,50}$/, // Letras y espacios, pueden llevar acentos.
-    segundoApellido: /^[a-zA-ZÀ-ÿ\s]{1,50}$/, // Letras y espacios, pueden llevar acentos.
-	ciNit: /^[a-zA-Z0-9\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
-    telefono: /^\d{7,20}$/, // 7 a 14 numeros.
-    direccion: /^[a-zA-ZÀ-ÿ\s\-\.\,\/]{1,1000}$/, // Letras y espacios, pueden llevar acentos.
-    razonSocial: /^[a-zA-Z0-9\_\-]{4,16}$/ // Letras, numeros, guion y guion_bajo	
+    descripcion: /^[a-zA-ZÀ-ÿ\s]{1,1999}$/, // Letras y espacios, pueden llevar acentos.
+    precioUnitario: /^\d{1,15}$/, // 7 a 14 numeros.
+	stock: /^\d{1,10}$/, // 7 a 14 numeros.
+    codigo: /^[a-zA-Z0-9\-]{1,50}$/, // Letras, numeros, guion y guion_bajo	
 }
 
 const campos = {
     nombre: false,
-    primerApellido: false,
-    segundoApellido: false,
-    ciNit: false,
-    telefono: false,
-    direccion: false,
-    razonSocial: false
+    descripcion: false,
+    precioUnitario: false,
+    stock: false,
+    codigo: false
 }
 
 const validarFormulario = (e) => {
@@ -26,27 +22,17 @@ const validarFormulario = (e) => {
         case "nombre":
 			validarCampo(expresiones.nombre, e.target, 'nombre');
 		break;
-        case "primerApellido":
-			validarCampo(expresiones.primerApellido, e.target, 'primerApellido');
+        case "descripcion":
+			validarCampo(expresiones.descripcion, e.target, 'descripcion');
 		break;
-        case "segundoApellido":/*
-			if(validarCampo(expresiones.segundoApellido, e.target, 'segundoApellido') || validarCampo(segundoApellido = "")){
-				campos.segundoApellido=true;
-			}*/
-			validarCampo(expresiones.segundoApellido, e.target, 'segundoApellido');
+        case "precioUnitario":
+			validarCampo(expresiones.precioUnitario, e.target, 'precioUnitario');
 		break;
-        
-        case "ciNit":
-			validarCampo(expresiones.ciNit, e.target, 'ciNit');
+        case "stock":
+			validarCampo(expresiones.stock, e.target, 'stock');
 		break;
-        case "telefono":
-			validarCampo(expresiones.telefono, e.target, 'telefono');
-		break;
-        case "direccion":
-			validarCampo(expresiones.direccion, e.target, 'direccion');
-		break;
-        case "razonSocial":
-			validarCampo(expresiones.razonSocial, e.target, 'razonSocial');
+        case "codigo":
+			validarCampo(expresiones.codigo, e.target, 'codigo');
 		break;
 	}
 }
@@ -78,7 +64,7 @@ formulario.addEventListener('submit', (e) => {
 	//e.preventDefault();
 
 	//const terminos = document.getElementById('terminos');
-	if(campos.nombre && campos.primerApellido /*&& campos.segundoApellido &&*/ /*campos.telefono && campos.ciNit && campos.direccion && campos.razonSocial*/ ){
+	if(campos.nombre && campos.precioUnitario && campos.stock ){
 		//formulario.reset();
 /*
 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');
