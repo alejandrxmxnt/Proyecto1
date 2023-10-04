@@ -20,16 +20,24 @@
     <!-- Imagen de fondo -->
     <style>
         /* Imagen de fondo */
-        body {
+        body {/*
             background-image: url('<?php echo base_url();?>img/logos/fondo.jpeg');
             background-repeat: no-repeat;
             background-size: 100% 100%;
-            backdrop-filter: blur(3px);  /* borroso */
+            backdrop-filter: blur(3px); 
             transition: 0.5s;
-            opacity: 1;
+            opacity: 1;*/
         }
 
     </style>
+
+
+
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/form/estilosProducto.css">
+
+
 </head>
 
 <body class="bodyy">

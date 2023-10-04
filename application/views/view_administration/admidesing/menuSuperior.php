@@ -3,7 +3,7 @@
                     background-image: url('<?php echo base_url();?>img/menu/texturamadera.jpg'); 
                     background-repeat: no-repeat; 
                     background-size: 100% 100%; */
-                    background-color: black;
+                    background-color: white;
                     ">
                     <!-- ============================================================== -->
                     <!-- Logo -->

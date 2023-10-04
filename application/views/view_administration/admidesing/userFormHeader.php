@@ -20,19 +20,21 @@
     <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css">
      Custom CSS -->
     <link href="<?php echo base_url();?>bootstrap/css/style.min.css" rel="stylesheet">
-    <!--Estilo propio del formulario-->
-    <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/form/usuarioForm.css">
+    <!--Estilo propio del formulario
+    <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/form/usuarioForm.css"> -->
+    <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/form/estilosUsuario.css">
     <!-- Imagen de fondo -->
     <style>
         /* Imagen de fondo */
+        /*
         body {
             background-image: url('<?php echo base_url();?>img/logos/fondo.jpeg');
             background-repeat: no-repeat;
             background-size: 100% 100%;
-            backdrop-filter: blur(3px);  /* borroso */
+            backdrop-filter: blur(3px);  //borroso
             transition: 0.5s;
             opacity: 1;
-        }
+        }*/
 
     </style>
 </head>

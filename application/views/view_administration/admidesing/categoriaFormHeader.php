@@ -7,19 +7,21 @@
     <title>MUEBLERIA LARA</title>
     <link rel="icon" type="Usuario" sizes="16x16" href="<?php echo base_url();?>img/logos/logomuebleria.jpeg">
     <link href="<?php echo base_url();?>bootstrap/css/style.min.css" rel="stylesheet">
-    <!-- CABECERA DEDICADA PARA FORMULARIOS -->
-    <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/form/stylecategoria.css">
+    <!-- CABECERA DEDICADA PARA FORMULARIOS 
+    <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/form/stylecategoria.css"> -->
+    <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/form/estilosCategoria.css">
     <!-- Imagen de fondo -->
     <style>
         /* Imagen de fondo */
+        /*
         body {
             background-image: url('<?php echo base_url();?>img/logos/fondo.jpeg');
             background-repeat: no-repeat;
             background-size: 100% 100%;
-            backdrop-filter: blur(3px);  /* borroso */
+            backdrop-filter: blur(3px); 
             transition: 0.5s;
             opacity: 1;
-        }
+        }*/
 
     </style>
 </head>
