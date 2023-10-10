@@ -149,11 +149,12 @@
                 redirect('administration/usuarios/index','refresh');//cargara el login
             }
             //mostar un formulario(vista) para agregar nuevo usuario.
+            /*
             $this->load->view('view_administration/admidesing/headboard');
             $this->load->view('view_administration/admidesing/menuSuperior');
             $this->load->view('view_administration/admidesing/menuLateral');
             $this->load->view('view_administration/iconos_lista');
-            $this->load->view('view_administration/admidesing/foot');
+            $this->load->view('view_administration/admidesing/foot');*/
         }
 
 
