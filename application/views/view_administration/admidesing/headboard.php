@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>MUEBLERIA LARA</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> <!--NUEVA LINEA PARA LOS ALERTs-->
     <!--
     <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" /> -->
     <!-- Favicon icon -->
