@@ -18,127 +18,121 @@
             <main class="main">
 
                 <div class="col-sm-12">
-                    <div class="card-box table-responsive">
+                    <div class="card-box table-responsive"> 
                         <div class="x_panel">
+                            <!--BOTON DE RETROCEDER RETORNA A LISTA DE VENTAS-->
                             <div class="x_title">
                                 <a href="<?php echo base_url();?>index.php/administration/ventas/index">
-                                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="" data-original-title="Volver"><i class="fa fa-mail-reply-all"></i></button>
+                                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Volver"><i class="fa fa-mail-reply-all"></i></button>
                                 </a>
                                 <div class="clearfix"></div>
                             </div>
+                            <!--INICIA CONTENIDO DE PROCESO DE VENTA-->
                             <div class="x_content">
                                 <br>
-                                <form action="http://localhost/proyectobd/index.php/admin/realizarTransaccionVenta" id="ventaForm" class="needs-validation" method="post" enctype="multipart/form-data" accept-charset="utf-8">
-                                <div class="form-group row">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Seleccione un cliente:</label>
-                                    <div class="col-md-9 col-sm-9 col-xs-9">
-                                        <select class="form-control" name="cliente" id="cliente" required="required">
-                                            <option value="" disabled="" selected="">Listado de clientes</option>
-                                            
-                                                <option value="1">
-                                                    Sofia S.A                                                    </option>
-
-                                            
-                                                <option value="2">
-                                                    Imba S.A                                                    </option>
-
-                                            
-                                                <option value="3">
-                                                    Jhimy                                                    </option>
-
-                                                                                        </select>
+                                <?php
+                                echo form_open_multipart('admininistration/ventas/realizarTransaccionVenta', array('id' => 'ventaForm', 'class' => 'needs-validation', 'method' => 'post'));
+                                ?>
+                                <!--
+                                <form action="<?php// echo base_url();?>index.php/admininistration/ventas/realizarTransaccionVenta" id="ventaForm" class="needs-validation" method="post">
+-->
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-3">Seleccione un cliente:</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-9">
+                                            <!--Lista de clientes por el momento es busqueda manual de lista-->
+                                            <select class="form-control" name="idcliente" id="idcliente" required="required">
+                                                <option value="" disabled selected>Lista de clientes</option>
+                                                <?php 
+                                                foreach ($clientes->result() as $row){ 
+                                                ?>
+                                                    <option value="<?php echo $row->id; ?>"><?php echo $row->ciNit; ?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select> <!--Fin de seleccion de clientes-->
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Seleccione un producto:</label>
-                                    <div class="col-md-5 col-sm-5 col-xs-5">
-                                        <input type="hidden" name="detalle_data" id="detalle_data" value="">
-
-                                        <select class="form-control" name="producto" id="producto" required="required">
-                                            <option value="" disabled="" selected="">Listado de productos</option>
-                                            
-                                                <option value="1">
-                                                    Pollo                                                    </option>
-
-                                            
-                                                <option value="4">
-                                                    Maiz                                                    </option>
-
-                                            
-                                                <option value="5">
-                                                    Condones                                                    </option>
-
-                                                                                        </select>
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-3">Seleccione un producto:</label> 
+                                        <div class="col-md-5 col-sm-5 col-xs-5">
+                                            <input type="hidden" name="detalle_data" id="detalle_data" value="">
+                                            <!--Seleccionar productos en lista-->
+                                            <select class="form-control" name="producto" id="producto" required="required">
+                                                <option value="" disabled selected>Listado de productos</option>
+                                                <?php
+                                                foreach ($productos->result() as $row){
+                                                ?>
+                                                    <option value="<?php echo $row->id; ?>">
+                                                        <?php echo $row->nombre; ?>
+                                                    </option>
+                                                <?php } ?>
+                                            </select>
+                                            <!--Fin de busqueda de productos en lista-->
+                                        </div>
+                                        <!--agregar mediante este boton a la tabla-->
+                                        <div class="col-md-4 col-sm-4 col-xs-4">
+                                            <button id="btn-agregar" type="button" class="btn btn-success">Agregar</button>
+                                        </div>
+                                        <!--Fin de boton para agregado a la tabla-->
                                     </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-4">
-                                        <button id="btn-agregar" type="button" class="btn btn-success">Agregar</button>
-                                    </div>
-                                </div>
 
-                                <div class="x_title">
-                                    <h2>Tabla de ventas <small></small></h2>
-                                    <ul class="nav navbar-right panel_toolbox">
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div id="tabla-ventas">
-                                    <table class="table table-striped" id="tabla-ventas">
-                                        <thead>
-                                            <tr>
-                                                <th>N°</th>
-                                                <th></th>
-                                                <th>Producto</th>
-                                                <th>Producto</th>
-                                                <th>Precio</th>
-                                                <th>Stock</th>
-                                                <th>Cantidad</th>
-                                                <th>Importe</th>
-                                                <th>Quitar Producto</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="list-product">
-                                            <tr id="fila-ejemplo" style="display: none;">
-                                                <td></td>
-                                                <td><input type="hidden" class="producto-id" name="producto_id[]"></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td><input style="width: 100px;" type="number" required="required" value="0" class="form-control cantidad" name="cantidad[]" id="cantidad"></td>
-                                                <td></td>
-                                                <td><button class="btn btn-danger btn-remove"><span class="glyphicon glyphicon-trash"></span></button></td>
-                                            </tr>
-
-                                        <tr style="display: table-row;" class="added-row">
-                                                <td>1</td>
-                                                <td><input type="hidden" class="producto-id" name="producto_id[]" value="4"></td>
-                                                <td>Maiz</td>
-                                                <td>Maiz en grano </td>
-                                                <td>95.00</td>
-                                                <td>4000</td>
-                                                <td><input style="width: 100px;" type="number" required="required" value="0" class="form-control cantidad" name="cantidad[]" id="cantidad"></td>
-                                                <td>95</td>
-                                                <td><button class="btn btn-danger btn-remove"><span class="glyphicon glyphicon-trash"></span></button></td>
-                                            </tr></tbody>
-                                    </table>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-2" style="text-align: center;">
-                                        <input type="number" name="total" id="total" class="form-control" style="text-align: center;"><strong><samp>TOTAL(Bs.)</samp></strong>
+                                    <div class="x_title">
+                                        <h2>Tabla de ventas <small></small></h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                        </ul>
+                                        <div class="clearfix"></div>
                                     </div>
-                                    <div class="col-md-8"></div>
-                                    <div class="col-md-2">
+                                    <div id="tabla-ventas">
+                                        <table class="table table-striped" id="tabla-ventas">
+                                            <thead>
+                                                <tr>
+                                                    <th>N°</th>
+                                                    <th></th>
+                                                    <th>Producto</th>
+                                                    <th>Producto</th>
+                                                    <th>Precio</th>
+                                                    <th>Stock</th>
+                                                    <th>Cantidad</th>
+                                                    <th>Importe</th>
+                                                    <th>Quitar Producto</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="list-product">
+                                                <tr id="fila-ejemplo" style="display: none;">
+                                                    <td></td>
+                                                    <td><input type="hidden" class="producto-id" name="producto_id[]"></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td><input style="width: 100px;" type="number" required="required" value="0" class="form-control cantidad" name="cantidad[]" id="cantidad"></td>
+                                                    <td></td>
+                                                    <td><button class="btn btn-danger btn-remove"><span class="glyphicon glyphicon-trash"></span></button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-2" style="text-align: center;">
+                                    <div class="row">
+                                        <div class="col-md-2" style="text-align: center;">
+                                            <input type="number" name="total" id="total" class="form-control" style="text-align: center;"><strong><samp>TOTAL(Bs.)</samp></strong>
+                                        </div>
+                                        <div class="col-md-8"></div>
+                                        <div class="col-md-2">
+                                        </div>
                                     </div>
-                                    <div class="col-md-8"></div>
-                                    <div class="col-md-2">
-                                        <button type="submit" class="btn btn-info btn-block" id="btn-guardar"><strong>Guardar</strong></button>
+                                    <div class="row">
+                                        <div class="col-md-2" style="text-align: center;">
+                                        </div>
+                                        <div class="col-md-8"></div>
+                                        <div class="col-md-2">
+                                            <button type="submit" class="btn btn-info btn-block" id="btn-guardar"><strong>Guardar</strong></button>
+                                            <br>
+                                        </div>
                                     </div>
-                                </div>
-                                </form>                                
+                                    <!--
+                                </form> 
+-->
+                                <?php echo form_close(); ?>                              
                             </div>
                         </div>
                     </div>
