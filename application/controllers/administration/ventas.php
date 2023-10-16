@@ -15,8 +15,8 @@
         {
             if($this->session->userdata('login'))
             {
-                $lista=$this->venta_model->listaventa();//Consulta para la lista venta
-                $data['venta']=$lista;
+                $lista=$this->venta_model->listadoventas();//Consulta para la lista venta
+                $data['ventas']=$lista;
                 $this->load->view('view_administration/admidesing/ventaheadboard');
                 $this->load->view('view_administration/admidesing/menuSuperiorVenta');
                 $this->load->view('view_administration/admidesing/menuLateral');
@@ -41,8 +41,6 @@
                 $this->load->view('view_administration/admidesing/ventaheadboard');
                 $this->load->view('view_administration/admidesing/menuSuperiorVenta');
                 $this->load->view('view_administration/admidesing/menuLateral');
-                //$this->load->view('view_administration/venta_formulario'); //metodo de busqueda de producto
-                //$this->load->view('view_administration/venta_formulario2'); // forumario sin css vacio
                 $this->load->view('view_administration/formventa', $data);
                 $this->load->view('view_administration/admidesing/foot');
             }
@@ -52,6 +50,14 @@
             }
         }
 
+        public function venta()
+        {
+
+            $data['ventas'] = $this->venta_model->listaventas();
+            //$data['contents'] = 'admin/listaventa';
+            $data['contents'] = 'administration/ventas/listaventa';
+            $this->load->view('layout/index', $data);
+        }
 
 
         /////////////////////////////////////////////////////////////
@@ -59,22 +65,59 @@
         /////////////////////////////////////////////////////////////
 
         public function realizarventa()
-	{
-        $lista = $this->cliente_model->listaclientes();
-		$data['clientes'] = $lista;
-        $lista = $this->producto_model->listaproductos();
-        $data['productos'] = $lista;
+        {
+            if($this->session->userdata('login'))//VERIRICA SI EXISTE SESION ABIERTA
+            {   
+                $lista = $this->cliente_model->listaclientes();
+                $data['clientes'] = $lista;
+                $lista = $this->producto_model->listaproductos();
+                $data['productos'] = $lista;
 
-        $this->load->view('view_administration/admidesing/ventaheadboard');
-        $this->load->view('view_administration/admidesing/menuSuperiorVenta');
-        $this->load->view('view_administration/admidesing/menuLateral');
-        $this->load->view('view_administration/formventa', $data);
-        $this->load->view('view_administration/admidesing/foot');
+                $this->load->view('view_administration/admidesing/ventaheadboard');
+                $this->load->view('view_administration/admidesing/menuSuperiorVenta');
+                $this->load->view('view_administration/admidesing/menuLateral');
+                $this->load->view('view_administration/formventa', $data);
+                $this->load->view('view_administration/admidesing/foot');
+            }
+            else
+            {
+                redirect('administration/ventas/index','refresh');//cargara el login
+            }
+            
 
-		//$data['contents'] = 'view_administration/formventa'; //direccion de formulario
-		//$this->load->view('layout/index', $data);
-        //$this->load->view('layout/index', $data);
-	}
+            //$data['contents'] = 'view_administration/formventa'; //direccion de formulario
+            //$this->load->view('layout/index', $data);
+            //$this->load->view('layout/index', $data);
+        }
+
+
+        public function realizarTransaccionVenta()
+        {
+            if($this->session->userdata('login'))//VERIRICA SI EXISTE SESION ABIERTA
+            {   
+                $idCliente = $_POST['cliente'];
+                //$fechaVenta = $_POST['fechaVenta'];
+                $total = $_POST['total']; //costoFinal
+                $detalle_data = $_POST['detalle_data'];
+                $idUsuario = $this->session->userdata('id');
+
+                // Llama al modelo para agregar la venta
+                $resultado = $this->venta_model->agregarVenta($idCliente, /*$fechaVenta,*/ $total, $idUsuario, $detalle_data);
+                
+                if ($resultado) 
+                {
+                    $data['ventas'] = $this->venta_model->listaventas();
+                    $data['contents'] = 'administration/ventas/listaventa';
+                    $this->load->view('layout/index', $data);
+                    //redirect('administration/ventas/index','refresh');
+                }
+            }
+            else
+            {
+                redirect('administration/ventas/index','refresh');//cargara el login
+            }
+            
+        }
 
         
     }
