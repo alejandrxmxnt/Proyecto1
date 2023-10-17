@@ -63,7 +63,7 @@
 
 
 
-        public function agregarVenta($idCliente, /*$fechaVenta, */$total, $idUsuario, $detalle_data)
+        public function agregarVenta($idCliente, $total, $idUsuario, $detalle_data)
         {
             // Inicia una transacción en la base de datos
             $this->db->trans_start();
@@ -73,7 +73,6 @@
             //primero se trabaja en la tabla venta //cargar un arreglo para la tabla venta
             $venta = array(
                 //'fecha' => $fechaVenta, //fecha de venta
-                //'fechaVenta' => $fechaVenta,
                 'total' => $total, //costo Final
                 'idUsuario' => $idUsuario, //idUsuario
                 'idCliente' => $idCliente //id cliente

@@ -102,14 +102,14 @@
                 $idUsuario = $this->session->userdata('id');
 
                 // Llama al modelo para agregar la venta
-                $resultado = $this->venta_model->agregarVenta($idCliente, /*$fechaVenta,*/ $total, $idUsuario, $detalle_data);
+                $resultado = $this->venta_model->agregarVenta($idCliente, $total, $idUsuario, $detalle_data);
                 
                 if ($resultado) 
                 {
-                    $data['ventas'] = $this->venta_model->listaventas();
-                    $data['contents'] = 'administration/ventas/listaventa';
-                    $this->load->view('layout/index', $data);
-                    //redirect('administration/ventas/index','refresh');
+                    //$data['ventas'] = $this->venta_model->listaventas();
+                    //$data['contents'] = 'administration/ventas/listaventa';
+                    //$this->load->view('layout/index', $data);
+                    redirect('administration/ventas/index','refresh');
                 }
             }
             else

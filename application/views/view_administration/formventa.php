@@ -307,6 +307,7 @@
                 var fila = $("#fila-ejemplo").clone().removeAttr("id");
 
                 $.getJSON('<?php echo base_url() ?>index.php/administration/ajax/obtenerProductoPorId/' + producto_id, function(data) {
+                    
                     if (data) {
 
                         fila.find("td:eq(0)").text(contadorFilas);
@@ -370,7 +371,7 @@
             };
             datos.push(filaData); //vamos a cargar con un push nuestros datos el filaData en el array que creamos
 
-            console.log(datos);
+            //console.log(datos);
         });
 
         // Muestra el contenido del array en un alert
