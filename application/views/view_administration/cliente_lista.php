@@ -53,7 +53,7 @@
             ?>
 
               <input type="hidden" value="<?php echo $row->id; ?>" name="idcliente">
-              <button type="submit" class="btn btn-success">Modificar</button>
+              <button type="submit" class="btn btn-success">Modificar</button> 
 
             <?php
                 echo form_close();

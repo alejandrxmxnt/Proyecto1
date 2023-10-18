@@ -361,7 +361,7 @@
             var descuento = parseInt(fila.find("td:eq(5) input").val()); //recupera el valor del descuento
             //var precioUnitario = parseFloat(fila.find("td:eq(4)").text());
             //var importe = cantidad * precioUnitario; // Calcula el importe 
-            var importe = parseFloat(fila.find("td:eq(4)").text()); //recupera el valor de importe de cada uno
+            var importe = parseFloat(fila.find("td:eq(7)").text()); //recupera el valor de importe de cada uno
 
             var filaData = {
                 idProducto: fila.find("td:eq(1) input").val(), //recupera el id de producto
