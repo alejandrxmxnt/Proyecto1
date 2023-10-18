@@ -1,49 +1,34 @@
-<div class="site-mobile-menu site-navbar-target">
-		<div class="site-mobile-menu-header">
-			<div class="site-mobile-menu-close">
-				<span class="icofont-close js-menu-toggle"></span>
-			</div>
-		</div>
-		<div class="site-mobile-menu-body"></div>
-	</div>
+<!-- Start Header/Navigation -->
+<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 
-	<nav class="site-nav">
-		<div class="container">
-			<div class="menu-bg-wrap">
-				<div class="site-navigation">
-					<div class="row g-0 align-items-center">
-						<div class="col-2">
-							<a href="<?php echo base_url();?>index.php/customer/base/index" class="logo m-0 float-start">Muebleria Lara<span class="text-primary">.</span></a>
-						</div>
-						<div class="col-8 text-center">
-                            <!-- 
-							<form action="#" class="search-form d-inline-block d-lg-none">
-								<input type="text" class="form-control" placeholder="Search...">
-								<span class="bi-search"></span>
-							</form>
-                            -->
-							<ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu mx-auto">
-								<li class="active"><a href="<?php echo base_url();?>index.php/customer/base/index">INICIO</a></li>
-								<li class="has-children">
-									<a href="<?php echo base_url();?>index.php/customer/base/catalogue">Catalogo</a>
-									<ul class="dropdown">
-										<li><a href="<?php echo base_url();?>index.php/customer/base/catalogue">categoria 1</a></li>
-										<li><a href="<?php echo base_url();?>index.php/customer/base/catalogue">categoria 2</a></li>
-										<li><a href="<?php echo base_url();?>index.php/customer/base/catalogue">categoria 3</a></li>
-									</ul>
-								</li>
-								<li><a href="<?php echo base_url();?>index.php/customer/base/index">Servicios</a></li>
-								<li><a href="<?php echo base_url();?>index.php/customer/base/index">Contactanos</a></li>
-								<li><a href="<?php echo base_url();?>index.php/customer/base/info">Acerca de</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</nav>
-	<div class="header-social-links">
-		<a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-		<a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-		<a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-  </div>
+<div class="container">
+	<a class="navbar-brand" href="<?php echo base_url();?>index.php/customer/catalogo/index">Mueblería Lara<span>.</span></a>
+
+	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarsFurni">
+		<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+			<li class="nav-item active">
+				<a class="nav-link" href="<?php echo base_url();?>index.php/customer/catalogo/inicio">Inicio</a>
+			</li>
+			<!--<li><a class="nav-link" href="shop.html">Shop</a></li>-->
+			<li><a class="nav-link" href="about.html">Acerca de Nosotros</a></li>
+			<li><a class="nav-link" href="<?php echo base_url();?>index.php/customer/catalogo/index">Catalogo</a></li>
+			<!--<li><a class="nav-link" href="<?php //echo base_url();?>index.php/customer/catalogo/infoProducto">Producto</a></li>-->
+			<li><a class="nav-link" href="<?php echo base_url();?>index.php/customer/catalogo/contactanos">Contactanos</a></li>
+		</ul>
+
+		<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+			<li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+</svg></a></li>
+			<li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-check-fill" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+</svg></li>
+		</ul>
+	</div>
+</div>
+	
+</nav>
