@@ -73,7 +73,7 @@
                         $this->load->view('view_administration/admidesing/foot');  
                     }else{
                         //  atributo.  BDD = name de formulario
-                        $data['nombre']=$_POST['nombre'];
+                        $data['nombre']=strtoupper($_POST['nombre']);
                         $data['descripcion']=$_POST['detalle'];
 
                         $this->categoria_model->agregarcategoria($data); //hasta ahi ya guarda en BDD

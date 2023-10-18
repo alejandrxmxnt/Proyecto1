@@ -116,7 +116,27 @@
             {
                 redirect('administration/ventas/index','refresh');//cargara el login
             }
-            
+        }
+
+        public function deshabilitarbd(){
+            if($this->session->userdata('login'))
+            {
+                $tipo= $this->session->userdata('tipo');
+                if($tipo=='ADMINISTRADOR'){
+                    $idventas=$_POST['idventas'];
+                    $data['estado']='0';
+
+                    $this->venta_model->deshablitarventa($idventas,$data);
+
+                    redirect('administration/ventas/index','refresh');
+                }else{
+                    redirect('administration/ventas/index','refresh');
+                }
+            }
+            else
+            {
+                redirect('administration/usuarios/index','refresh');//cargara el login
+            }  
         }
 
         
