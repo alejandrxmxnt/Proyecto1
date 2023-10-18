@@ -23,7 +23,7 @@
     <!--Estilo propio del formulario
     <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/form/usuarioForm.css"> -->
     <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/form/estilosUsuario.css">
-    <!-- Imagen de fondo -->
+    <!-- Imagen de fondo --> 
     <style>
         /* Imagen de fondo */
         /*
@@ -37,6 +37,11 @@
         }*/
 
     </style>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </head>
 
 <body class="bodyy">

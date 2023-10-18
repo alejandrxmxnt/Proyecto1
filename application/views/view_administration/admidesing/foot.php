@@ -23,10 +23,11 @@
     <script src="<?php echo base_url();?>bootstrap/js/formulario/detalles/kit_fontawesone.js" crossorigin="anonymous"></script>
     <!-- ============================================================== -->
     <script src="<?php echo base_url();?>bootstrap/plugins/bower_components/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
+<!-- Bootstrap tether Core JavaScript -->
     <script src="<?php echo base_url();?>bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="<?php echo base_url();?>bootstrap/js/app-style-switcher.js"></script>
     <script src="<?php echo base_url();?>bootstrap/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
+
     <!--Wave Effects -->
     <script src="<?php echo base_url();?>bootstrap/js/waves.js"></script>
     <!--Menu sidebar -->
