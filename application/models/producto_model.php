@@ -2,7 +2,7 @@
     class Producto_model extends CI_Model{
         
         public function listaproductos()
-        {
+        {  
             $this->db->select('*');
             $this->db->from('producto');
             $this->db->where('estado','1');

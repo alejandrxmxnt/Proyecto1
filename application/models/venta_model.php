@@ -29,16 +29,27 @@
             $this->db->from('venta');
             return $this->db->get();
         }
-
+/*
         public function listadoventas() 
         {
-            $this->db->select("v.id, c.nombre, c.primerApellido, d.descuento, d.cantidad, d.importe, v.fechaVenta");
+            $this->db->select("v.id, c.nombre, c.primerApellido, d.descuento, d.cantidad, v.total, v.fechaVenta");
             $this->db->from("venta v");
             $this->db->join("detalleventa d", "v.id=d.idVenta");
             $this->db->join("cliente c", "c.id=v.idCliente");
             return $this->db->get();
-        }
+        }*/
 
+        public function listadoventas() 
+        {
+            $this->db->select('V.id, C.nombre, SUM(D.cantidad) as total_cantidad, V.total, V.fechaVenta');
+            $this->db->from('venta V');
+            $this->db->join('detalleventa D', 'V.id = D.idVenta');
+            $this->db->join('cliente C', 'C.id = V.idCliente');
+            $this->db->group_by('V.id, V.total, V.fechaVenta, V.estado');
+            $this->db->having('V.estado',1);
+            $this->db->order_by('V.id', 'desc');
+            return $this->db->get();
+        }
 
         ////////////////////////////////////////////////////////
         ///////////      VENTA         /////////////////////////
@@ -116,7 +127,16 @@
                 return true;
             }
         }
-        
+
+        ////////////////////////////////////////////////////
+        //////////////   ELIMINAR    ///////////////////////
+        ////////////////////////////////////////////////////
+
+        public function deshablitarventa($idventas,$data)
+        {
+            $this->db->where('id',$idventas); //coinsida el id con el que le llega
+            $this->db->update('venta',$data);
+        }
     }
 
 

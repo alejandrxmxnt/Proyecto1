@@ -3,7 +3,7 @@
         //CONSULTAS POR ACTIVE RECORD
         //consulta de solo cliente activos 1/activo | 0/inactivo
         public function listaclientes()
-        {
+        { 
             $this->db->select('*');
             $this->db->from('cliente');
             $this->db->where('estado','1');
