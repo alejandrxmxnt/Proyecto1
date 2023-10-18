@@ -1,0 +1,49 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20210908/pngtree-dragon-boat-festival-theme-woodworking-hardware-tools-photography-map-with-pictures-image_829429.jpg');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.regform{
+    width: 800px;
+    background-color: rgb(0, 0, 0, 0.6);
+    margin: auto;
+    color: #FFFFFF;
+    padding: 5px 0px 5px 0px;
+    text-align: center;
+    border-radius: 15px 15px 0px 0px;
+}
+.main{
+    background-color:rgb(0, 0, 0, 0.5);
+    width: 800px; /*aumentar a 1000px*/
+    margin: auto;
+}
+
+
+main {
+	max-width: 800px;
+	width: 90%;
+	margin: auto;
+	padding: 40px;
+}
+
+.control-label {
+    text-align: left;
+    color: white;
+    font-weight: 700;
+}
+h2, strong {
+    color: white;
+    font-weight: 700;
+}
+
+table {
+    color: white;
+    font-weight: 700;
+}
+
