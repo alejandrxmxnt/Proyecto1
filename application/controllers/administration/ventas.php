@@ -12,16 +12,27 @@
         }*/
 
         public function index() //pagina principal de venta
-        {
+        { 
             if($this->session->userdata('login'))
             {
-                $lista=$this->venta_model->listadoventas();//Consulta para la lista venta
-                $data['ventas']=$lista;
-                $this->load->view('view_administration/admidesing/ventaheadboard');
-                $this->load->view('view_administration/admidesing/menuSuperiorVenta');
-                $this->load->view('view_administration/admidesing/menuLateral');
-                $this->load->view('view_administration/venta_lista',$data);//TABLA DE VENTAS
-                $this->load->view('view_administration/admidesing/foot');
+                $tipo= $this->session->userdata('tipo');
+                if($tipo=='ADMINISTRADOR'){
+                    $lista=$this->venta_model->listadoventas();//Consulta para la lista venta
+                    $data['ventas']=$lista;
+                    $this->load->view('view_administration/admidesing/ventaheadboard');
+                    $this->load->view('view_administration/admidesing/menuSuperiorVenta');
+                    $this->load->view('view_administration/admidesing/menuLateral');
+                    $this->load->view('view_administration/venta_lista',$data);//TABLA DE VENTAS
+                    $this->load->view('view_administration/admidesing/foot');
+                }else{
+                    $lista=$this->venta_model->listadoventas();//Consulta para la lista venta
+                    $data['ventas']=$lista;
+                    $this->load->view('view_administration/admidesing/ventaheadboard');
+                    $this->load->view('view_administration/admidesing/menuSuperiorVenta');
+                    $this->load->view('view_administration/admidesing/menuLateral2');
+                    $this->load->view('view_administration/venta_lista',$data);//TABLA DE VENTAS
+                    $this->load->view('view_administration/admidesing/foot'); //si no hay sesion abierta direcciona al login
+                } 
             } 
             else
             {
@@ -33,16 +44,31 @@
         { 
             if($this->session->userdata('login'))//VERIRICA SI EXISTE SESION ABIERTA
             {   
-                $lista = $this->cliente_model->listaclientes();
-                $data['clientes'] = $lista;
-                $lista = $this->producto_model->listaproductos();
-                $data['productos'] = $lista;
-                //Se carga formulario
-                $this->load->view('view_administration/admidesing/ventaheadboard');
-                $this->load->view('view_administration/admidesing/menuSuperiorVenta');
-                $this->load->view('view_administration/admidesing/menuLateral');
-                $this->load->view('view_administration/formventa', $data);
-                $this->load->view('view_administration/admidesing/foot');
+                $tipo= $this->session->userdata('tipo');
+                if($tipo=='ADMINISTRADOR'){
+                    $lista = $this->cliente_model->listaclientes();
+                    $data['clientes'] = $lista;
+                    $lista = $this->producto_model->listaproductos();
+                    $data['productos'] = $lista;
+                    //Se carga formulario
+                    $this->load->view('view_administration/admidesing/ventaheadboard');
+                    $this->load->view('view_administration/admidesing/menuSuperiorVenta');
+                    $this->load->view('view_administration/admidesing/menuLateral');
+                    $this->load->view('view_administration/formventa', $data);
+                    $this->load->view('view_administration/admidesing/foot');
+                }else{
+                    $lista = $this->cliente_model->listaclientes();
+                    $data['clientes'] = $lista;
+                    $lista = $this->producto_model->listaproductos();
+                    $data['productos'] = $lista;
+                    //Se carga formulario
+                    $this->load->view('view_administration/admidesing/ventaheadboard');
+                    $this->load->view('view_administration/admidesing/menuSuperiorVenta');
+                    $this->load->view('view_administration/admidesing/menuLateral2');
+                    $this->load->view('view_administration/formventa', $data);
+                    $this->load->view('view_administration/admidesing/foot');
+                }
+                
             }
             else
             {

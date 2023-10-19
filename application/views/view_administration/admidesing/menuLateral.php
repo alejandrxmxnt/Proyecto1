@@ -5,9 +5,9 @@
         <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-        <aside class="left-sidebar" data-sidebarbg="skin6" style="height: 104vh;"><!--heigh:100vh para que sea todo el largo de la pantalla-->
+        <aside class="left-sidebar" data-sidebarbg="skin6" style="height: 100%;"><!--heigh:100vh para que sea todo el largo de la pantalla-->
             <!-- Sidebar scroll-->
-            <div class="scroll-sidebar">
+            <div class="scroll-sidebar" style="height: 100%">
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">

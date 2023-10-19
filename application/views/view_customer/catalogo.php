@@ -23,7 +23,7 @@
                     echo form_open_multipart('customer/catalogo/infoProducto');
                 ?>
                     <input type="hidden" value="<?php echo $row->id; ?>" name="idcatalogo">
-                    <button type="submit" class="btn btn-success" style="background-color: rgb(0, 0, 0, 0.5); border: transparent;">
+                    <button type="submit" class="btn btn-success" style="background-color: rgb(255, 255, 255, 0.6); border: transparent;">
                         <?php 
                             $foto=$row->foto;
                             if($foto=="")//si foto esta igual a vacion sin imagen

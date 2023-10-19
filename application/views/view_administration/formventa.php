@@ -384,5 +384,6 @@
         $("#detalle_data").val(datosJSON);
     });
 </script>
+<!--Funcion para buscador autocompletado de cliente-->
 
 <script src="<?php echo base_url() ?>assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
