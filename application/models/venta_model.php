@@ -72,8 +72,6 @@
             }
         }
 
-
-
         public function agregarVenta($idCliente, $total, $idUsuario, $detalle_data)
         {
             // Inicia una transacción en la base de datos
