@@ -5,12 +5,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Autocomplete extends CI_Controller{
     //creacion de 3 metodos
     // __construct() - carga asistencia de URL y Autocomplete_model
-    
+    /*
     public function __construct(){
         parent::__construct();
         $this->load->helper('url');
         $this->load->model('autocomplete_model');
-    }
+    }*/
     //Carga la vista autocomplete
     public function index(){
         $this->load->view('view_administration/autocomplete');
