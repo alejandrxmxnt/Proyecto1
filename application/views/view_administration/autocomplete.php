@@ -12,7 +12,7 @@
 
     <br><br>
     <!--El segundo elemento de texto se utiliza para mostrar el valor de la opcion seleccionada de la lista de sugerencias -->
-    Selected user id : <input type="text" id="userid" value='0' >
+    Selected user id : <input type="text" id="cliente" value='0' name="cliente">
 
     <!-- Script -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -44,7 +44,7 @@
         select: function (event, ui) {
           // Set selection
           $('#autouser').val(ui.item.label); // display the selected text
-          $('#userid').val(ui.item.value); // save selected id to input
+          $('#cliente').val(ui.item.value); // save selected id to input
           return false;
         }
       });
