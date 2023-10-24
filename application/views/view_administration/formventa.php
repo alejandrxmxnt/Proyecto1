@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
@@ -47,8 +49,12 @@
 -->
                                     <div class="form-group row">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Seleccione un cliente:</label>
-                                        <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <div class="col-md-9 col-sm-9 col-xs-9"> 
+                                            <!--
+                                            <input type="text" id="autouser">
+                                            <input type="text" id="cliente" value='0' name="cliente"> -->
                                             <!--Lista de clientes por el momento es busqueda manual de lista-->
+                                            
                                             <select class="form-control" name="cliente" id="cliente" required="required">
                                                 <option value="" disabled selected>Lista de clientes</option>
                                                 <?php 
@@ -58,7 +64,8 @@
                                                 <?php
                                                 }
                                                 ?>
-                                            </select> <!--Fin de seleccion de clientes-->
+                                            </select>  
+                                            <!--Fin de seleccion de clientes-->
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -232,14 +239,19 @@
     </div>
   </div>
 
-
-
+<!-- Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- jQuery UI -->
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 <script>
     $(document).ready(function() {
 
         var contadorFilas = 1; //para contar la filas en la tabla 
             //Funcion para calcular el importe de cada producto
+
+        // Initialice el autocompletado en el primer elemento de texto
+        
         function calcularImporte(fila) {
             var descuento =parseInt(fila.find("td:eq(5) input").val()); //descuento
             var cantidad = parseInt(fila.find("td:eq(6) input").val()); //cantidad
