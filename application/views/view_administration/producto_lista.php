@@ -86,7 +86,7 @@
                 echo form_open_multipart('administration/producto/deshabilitarbd');
             ?>
 
-              <input type="hidden" value="<?php echo $row->id; ?>" name="idcliente">
+              <input type="hidden" value="<?php echo $row->id; ?>" name="idproducto">
               <button type="submit" class="btn btn-warning">Deshabilitar</button>
 
             <?php
