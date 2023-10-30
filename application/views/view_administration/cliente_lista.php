@@ -1,8 +1,27 @@
+<style>
+  @media screen and (max-width: 1170px) {
+    main {
+      max-width: 800px;
+      width: 100%;
+      margin: auto;
+      padding: 40px;
+    }
+    /*Modificacion para responsibidad de columnas*/
+    .columna1 {
+      width: 8.33%;
+    }
+    .columna2 {
+      width: 91.67%;
+    }
+        
+  }
+</style>
+
 <div class="container">
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-2 columna1">
     </div>
-    <div class="col-md-10">
+    <div class="col-md-10 columna2">
       <br>
       <a href="<?php echo base_url(); ?>index.php/administration/cliente/agregar">
         <button type="button" class="btn btn-primary" style="color">

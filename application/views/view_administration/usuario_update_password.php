@@ -4,12 +4,47 @@
         font-weight: 200;
         padding-top: -1px;
     }
+    /* ----- MEDIAQUERIES ------ */ 
+    @media screen and (max-width: 1024px) {
+        main {
+            max-width: 100%;
+            width: 100%;
+            margin: auto;
+            padding: 40px;
+        }
+        /*Modificacion para responsibidad de columnas*/
+        .columna1 {
+            width: 8.33%;
+
+        }
+        .columna2 {
+            width: 91.67%;
+        }
+        
+        .formulario {
+            grid-template-columns: 1fr; /*Una columna*/
+        }
+
+        .formulario__grupo {
+            grid-column: 1;
+        }
+
+        #grupo__usuario, #grupo__password, #grupo__password2 {
+            grid-column: 1;
+        }
+
+        .formulario__btn {
+            grid-column: 1;
+            width: 100%;
+        }
+        
+    }
 </style>
 <div class="container">
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-2 columna1">
         </div>
-        <div class="col-md-10">
+        <div class="col-md-10 columna2">
             <div class="regform">
                 <h1>Actualización de credenciales</h1>
             </div>

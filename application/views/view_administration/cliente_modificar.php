@@ -4,12 +4,49 @@
         font-weight: 200;
         padding-top: -1px;
     }
+    /* ----- MEDIAQUERIES ------ */ 
+    @media screen and (max-width: 1024px) {
+        main {
+            max-width: 800px;
+            width: 100%;
+            margin: auto;
+            padding: 40px;
+        }
+        /*Modificacion para responsibidad de columnas*/
+        .columna1 {
+            width: 8.33%;
+        }
+        .columna2 {
+            width: 91.67%;
+        }
+        
+        .formulario {
+            grid-template-columns: 1fr; /*Una columna*/
+        }
+        .formulario__grupo {
+            grid-column: 1;
+        }
+        #grupo__telefono, #grupo__ciNit {
+            grid-column: 1;
+        }
+        #grupo__direccion, #grupo__razonSocial {
+            grid-column: 1;
+        }
+
+        .formulario__btn {
+            width: 100%;
+        }
+
+        @media screen and (max-width: 800px){
+            
+        }
+    }
 </style>
 <div class="container">
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-2 columna1">
         </div>
-        <div class="col-md-10">
+        <div class="col-md-10 columna2">
             <div class="regform">
                 <h1>Modificar Registro Cliente</h1>
             </div>

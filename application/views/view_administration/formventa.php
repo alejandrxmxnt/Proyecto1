@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="https://ajax.googleapis.formulario__btncom/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -9,11 +9,41 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<style>
+    main {
+            max-width: 100%;
+            width: 100%;
+            margin: auto;
+            padding: 40px;
+        }
+    /* ----- MEDIAQUERIES ------ */ 
+    @media screen and (max-width: 1024px) {
+        
+        /*Modificacion para responsibidad de columnas*/
+        .columna1 {
+            width: 8.33%;
+
+        }
+        .columna2 {
+            width: 91.67%;
+        }
+        
+        .formulario {
+            grid-template-columns: 1fr; /*Una columna*/
+        }
+
+        .formulario__grupo {
+            grid-column: 1;
+        }
+        
+    }
+</style>
+
 <div class="container">
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-2 columna1">
         </div>
-        <div class="col-md-10">
+        <div class="col-md-10 columna2">
             <div class="regform">
                 <h1>Formulario de ventas</h1>
             </div>
@@ -27,6 +57,7 @@
                                 <a href="<?php echo base_url();?>index.php/administration/ventas/index">
                                     <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Volver"><i class="fa fa-mail-reply-all"></i></button>
                                 </a>
+                                
                                 <br>
                                 <div style="text-align: left;">
                                     <!--
@@ -50,7 +81,8 @@
                                     <div class="form-group row">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Seleccione un cliente:</label>
                                         <div class="col-md-9 col-sm-9 col-xs-9"> 
-                                            <!--
+                                            <div class="d-flex"><!--Antes todo estaba el select y el <a> fuera del <div class="d-flex">-->
+<!--
                                             <input type="text" id="autouser">
                                             <input type="text" id="cliente" value='0' name="cliente"> -->
                                             <!--Lista de clientes por el momento es busqueda manual de lista-->
@@ -64,8 +96,13 @@
                                                 <?php
                                                 }
                                                 ?>
-                                            </select>  
+                                            </select> 
+                                            <a href="<?php echo base_url();?>index.php/administration/cliente/agregar">
+                                                <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="NuevoCliente"><i class="fa fa-plus"></i></button>
+                                            </a> 
                                             <!--Fin de seleccion de clientes-->
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -136,7 +173,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-2" style="text-align: center;">
-                                            <input type="number" name="total" id="total" class="form-control" style="text-align: center;"><strong><samp>TOTAL(Bs.)</samp></strong>
+                                            <input type="number" name="total" id="total" class="form-control" style="text-align: center; width: 120px;" readonly><strong><samp>TOTAL(Bs.)</samp></strong>
                                         </div>
                                         <div class="col-md-8"></div>
                                         <div class="col-md-2">
@@ -317,6 +354,14 @@
 
                 $.getJSON('<?php echo base_url() ?>index.php/administration/ajax/obtenerProductoPorId/' + producto_id, function(data) {
                     
+                    /*
+                    if(fila.find("td:eq(1) input").val(producto_id)!=producto_id){
+
+                    }else{
+                        alert("Producto ya registrado en la tabla");
+                    }*/
+
+
                     if (data) {
 
                         fila.find("td:eq(0)").text(contadorFilas);

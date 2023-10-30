@@ -4,14 +4,60 @@
         font-weight: 200;
         padding-top: -1px;
     }
+    /* ----- MEDIAQUERIES ------ */ 
+    @media screen and (max-width: 1170px) {
+    
+        main {
+            max-width: 800px;
+            width: 100%;
+            margin: auto;
+            padding: 40px;
+        }
+        /*Modificacion para responsibidad de columnas*/
+        .columna1 {
+            width: 8.33%;
+        }
+        .columna2 {
+            width: 91.67%;
+        }
+        
+        .formulario {
+            grid-template-columns: 1fr;
+        }
+        .detalle{
+            grid-column: 1;
+            width: 100%;
+            height: 200px;
+            min-width: 80%;
+            resize: vertical;
+            top: -50px; /*separacion de un texto con otro por asi desirce interlineado*/
+            color: black;
+        }
+
+        .formulario__btn {
+            width: 100%;
+        }
+
+        @media screen and (max-width: 1024px){
+            .detalle{
+                grid-column: 1;
+                width: 100%;
+                height: 500px;
+                min-width: 80%;
+                resize: vertical;
+                top: -50px; /*separacion de un texto con otro por asi desirce interlineado*/
+                color: black;
+            }
+        }
+    }
 </style>
 <div class="container">
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-2 columna1">
         </div>
-        <div class="col-md-10">
+        <div class="col-md-10 columna2">
             <div class="regform">
-            <h1>ACTUALIZAR REGISTRO DE CATEGORIAS</h1>
+            <h1>ACTUALIZAR CATEGORIAS</h1>
             </div>
 
             <main class="main">

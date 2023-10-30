@@ -4,12 +4,61 @@
         font-weight: 200;
         padding-top: -1px;
     }
+    /* ----- MEDIAQUERIES ------ */ 
+    @media screen and (max-width: 1024px) {
+        main {
+            max-width: 800px;
+            width: 100%;
+            margin: auto;
+            padding: 40px;
+        }
+        /*Modificacion para responsibidad de columnas*/
+        .columna1 {
+            width: 8.33%;
+        }
+        .columna2 {
+            width: 91.67%;
+        }
+        
+        .formulario {
+            grid-template-columns: 1fr; /*Una columna*/
+        }
+        .formulario__grupo {
+            grid-column: 1;
+        }
+        #grupo__nombre {
+            grid-column: 1;
+        }
+        #grupo__descripcion{
+            grid-column: 1;
+            width: 100%;
+            height: 200px;
+            min-width: 80%;
+            resize: vertical;
+            top: -50px; /*separacion de un texto con otro por asi desirce interlineado*/
+            color: black;
+        }
+        #grupo__precioUnitario {
+            grid-column: 1;
+        }
+        #grupo__stock {
+            grid-column: 1;
+        }
+        #grupo__foto {
+            grid-column: 1;
+        }
+        .formulario__btn {
+            grid-column: 1;
+            text-align: center;
+            width: 100%;
+        }
+    }
 </style>
 <div class="container">
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-2 columna1">
         </div>
-        <div class="col-md-10">
+        <div class="col-md-10 columna2">
             <div class="regform">
                 <h1>Registro de Productos</h1>
             </div>
