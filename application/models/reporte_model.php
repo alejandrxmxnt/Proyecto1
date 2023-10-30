@@ -49,6 +49,46 @@
             //return $query->row(); // Obtiene una única fila de resultados.
         }
 
+        //////////////////////////////////////////////////////////////
+        ////////////////    REPORTE POR RANGOS    ////////////////////
+        //////////////////////////////////////////////////////////////
+
+        public function ventaFechasRango($Inicio,$Fin) //select
+        {
+            $query="SELECT V.id, V.fechaVenta, C.ciNit, C.nombre, C.primerApellido, C.segundoApellido ,C.razonSocial, V.total
+            FROM venta V
+            INNER JOIN cliente C ON C.id=V.idCliente
+            WHERE V.estado=1 AND V.fechaVenta BETWEEN '".$Inicio."' AND '".$Fin."'
+            ORDER BY 1";
+            return $this->db->query($query);
+        }
+
+
+        // PDF -> Reporte datos de la empresa y usuario
+        public function ventashistorial() //select
+        {
+            $query="SELECT V.id, V.fechaVenta, C.ciNit, C.nombre, C.primerApellido, C.segundoApellido ,C.razonSocial, V.total
+            FROM venta V
+            INNER JOIN cliente C ON C.id=V.idCliente
+            WHERE V.estado=1
+            ORDER BY 1";
+            return $this->db->query($query);
+        }
+
+        public function reporteTotal()
+        {
+            $this->db->select('sum(total)');
+            $this->db->from ('venta');
+            return $this->db->get(); 
+        }
+
+        public function reporteGeneralTotal(){
+            $query="SELECT IFNULL(SUM(V.total),0) AS total_ventas
+                FROM venta V
+                WHERE V.estado = 1 ";
+            return $this->db->query($query);
+        }
+
 
 
     }
