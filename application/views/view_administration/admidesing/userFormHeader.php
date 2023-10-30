@@ -26,16 +26,24 @@
     <!-- Imagen de fondo --> 
     <style>
         /* Imagen de fondo */
-        /*
         body {
-            background-image: url('<?php echo base_url();?>img/logos/fondo.jpeg');
+            background-image: url('<?php echo base_url();?>img/fondos/fondoPc.jpeg');
             background-repeat: no-repeat;
             background-size: 100% 100%;
-            backdrop-filter: blur(3px);  //borroso
+            /*backdrop-filter: blur(3px);   borroso */
             transition: 0.5s;
             opacity: 1;
-        }*/
-
+        }
+        /*Vista desde celular 768*/
+        @media screen and (max-width: 1024px) {
+            body {
+                background-image: url('<?php echo base_url();?>img/fondos/fondoCelular.jpeg');
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+                transition: 0.5s;
+                opacity: 1;
+            }
+        }
     </style>
 
 

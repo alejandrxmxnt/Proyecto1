@@ -1,3 +1,9 @@
+<style>/*
+    .imagentitulo3dd {
+		background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20210908/pngtree-dragon-boat-festival-theme-woodworking-hardware-tools-photography-map-with-pictures-image_829429.jpg');
+		background-repeat: no-repeat;
+	}*/
+</style>
 <nav class="navbar top-navbar navbar-expand-md navbar-dark">
                 <div class="navbar-header" data-logobg="skin6" style="/*
                     background-image: url('<?php echo base_url();?>img/menu/texturamadera.jpg'); 
@@ -12,7 +18,7 @@
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!-- Dark Logo icon -->
-                            <img src="<?php echo base_url();?>img/logos/titulo3dd.png" style="border-radius: 50px;" alt="homepage" />
+                            <img src="<?php echo base_url();?>img/logos/titulo3dd.png" style="border-radius: 50px; background-color: white;" alt="homepage" class="imagentitulo3dd" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
