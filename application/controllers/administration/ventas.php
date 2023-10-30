@@ -234,7 +234,7 @@
             require_once APPPATH."cifrarAletras/CifrasEnLetras.php";
             $v=new CifrasEnLetras(); 
             //Convertimos el total en letras
-            $letra=($v->convertirEurosEnLetras($totalpagar));
+            $letra=($v->convertirEurosEnLetras($totalpagar)); 
 
             $this->pdf=new Pdf(); //creacion de nuevo pdf
             $this->pdf->AddPage(); //agregando una pagina
@@ -258,9 +258,6 @@
             // Ajustar la coordenada X para el valor de fecha
             $this->pdf->SetXY(180, 10);
             $this->pdf->Cell(89, 3, $numeroComoCadena, '', 2, 'L', 0);
-
-
-
 
             $this->pdf->SetFont('Courier','B',10); //tipoi de letra, negrilla, tamaño
             $this->pdf->Ln(25);//salto de linea
@@ -390,7 +387,7 @@
             $this->pdf->Ln(15);
 
             $this->pdf->Cell(2); //celda en blanco 
-            $this->pdf->Cell(89,3,utf8_decode('Son: '.$letra.' con '.$fraccion.' centavos.'),'',2,'L',0);
+            $this->pdf->Cell(89,3,strtoupper(utf8_decode('Son: '.$letra.' '.$fraccion.' Bolivianos.')),'',2,'L',0);
             
             $this->pdf->Output("reporte".$idventas.".pdf","I"); //"D" para descargar - "I" para abrir en una nueva ventana
         }
@@ -586,7 +583,7 @@
             $this->pdf->Ln(15);
 
             $this->pdf->Cell(2); //celda en blanco 
-            $this->pdf->Cell(89,3,utf8_decode('Son: '.$letra.' con '.$fraccion.' centavos.'),'',2,'L',0);
+            $this->pdf->Cell(89,3,strtoupper(utf8_decode('Son: '.$letra.' '.$fraccion.' Bolivianos.')),'',2,'L',0);
             
             $this->pdf->Output("reporte".$idventas.".pdf","I"); //"D" para descargar - "I" para abrir en una nueva ventana
         }
