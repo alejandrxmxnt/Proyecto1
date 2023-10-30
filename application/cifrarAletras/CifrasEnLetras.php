@@ -298,7 +298,7 @@ class CifrasEnLetras {
   */
   public static function convertirEurosEnLetras($euros/*, $numeroDecimales=2*/) {
     $numeroDecimales = 0;
-    return self::convertirNumeroEnLetras($euros, $numeroDecimales, "Bolivianos", "Bolivianos", false, "Bolivianos", "Centavos", false);
+  return self::convertirNumeroEnLetras($euros/*, $numeroDecimales, "Bolivianos", "Bolivianos", false, "Bolivianos", "Centavos", false*/);
   }
 
   /*
