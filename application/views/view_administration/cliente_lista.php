@@ -1,3 +1,9 @@
+<!--Librerias Bootstrap-->
+<!--
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+-->
+<!--Hasta aqui librerias Bootstrap-->
 <style>
   @media screen and (max-width: 1170px) {
     main {
@@ -35,7 +41,8 @@
       </a>
       <br> <br>
       <h2 class="titulos_centro" > TABLA DE CLIENTES </h2>
-      <table class="table" id="my-table"> <!-- FONDO A LA TABLA -->
+      <div class="table-responsive">
+      <table class="table table-hover" id="my-table"> <!-- FONDO A LA TABLA -->
         <thead >
           <tr>
             <th>#</th>
@@ -45,8 +52,7 @@
             <th>Referencias</th>
             <th>Razón Social</th>
             <th>Fecha Registro</th>
-            <th>Actualizar</th>
-            <th>Deshabilitar</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -67,31 +73,29 @@
             <td><?php echo $row->razonSocial; ?></td>
             <td><?php echo $row->fechaRegistro; ?></td>
             <td>
-              <?php
-                echo form_open_multipart('administration/cliente/modificar');
-            ?>
+              <div class="d-flex">
+                <?php
+                  echo form_open_multipart('administration/cliente/modificar');
+                ?>
 
-              <input type="hidden" value="<?php echo $row->id; ?>" name="idcliente">
-              <button type="submit" class="btn btn-success">Modificar</button> 
+                <input type="hidden" value="<?php echo $row->id; ?>" name="idcliente">
+                <button type="submit" class="btn btn-success"><i class="fas fa-edit"></i></button> 
 
-            <?php
-                echo form_close();
-            ?>
-            </td>
+                <?php
+                  echo form_close();
+                ?>
 
-            <td>
-              
-              <?php
-                echo form_open_multipart('administration/cliente/deshabilitarbd');
-            ?>
+                <?php
+                  echo form_open_multipart('administration/cliente/deshabilitarbd');
+                ?>
 
-              <input type="hidden" value="<?php echo $row->id; ?>" name="idcliente">
-              <button type="submit" class="btn btn-warning">Deshabilitar</button>
+                <input type="hidden" value="<?php echo $row->id; ?>" name="idcliente">
+                <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
 
-            <?php
-                echo form_close();
-            ?>
-
+                <?php
+                  echo form_close();
+                ?>
+              </div>
             </td>
           </tr>
 
@@ -103,7 +107,7 @@
           
         </tbody>
       </table>
-
+      </div>
       <!--PARA ALMACENAR LOS VALORES DE PAGINAS SIGUIENTES-->
       <div class="pagination" id="pagination-container">
       </div> <br> <br>

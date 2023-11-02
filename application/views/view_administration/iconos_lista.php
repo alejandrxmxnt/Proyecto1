@@ -3,7 +3,8 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <div class="row">
-                    <div class="col-12">
+                <div class="col-2"> </div>
+                    <div class="col-10">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Solid Icons</h4>

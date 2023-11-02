@@ -23,8 +23,7 @@
             <th>Nombre</th>
             <th>Descripción</th>
             <th>Creado</th>
-            <th>Actualizar</th>
-            <th>Deshabilitar</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -42,30 +41,30 @@
             <td><?php echo $row->descripcion; ?></td>
             <td><?php echo $row->fechaRegistro; ?></td>
             <td>
+            <div class="d-flex">
               <?php
                 echo form_open_multipart('administration/categoria/modificar');
-            ?>
+              ?>
 
               <input type="hidden" value="<?php echo $row->id; ?>" name="idcategoria">
-              <button type="submit" class="btn btn-success">Modificar</button>
+              <button type="submit" class="btn btn-success"><i class="fas fa-edit"></i></button>
 
-            <?php
+              <?php
                 echo form_close();
-            ?>
-            </td>
+              ?>
 
-            <td>
-              
               <?php
                 echo form_open_multipart('administration/categoria/deshabilitarbd');
-            ?>
+              ?>
 
               <input type="hidden" value="<?php echo $row->id; ?>" name="idcategoria">
-              <button type="submit" class="btn btn-warning">Deshabilitar</button>
+              <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
 
-            <?php
+              <?php
                 echo form_close();
-            ?>
+              ?>
+            </div>
+              
             </td>
           </tr>
           <?php

@@ -22,7 +22,7 @@
             <th>TELEFONO</th>
             <th>REFERENCIAS</th>
             <th>RAZON SOCIAL</th>
-            <th>HABILITAR</th>
+            <th>ACCIONES</th>
 
           </tr>
         </thead>
@@ -45,27 +45,22 @@
             <td><?php echo $row->direccion; ?></td>
             <td><?php echo $row->razonSocial; ?></td>
             <td>
-              
-              <?php
-                echo form_open_multipart('administration/cliente/habilitarbd');
-            ?>
-
-              <input type="hidden" value="<?php echo $row->id; ?>" name="idcliente">
-              <button type="submit" class="btn btn-warning">Habilitar</button>
-
             <?php
-                echo form_close();
-            ?>
+                  echo form_open_multipart('administration/cliente/habilitarbd');
+                ?>
 
+                <input type="hidden" value="<?php echo $row->id; ?>" name="idcliente">
+                <button type="submit" class="btn btn-warning"><i class="fas fa-reply-all"></i></button>
+
+                <?php
+                  echo form_close();
+                ?>
             </td>
          </tr>
-
           <?php
             $indice++;
             }
           ?>
-
-          
         </tbody>
       </table>
 
