@@ -18,13 +18,17 @@
   /* Estilos para las filas de la tabla */
   .table tr {
       background-color: #f5f5f5;
+      line-height: 1; /* Puedes ajustar el valor según tus preferencias, por ejemplo, 1.2 o 1.5 para un interlineado mayor. */
+      border-spacing: 5px;
   }
 
   /* Estilos para las celdas de la tabla */
   .table td, .table th {
-      padding: 10px;
+      padding: 5px;
       border: 1px solid #ccc;
       text-align: center; /* Alinear el texto al centro */
+      font-size: 14px;
+      line-height: 1; /* Puedes ajustar el valor según tus preferencias. */
   }
 
   /* Estilos para las celdas de encabezado */
@@ -53,8 +57,8 @@
       <h2 class="titulos_centro"> TABLA DE USUARIOS </h2>
       
       <div class="table-responsive">
-        <table class="table">
-            <tr>
+        <table class="table" id="my-table">
+            <tr class="header-row" id="header-row">
                 <th>#</th>
                 <th>CLIENTE</th>
                 <th>CI/NIT</th>
@@ -74,8 +78,8 @@
                 <td>2023-10-15 23:22:55</td>
                 <td>
                   <div class="d-flex">
-                    <button class="btn btn-primary"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-danger"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-primary"><i class="fas fa-edit" style=""></i></button>
+                    <button class="btn btn-danger small-button"><i class="fas fa-edit"></i></button>
                   </div>
                 </td>
             </tr>
@@ -139,6 +143,36 @@
                   </div>
                 </td>
             </tr>
+            <tr>
+              <td>6</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <div class="d-flex">
+                  <button class="btn btn-primary"><i class="fas fa-edit"></i></button>
+                  <button class="btn btn-danger"><i class="fas fa-edit"></i></button>
+                </div>
+              </td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+              <div class="d-flex">
+                <button class="btn btn-primary"><i class="fas fa-edit"></i></button>
+                <button class="btn btn-danger"><i class="fas fa-edit"></i></button>
+              </div>
+            </td>
+        </tr>
         </table>
     </div>
 
@@ -179,7 +213,7 @@
 <script>
   const table = document.getElementById('my-table');
   const rows = table.getElementsByTagName('tr');
-  const rowsPerPage = 5;//cantidad de filas a visualizar
+  const rowsPerPage = 8;//cantidad de filas a visualizar
   const totalPages = Math.ceil(rows.length / rowsPerPage);
   let currentPage = 1;
 
@@ -212,4 +246,24 @@
 
   showPage(currentPage);
   generatePagination();
+  
+</script>
+
+<script>
+  let dataTable; //ALMACENA LA DATA
+  let dataTableIsInitialized=false; //para saber si esta inicializada
+
+  const initDataTable=async()=> {
+    if(dataTableIsInitialized) {
+      dataTable.destroy();
+    }
+
+    //await listDatos(); // si la data lla llega al formulario esta no es necesaria
+
+    //dataTable=$("#my-table").dataTable({});
+    const table = document.getElementById('my-table');
+    table.dataTable({});
+    dataTableIsInitialized = true;
+  };
+
 </script>

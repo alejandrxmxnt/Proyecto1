@@ -16,66 +16,60 @@
       </a>
       <br> <br>
       <h2 class="titulos_centro" > CATEGORIAS </h2>
-      <table class="table" id="my-table"> <!-- FONDO A LA TABLA -->
-        <thead >
-          <tr>
-            <th>#</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Creado</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
+      <div class="table-responsive">
+        <table class="table" id="my-table"> <!-- FONDO A LA TABLA -->
+            <tr class="header-row" id="header-row">
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Creado</th>
+              <th>Acciones</th>
+            </tr>
+            <?php
+              $indice=1;
+              foreach($categorias->result() as $row)
+              {//impresion de valores de la data
+                //acontinuacion de como se carga una tabla
+            ?>      
+            <tr>
+              <th><?php echo $indice; ?></th>
+              <td><?php echo $row->nombre; ?></td>
+              <td><?php echo $row->descripcion; ?></td>
+              <td><?php echo $row->fechaRegistro; ?></td>
+              <td>
+              <div class="d-flex" style="display: flex; justify-content: center; align-items: center;">
+                <?php
+                  echo form_open_multipart('administration/categoria/modificar');
+                ?>
 
-          <?php
-            $indice=1;
-            foreach($categorias->result() as $row)
-            {//impresion de valores de la data
-              //acontinuacion de como se carga una tabla
-          ?>
-          
-          <tr>
-            <th><?php echo $indice; ?></th>
-            <td><?php echo $row->nombre; ?></td>
-            <td><?php echo $row->descripcion; ?></td>
-            <td><?php echo $row->fechaRegistro; ?></td>
-            <td>
-            <div class="d-flex">
-              <?php
-                echo form_open_multipart('administration/categoria/modificar');
-              ?>
+                <input type="hidden" value="<?php echo $row->id; ?>" name="idcategoria">
+                <button type="submit" class="btn btn-success"><i class="fas fa-edit"></i></button>
 
-              <input type="hidden" value="<?php echo $row->id; ?>" name="idcategoria">
-              <button type="submit" class="btn btn-success"><i class="fas fa-edit"></i></button>
+                <?php
+                  echo form_close();
+                ?>
 
-              <?php
-                echo form_close();
-              ?>
+                <?php
+                  echo form_open_multipart('administration/categoria/deshabilitarbd');
+                ?>
 
-              <?php
-                echo form_open_multipart('administration/categoria/deshabilitarbd');
-              ?>
+                <input type="hidden" value="<?php echo $row->id; ?>" name="idcategoria">
+                <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
 
-              <input type="hidden" value="<?php echo $row->id; ?>" name="idcategoria">
-              <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-
-              <?php
-                echo form_close();
-              ?>
-            </div>
-              
-            </td>
-          </tr>
-          <?php
-            $indice++;
-            }
-          ?>
-        </tbody>
-      </table>
-
-      <!--PARA ALMACENAR LOS VALORES DE PAGINAS SIGUIENTES-->
-      <div class="pagination" id="pagination-container">
+                <?php
+                  echo form_close();
+                ?>
+              </div>
+              </td>
+            </tr>
+            <?php
+              $indice++;
+              }
+            ?>
+          </table>
+      </div>
+        <!--PARA ALMACENAR LOS VALORES DE PAGINAS SIGUIENTES-->
+        <div class="pagination" id="pagination-container">
       </div> <br> <br>
 
     </div>
@@ -110,7 +104,7 @@
 <script>
   const table = document.getElementById('my-table');
   const rows = table.getElementsByTagName('tr');
-  const rowsPerPage = 5;//cantidad de filas a visualizar
+  const rowsPerPage = 8;//cantidad de filas a visualizar
   const totalPages = Math.ceil(rows.length / rowsPerPage);
   let currentPage = 1;
 

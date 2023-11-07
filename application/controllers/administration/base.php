@@ -13,6 +13,17 @@ class Base extends CI_Controller { //HERENCIA EN PHP la clase se llama Welcome
 		$this->load->view('view_administration/admidesing/pie');
 	}
 
+
+	public function index2()//metodo pagina principal
+	{
+		$this->load->view('view_administration/admidesing/cabecera');
+		$this->load->view('view_administration/admidesing/inicio');
+		$this->load->view('view_administration/admidesing/menu');
+		//$this->load->view('view_administration/iconos_lista');
+		$this->load->view('view_administration/pruebaVista2');
+		$this->load->view('view_administration/admidesing/pie');
+	}
+
 	//metodo catalogo
 	public function catalogue()
 	{//lista es una varible que almacena todo lo que tiene $this

@@ -23,4 +23,11 @@ class Autocomplete extends CI_Controller{
         //retorna la data del array en formato JSON
         echo json_encode($data);
     }
+
+    public function buscarproducto() {
+        $postData = $this->input->post();
+        $data = $this->autocomplete_model->getProduct($postData);
+        //retorna la data del array en formato JSON
+        echo json_encode($data);
+    }
 }

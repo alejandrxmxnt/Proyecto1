@@ -39,11 +39,19 @@
                 redirect('administration/usuarios/index','refresh');//cargara el login
             }
         }
-
+        //lista de clientes
         public function userList(){
             //Lee los valores POST y pase $this->autocomplete_model->getUsers() para obtener la lista de clientes Array
             $postData = $this->input->post();
             $data = $this->autocomplete_model->getUsers($postData);
+            //retorna la data del array en formato JSON
+            echo json_encode($data);
+        }
+        //lista de productos
+        public function productList(){
+            //Lee los valores POST y pase $this->autocomplete_model->getUsers() para obtener la lista de clientes Array
+            $postData = $this->input->post();
+            $data = $this->autocomplete_model->getProduct($postData);
             //retorna la data del array en formato JSON
             echo json_encode($data);
         }
@@ -94,6 +102,24 @@
             $this->load->view('layout/index', $data);
         }
 
+        /////////////////////////////////////////////////////////////
+        ////////////        AUTOCOMPLETADO     //////////////////////
+        /////////////////////////////////////////////////////////////
+
+        public function buscarCliente() {
+            //Lee los valores POST y pase $this->autocomplete_model->getUsers() para obtener la lista de clientes Array
+            $postData = $this->input->post();
+            $data = $this->autocomplete_model->getUsers($postData);
+            //retorna la data del array en formato JSON
+            echo json_encode($data);
+        }
+
+        public function buscarproducto() {
+            $postData = $this->input->post();
+            $data = $this->autocomplete_model->getProduct($postData);
+            //retorna la data del array en formato JSON
+            echo json_encode($data);
+        }
 
         /////////////////////////////////////////////////////////////
         ////////////        VENTAS             //////////////////////
@@ -130,7 +156,7 @@
         {
             if($this->session->userdata('login'))//VERIRICA SI EXISTE SESION ABIERTA
             {   
-                $idCliente = $_POST['cliente'];
+                $idCliente = $_POST['idCliente'];
                 //$fechaVenta = $_POST['fechaVenta'];
                 $total = $_POST['total']; //costoFinal
                 $detalle_data = $_POST['detalle_data'];

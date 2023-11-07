@@ -1,5 +1,6 @@
+<!--
 <link rel="stylesheet" href="https://ajax.googleapis.formulario__btncom/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-
+-->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
@@ -82,22 +83,11 @@
                                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Seleccione un cliente:</label>
                                         <div class="col-md-9 col-sm-9 col-xs-9"> 
                                             <div class="d-flex"><!--Antes todo estaba el select y el <a> fuera del <div class="d-flex">-->
-<!--
-                                            <input type="text" id="autouser">
-                                            <input type="text" id="cliente" value='0' name="cliente"> -->
-                                            <!--Lista de clientes por el momento es busqueda manual de lista-->
+
+                                            <input class="form-control" type="text" id="autouser" name="cliente"> <!--VALORES TEXT-->
+                                            <input type="hidden" id="cliente" name="idCliente"> <!--RECUPERAR ID-->
                                             
-                                            <select class="form-control" name="cliente" id="cliente" required="required">
-                                                <option value="" disabled selected>Lista de clientes</option>
-                                                <?php 
-                                                foreach ($clientes->result() as $row){ 
-                                                ?>
-                                                    <option value="<?php echo $row->id; ?>"><?php echo $row->ciNit." - ".$row->nombre." ".$row->primerApellido." ".$row->segundoApellido; ?></option>
-                                                <?php
-                                                }
-                                                ?>
-                                            </select> 
-                                            <a href="<?php echo base_url();?>index.php/administration/cliente/agregar">
+                                            <a href="<?php echo base_url();?>index.php/administration/cliente/agregar"> <!-- REGISTRAR NUEVO CLIENTE -->
                                                 <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="NuevoCliente"><i class="fa fa-plus"></i></button>
                                             </a> 
                                             <!--Fin de seleccion de clientes-->
@@ -110,16 +100,8 @@
                                         <div class="col-md-5 col-sm-5 col-xs-5">
                                             <input type="hidden" name="detalle_data" id="detalle_data" value="">
                                             <!--Seleccionar productos en lista-->
-                                            <select class="form-control" name="producto" id="producto" required="required">
-                                                <option value="" disabled selected>Listado de productos</option>
-                                                <?php
-                                                foreach ($productos->result() as $row){
-                                                ?>
-                                                    <option value="<?php echo $row->id; ?>">
-                                                        <?php echo $row->nombre; ?>
-                                                    </option>
-                                                <?php } ?>
-                                            </select>
+                                            <input class="form-control" type="text" id="autoproduct" name="producto"> <!--VALORES TEXT-->
+                                            <input type="hidden" id="producto" name="idProducto"> <!--RECUPERAR ID-->
                                             <!--Fin de busqueda de productos en lista-->
                                         </div>
                                         <!--agregar mediante este boton a la tabla-->
@@ -154,7 +136,7 @@
                                             <tbody class="list-product">
                                                 <tr id="fila-ejemplo" style="display: none;">
                                                     <td style="color: black; font-weight: 600;"></td> <!-- contador - indice -->
-                                                    <td><input type="hidden" class="producto-id" name="producto_id[]"></td> <!--captura del id del producto-->
+                                                    <td><input type="hidden" class="producto-id" name="producto_id[]" onkeypress="return soloNumerosEnteros(event)"></td> <!--captura del id del producto-->
                                                     <td></td><!--Nombre producto-->
                                                     <td></td><!--Precio Unitario-->
                                                     <td></td><!--Stock disponible-->
@@ -280,164 +262,234 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- jQuery UI -->
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<!-- AUTOCOMPLETADO -->
+<script type='text/javascript'>
+    $(document).ready(function(){
 
-<script>
+     // Initialice el autocompletado en el primer elemento de texto
+     $( "#autouser" ).autocomplete({ 
+        //con la opcion 'source' carga la lista de sugerencias
+        source: function( request, response ) {
+          // Envia la solicitud POST AJAX a "controlador de metodo userList"
+          $.ajax({
+            url: "<?php echo base_url(); ?>index.php/administration/ventas/buscarCliente",
+            type: 'post',
+            dataType: "json", //establece el tipo de datos: json y pase los valores de entrada como data
+            data: {
+              search: request.term
+            },
+            //en caso de devolución de llamada exitosa, pase la data en response() function
+            success: function( data ) {
+              response( data );
+            }
+          });
+        },
+        //con la opcion de select obtengo las sugenrencias seleccionadas
+        select: function (event, ui) {
+          // Set selection
+          $('#autouser').val(ui.item.label); // display the selected text
+          $('#cliente').val(ui.item.value); // save selected id to input
+          return false;
+        }
+      });
+
+    });
+    //autocompletado Producto
+    $( "#autoproduct" ).autocomplete({ 
+        //con la opcion 'source' carga la lista de sugerencias
+        source: function( request, response ) {
+          // Envia la solicitud POST AJAX a "controlador de metodo userList"
+          $.ajax({
+            url: "<?php echo base_url(); ?>index.php/administration/ventas/buscarproducto",
+            type: 'post',
+            dataType: "json", //establece el tipo de datos: json y pase los valores de entrada como data
+            data: {
+              search: request.term
+            },
+            //en caso de devolución de llamada exitosa, pase la data en response() function
+            success: function( data ) {
+              response( data );
+            }
+          });
+        },
+        //con la opcion de select obtengo las sugenrencias seleccionadas
+        select: function (event, ui) {
+          // Set selection
+          $('#autoproduct').val(ui.item.label); // display the selected text
+          $('#producto').val(ui.item.value); // save selected id to input
+          return false;
+        }
+      });
+
+
+
+
+
     $(document).ready(function() {
 
-        var contadorFilas = 1; //para contar la filas en la tabla 
-            //Funcion para calcular el importe de cada producto
+var contadorFilas = 1; //para contar la filas en la tabla 
+    //Funcion para calcular el importe de cada producto
 
-        // Initialice el autocompletado en el primer elemento de texto
-        
-        function calcularImporte(fila) {
-            var descuento =parseInt(fila.find("td:eq(5) input").val()); //descuento
-            var cantidad = parseInt(fila.find("td:eq(6) input").val()); //cantidad
-            var precioUnitario = parseFloat(fila.find("td:eq(3)").text()); //precio unitario 
-            
-            if(cantidad>=1 && descuento==0){
-                var importe = cantidad * precioUnitario;
-                fila.find("td:eq(7)").text(importe);
-                return importe;
-            }else{
-                if(cantidad>=1 && descuento>0){
-                    var des = descuento / 100;
-                    var subtotal = des * precioUnitario;
-                    var importe = cantidad * (precioUnitario-subtotal);
-                    fila.find("td:eq(7)").text(importe);
-                    return importe;
-                }else{
-                    if(cantidad<=0){
-                        alert("La cantidad no puede ser menor a 1.");
-                    }else{
-                        if(descuento<0){
-                            alert("El descuento no puede ser menor a 0.");
-                        }else{
-                            alert("Cantidad y descuento no validos.");
-                        }
-                    }
-                }
+// Initialice el autocompletado en el primer elemento de texto
+
+function calcularImporte(fila) {
+    var stockInput = fila.find("td:eq(4)");
+    var stock = parseInt(stockInput.text());
+
+    var cantidadInput = fila.find("td:eq(6) input");
+    var cantidad = parseInt(cantidadInput.val()); //cantidad
+
+    var descuentoInput = fila.find("td:eq(5) input");
+    var descuento =parseInt(descuentoInput.val()); //descuento
+    //var cantidad = parseInt(fila.find("td:eq(6) input").val()); //cantidad
+    
+    var precioUnitario = parseFloat(fila.find("td:eq(3)").text()); //precio unitario 
+    
+    if(cantidad>=1 && descuento==0){
+        var importe = cantidad * precioUnitario;
+        fila.find("td:eq(7)").text(importe);
+        return importe;
+    }else{
+        if(cantidad>=1 && descuento>0){
+            var des = descuento / 100;
+            var subtotal = des * precioUnitario;
+            var importe = cantidad * (precioUnitario-subtotal);
+            fila.find("td:eq(7)").text(importe);
+            return importe;
+        }else{
+            if(cantidad<0){
+                swal("Error!", "La cantidad no puede ser menos que 1", "error");
+                cantidadInput.val(1);
+                cantidad=1;
+            }
                 
+                
+            else{
+                if(descuento<0){
+                    swal("Error!", "El descuento no puede ser menor que 0", "error");
+                    descuentoInput.val(0);
+                    descuento=0;
+                }
             }
+            
         }
-        //calcular total
-        function calcularTotal() {
-            var total = 0;
-            $(".added-row").each(function() {
-                total += calcularImporte($(this));
-            });
-            //$("#total").val(total);
-            $("#total").val(total.toFixed(2));
-        }
-        //calcular total cada que la cantidad se actualice
-        $(document).on("input", ".cantidad", function() {
-            var fila = $(this).closest("tr");
-            calcularImporte(fila);
+        
+    }
+}
+//calcular total
+function calcularTotal() {
+    var total = 0;
+    $(".added-row").each(function() {
+        total += calcularImporte($(this));
+    });
+    //$("#total").val(total);
+    $("#total").val(total.toFixed(2));
+}
+//calcular total cada que la cantidad se actualice
+$(document).on("input", ".cantidad", function() {
+    var fila = $(this).closest("tr");
+    calcularImporte(fila);
 
-            calcularTotal();
-        });
-        //calcular total cada que el descuento se actualice
-        $(document).on("input", ".descuento", function() {
-            var fila = $(this).closest("tr");
-            calcularImporte(fila);
+    calcularTotal();
+});
+//calcular total cada que el descuento se actualice
+$(document).on("input", ".descuento", function() {
+    var fila = $(this).closest("tr");
+    calcularImporte(fila);
 
-            calcularTotal();
-        });
+    calcularTotal();
+});
 
-        //METODO PARA CARGAR LA TABLA 
-        $("#btn-agregar").on("click", function() { //accion de agregado
-            var producto_id = $("#producto").val(); //guardar el id del producto seleccionado
-            var cliente_id = $("#cliente").val(); //guardar el id del producto seleccionado
-
-            if (producto_id && cliente_id) { //control que se hallan llenado los valores de producto y un cliente sea seleccionado
-
-                var fila = $("#fila-ejemplo").clone().removeAttr("id");
-
-                $.getJSON('<?php echo base_url() ?>index.php/administration/ajax/obtenerProductoPorId/' + producto_id, function(data) {
-                    
-                    /*
-                    if(fila.find("td:eq(1) input").val(producto_id)!=producto_id){
-
-                    }else{
-                        alert("Producto ya registrado en la tabla");
-                    }*/
+//METODO PARA CARGAR LA TABLA 
+$("#btn-agregar").on("click", function() { //accion de agregado
+    
+    var producto_id = $("#producto").val(); //guardar el id del producto seleccionado
+    var cliente_id = $("#cliente").val(); //guardar el id del producto seleccionado
 
 
-                    if (data) {
+    if (producto_id && cliente_id) { //control que se hallan llenado los valores de producto y un cliente sea seleccionado
 
-                        fila.find("td:eq(0)").text(contadorFilas);
-                        fila.find("td:eq(1) input").val(producto_id);
-                        fila.find("td:eq(2)").text(data[0].nombre);
-                        fila.find("td:eq(3)").text(data[0].precioUnitario);
-                        fila.find("td:eq(4)").text(data[0].stock);
-                        fila.find("td:eq(5) input").val(0); //descuento
-                        fila.find("td:eq(6) input").val(1); //cantidad
-                        fila.find("td:eq(7)").text(data[0].precioUnitario); //
+        var fila = $("#fila-ejemplo").clone().removeAttr("id");
 
-                        contadorFilas++;
+        $.getJSON('<?php echo base_url() ?>index.php/administration/ajax/obtenerProductoPorId/' + producto_id, function(data) {
 
-                        fila.addClass("added-row");
+            if (data) {
 
-                        fila.show();
-                        $(".list-product").append(fila);
+                fila.find("td:eq(0)").text(contadorFilas);
+                fila.find("td:eq(1) input").val(producto_id);
+                fila.find("td:eq(2)").text(data[0].nombre);
+                fila.find("td:eq(3)").text(data[0].precioUnitario);
+                fila.find("td:eq(4)").text(data[0].stock);
+                fila.find("td:eq(5) input").val(0); //descuento
+                fila.find("td:eq(6) input").val(1); //cantidad
+                fila.find("td:eq(7)").text(data[0].precioUnitario); //
 
-                        calcularImporte(fila);
-                        calcularTotal();
-                    } else {
-                        alert("No se encontraron detalles del producto.");
-                    }
-                }).fail(function(jqXHR, textStatus, errorThrown) {
-                    console.log("Error en la solicitud AJAX: " + errorThrown);
-                });
+                contadorFilas++;
+
+                fila.addClass("added-row");
+
+                fila.show();
+                $(".list-product").append(fila);
+
+                calcularImporte(fila);
+                calcularTotal();
             } else {
-                //alert("Seleccione un Producto.");
-                alert("Seleccione un cliente y el producto a comprar");
+                alert("No se encontraron detalles del producto.");
             }
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            console.log("Error en la solicitud AJAX: " + errorThrown);
         });
+    } else {
+        //alert("Seleccione un Producto.");
+        //alert("Seleccione un cliente y el producto a comprar");
+        swal("Error!", "Seleccione un cliente y producto para realizar la compra", "error");
+    }
+});
 
-        $(document).on("click", ".btn-remove", function() {
-            var fila = $(this).closest("tr");
-            fila.remove();
+$(document).on("click", ".btn-remove", function() {
+    var fila = $(this).closest("tr");
+    fila.remove();
 
-            calcularTotal();
-        });
+    calcularTotal();
+});
 
-        calcularTotal();
-    });
+calcularTotal();
+});
 
-    //METODO PARA GUARDAR LA DATA A LA BASE DE DATOS
-    $("#btn-guardar").on("click", function() { //el evento click para iniciar el guardado
-        var datos = []; // Array para almacenar los datos de todas las filas
+//METODO PARA GUARDAR LA DATA A LA BASE DE DATOS
+$("#btn-guardar").on("click", function() { //el evento click para iniciar el guardado
+var datos = []; // Array para almacenar los datos de todas las filas
 
-        // Recorre cada fila con la clase "added-row"
-        $(".list-product .added-row").each(function() { 
-            var fila = $(this); //se guarda todas las filas
-            var cantidad = parseInt(fila.find("td:eq(6) input").val()); //recupera el valor de la cantidad
-            var descuento = parseInt(fila.find("td:eq(5) input").val()); //recupera el valor del descuento
-            //var precioUnitario = parseFloat(fila.find("td:eq(4)").text());
-            //var importe = cantidad * precioUnitario; // Calcula el importe 
-            var importe = parseFloat(fila.find("td:eq(7)").text()); //recupera el valor de importe de cada uno
+// Recorre cada fila con la clase "added-row"
+$(".list-product .added-row").each(function() { 
+    var fila = $(this); //se guarda todas las filas
+    var cantidad = parseInt(fila.find("td:eq(6) input").val()); //recupera el valor de la cantidad
+    var descuento = parseInt(fila.find("td:eq(5) input").val()); //recupera el valor del descuento
+    //var precioUnitario = parseFloat(fila.find("td:eq(4)").text());
+    //var importe = cantidad * precioUnitario; // Calcula el importe 
+    var importe = parseFloat(fila.find("td:eq(7)").text()); //recupera el valor de importe de cada uno
 
-            var filaData = {
-                idProducto: fila.find("td:eq(1) input").val(), //recupera el id de producto
-                descuento: descuento,
-                cantidad: cantidad,
-                importe: importe
-            };
-            datos.push(filaData); //vamos a cargar con un push nuestros datos el filaData en el array que creamos
+    var filaData = {
+        idProducto: fila.find("td:eq(1) input").val(), //recupera el id de producto
+        descuento: descuento,
+        cantidad: cantidad,
+        importe: importe
+    };
+    datos.push(filaData); //vamos a cargar con un push nuestros datos el filaData en el array que creamos
 
-            //console.log(datos);
-        });
+    //console.log(datos);
+});
 
-        // Muestra el contenido del array en un alert
-        //alert(JSON.stringify(datos, null, 2));
+// Muestra el contenido del array en un alert
+//alert(JSON.stringify(datos, null, 2));
 
-        // Convierte el array a una cadena JSON
-        var datosJSON = JSON.stringify(datos);
+// Convierte el array a una cadena JSON
+var datosJSON = JSON.stringify(datos);
 
-        // Asigna la cadena JSON al campo de entrada
-        $("#detalle_data").val(datosJSON);
-    });
-</script>
+// Asigna la cadena JSON al campo de entrada
+$("#detalle_data").val(datosJSON);
+});
+    </script>
 <!--Funcion para buscador autocompletado de cliente-->
 
 <script src="<?php echo base_url() ?>assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

@@ -55,7 +55,7 @@
                         <div class="formulario__grupo" id="grupo__nombre">
                             <label for="nombre" class="formulario__label">Nombre:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese el Nombre" value="<?php echo set_value('nombre'); ?>" >
+                                <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese el Nombre" value="<?php echo set_value('nombre'); ?>" onkeypress="return soloLetras(event)" >
                             </div>
                             <p><?php echo form_error('nombre'); ?></p> 
                         </div>
@@ -64,7 +64,7 @@
                         <div class="formulario__grupo" id="grupo__primerApellido">
                             <label for="primerApellido" class="formulario__label">Primer Apellido:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="primerApellido" id="primerApellido" placeholder="Primer Apellido" value="<?php echo set_value('primerApellido'); ?>">
+                                <input type="text" class="formulario__input" name="primerApellido" id="primerApellido" placeholder="Primer Apellido" value="<?php echo set_value('primerApellido'); ?>" onkeypress="return soloLetras(event)">
                             </div>
                             <p><?php echo form_error('primerApellido'); ?></p>
                         </div>
@@ -72,7 +72,7 @@
                         <div class="formulario__grupo" id="grupo__segundoApellido">
                             <label for="segundoApellido" class="formulario__label">Segundo Apellido:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="segundoApellido" id="segundoApellido" placeholder="Segundo Apellido" value="<?php echo set_value('segundoAPellido'); ?>">
+                                <input type="text" class="formulario__input" name="segundoApellido" id="segundoApellido" placeholder="Segundo Apellido" value="<?php echo set_value('segundoAPellido'); ?>" onkeypress="return soloLetras(event)">
                             </div>
                             <p><?php echo form_error('segundoApellido'); ?></p>
                         </div>
@@ -80,7 +80,7 @@
                         <div class="formulario__grupo" id="grupo__telefono">
                             <label for="telefono" class="formulario__label">Celular/Telefono:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="Celular/Telefono" value="<?php echo set_value('telefono'); ?>" >
+                                <input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="Celular/Telefono" value="<?php echo set_value('telefono'); ?>"  onkeypress="return soloNumeros(event)">
                             </div>
                             <p><?php echo form_error('telefono'); ?></p>
                         </div>
@@ -88,7 +88,7 @@
                         <div class="formulario__grupo" id="grupo__ciNit">
                             <label for="ciNit" class="formulario__label">Cedula de Identidad:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="ciNit" id="ciNit" placeholder="" value="<?php echo set_value('ciNit'); ?>">
+                                <input type="text" class="formulario__input" name="ciNit" id="ciNit" placeholder="" value="<?php echo set_value('ciNit'); ?>" onkeypress="return soloCi(event)">
                             </div>
                             <p><?php echo form_error('ciNit'); ?></p>
                         </div>

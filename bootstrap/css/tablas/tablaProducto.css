@@ -1,0 +1,88 @@
+p{
+    color: red;
+    font-weight: 200;
+    padding-top: -1px;
+}
+
+
+.titulos_centro {
+    color: white;
+    text-align: center;
+}
+
+/* Estilos para la contenedor de tabla responsive */
+.table-responsive {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+/* Estilos para la tabla */
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    opacity: 0.9; /* Transparencia de la tabla */
+    border: 15px solid #333; /* Borde de 15px y color oscuro */
+    border-radius: 15px; /* Borde redondeado de 15px */
+    font-size: 10px; /* Tamaño de letra de 10px */
+}
+
+/* Estilos para las filas de la tabla */
+.table tr {
+    background-color: #f5f5f5;
+    line-height: 1; /* Puedes ajustar el valor según tus preferencias, por ejemplo, 1.2 o 1.5 para un interlineado mayor. */
+    border-spacing: 5px;
+}
+
+/* Estilos para las celdas de la tabla */
+.table td, .table th {
+    padding: 5px;
+    border: 1px solid #ccc;
+    text-align: center; /* Alinear el texto al centro */
+    font-size: 14px;
+    line-height: 1; /* Puedes ajustar el valor según tus preferencias. */
+}
+
+/* Estilos para las celdas de encabezado */
+.table th {
+    background-color: #333; /* Color oscuro para las celdas de encabezado */
+    color: #fff; /* Texto en color blanco en las celdas de encabezado */
+}
+
+/* Estilos para las celdas de la tabla en modo hover */
+.table tr:hover {
+    background-color: #e0e0e0;
+}
+
+/* ----- MEDIAQUERIES ------ */ 
+@media screen and (max-width: 1024px) {
+    main {
+        max-width: 800px;
+        width: 100%;
+        margin: auto;
+        padding: 40px;
+    }
+    /*Modificacion para responsibidad de columnas*/
+    .columna1 {
+        width: 8.33%;
+    }
+    .columna2 {
+        width: 91.67%;
+    }
+    
+    .formulario {
+        grid-template-columns: 1fr; /*Una columna*/
+    }
+    .formulario__grupo {
+        grid-column: 1;
+    }
+    #grupo__telefono, #grupo__ciNit {
+        grid-column: 1;
+    }
+    #grupo__direccion, #grupo__razonSocial {
+        grid-column: 1;
+    }
+
+    .formulario__btn {
+        width: 100%;
+    }
+}

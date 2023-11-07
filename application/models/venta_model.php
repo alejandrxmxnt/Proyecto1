@@ -41,7 +41,7 @@
 
         public function listadoventas() 
         {
-            $this->db->select('V.id, C.nombre, SUM(D.cantidad) as total_cantidad, V.total, V.fechaVenta');
+            $this->db->select('V.id, C.nombre, C.primerApellido, C.razonSocial, SUM(D.cantidad) as total_cantidad, V.total, V.fechaVenta');
             $this->db->from('venta V');
             $this->db->join('detalleventa D', 'V.id = D.idVenta');
             $this->db->join('cliente C', 'C.id = V.idCliente');

@@ -24,7 +24,20 @@
 
     <!--Estilos agregados adicionales por mi parte-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> <!--NUEVA LINEA PARA LOS ALERTs-->
-    <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/tablas/tablas.css"><!--Estilos para tablas--> 
+    <!--
+    <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/tablas/tablas.css"> -->
+    <!--Estilos para tablas--> 
+    
+    <!--
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    -->
+
+    <!--Estilo tablas-->
+    <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/tablas/tablaCliente.css"> <!--Estilos de tabla cliente-->
+    <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/tablas/tablaUsuario.css"> <!--Estilos de tabla usuario-->
+    <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/tablas/tablaProducto.css"> <!--Estilos de tabla producto-->
+    <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/tablas/tablaReporte.css"> <!--Estilos de tabla reporte-->
+    <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/tablas/tablaCategoria.css"> <!--Estilos de tabla categoria-->
     <!--Estilos agregados adicionales hasta aqui-->
     <style>
         /* Imagen de fondo */

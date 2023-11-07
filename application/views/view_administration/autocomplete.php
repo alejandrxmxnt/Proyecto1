@@ -8,11 +8,11 @@
   </head>
   <body>
     <!-- El primer elemento de texto se usa para inicializar el autocompletado -->
-    Search User : <input type="text" id="autouser">
+    Search User : <input type="text" id="autoproduct">
 
     <br><br>
     <!--El segundo elemento de texto se utiliza para mostrar el valor de la opcion seleccionada de la lista de sugerencias -->
-    Selected user id : <input type="text" id="cliente" value='0' name="cliente">
+    Selected user id : <input type="text" id="producto" value='0' name="producto">
 
     <!-- Script -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -23,12 +23,12 @@
     $(document).ready(function(){
 
      // Initialice el autocompletado en el primer elemento de texto
-     $( "#autouser" ).autocomplete({ 
+     $( "#autoproduct" ).autocomplete({ 
         //con la opcion 'source' carga la lista de sugerencias
         source: function( request, response ) {
           // Envia la solicitud POST AJAX a "controlador de metodo userList"
           $.ajax({
-            url: "<?php echo base_url(); ?>index.php/administration/autocomplete/userList",
+            url: "<?php echo base_url(); ?>index.php/administration/autocomplete/buscarproducto",
             type: 'post',
             dataType: "json", //establece el tipo de datos: json y pase los valores de entrada como data
             data: {
@@ -43,8 +43,8 @@
         //con la opcion de select obtengo las sugenrencias seleccionadas
         select: function (event, ui) {
           // Set selection
-          $('#autouser').val(ui.item.label); // display the selected text
-          $('#cliente').val(ui.item.value); // save selected id to input
+          $('#autoproduct').val(ui.item.label); // display the selected text
+          $('#producto').val(ui.item.value); // save selected id to input
           return false;
         }
       });

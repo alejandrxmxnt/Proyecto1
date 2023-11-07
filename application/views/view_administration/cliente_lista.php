@@ -42,9 +42,8 @@
       <br> <br>
       <h2 class="titulos_centro" > TABLA DE CLIENTES </h2>
       <div class="table-responsive">
-      <table class="table table-hover" id="my-table"> <!-- FONDO A LA TABLA -->
-        <thead >
-          <tr>
+      <table class="table" id="my-table"> <!-- FONDO A LA TABLA -->
+          <tr class="header-row" id="header-row">
             <th>#</th>
             <th>Nombre Completo</th>
             <th>CI / NIT</th>
@@ -54,8 +53,6 @@
             <th>Fecha Registro</th>
             <th>Acciones</th>
           </tr>
-        </thead>
-        <tbody>
 
           <?php
             $indice=1;
@@ -73,7 +70,7 @@
             <td><?php echo $row->razonSocial; ?></td>
             <td><?php echo $row->fechaRegistro; ?></td>
             <td>
-              <div class="d-flex">
+              <div class="d-flex" style="display: flex; justify-content: center; align-items: center;">
                 <?php
                   echo form_open_multipart('administration/cliente/modificar');
                 ?>
@@ -103,9 +100,6 @@
             $indice++;
             }
           ?>
-
-          
-        </tbody>
       </table>
       </div>
       <!--PARA ALMACENAR LOS VALORES DE PAGINAS SIGUIENTES-->
@@ -143,7 +137,7 @@
 <script>
   const table = document.getElementById('my-table');
   const rows = table.getElementsByTagName('tr');
-  const rowsPerPage = 6;//cantidad de filas a visualizar
+  const rowsPerPage = 8;//cantidad de filas a visualizar
   const totalPages = Math.ceil(rows.length / rowsPerPage);
   let currentPage = 1;
 

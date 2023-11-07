@@ -26,6 +26,10 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> <!--NUEVA LINEA PARA LOS ALERTs-->
     <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/tablas/tablas.css"><!--Estilos para tablas--> 
     <!--Estilos agregados adicionales hasta aqui-->
+
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
     <style>
         /* Imagen de fondo */
         body {

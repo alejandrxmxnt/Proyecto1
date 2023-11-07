@@ -17,8 +17,7 @@
       <br> <br>
       <h2 class="titulos_centro" > TABLA DE PRODUCTOS </h2>
       <table class="table" id="my-table"> <!-- FONDO A LA TABLA -->
-        <thead >
-          <tr>
+          <tr class="header-row" id="header-row">
             <th>#</th>
             <th>Nombre</th>
             <th>Descripción</th>
@@ -26,11 +25,8 @@
             <th>Stock</th>
             <th>Imagen</th>
             <th>Creado</th>
-            <th>Actualizar</th>
-            <th>Eliminar</th>
+            <th>Acciones</th>
           </tr>
-        </thead>
-        <tbody>
 
           <?php
             $indice=1;
@@ -46,6 +42,7 @@
             <td><?php echo $row->precioUnitario; ?></td>
             <td><?php echo $row->stock; ?></td>
             <td>
+
                 <?php 
                 $foto=$row->foto;
                 if($foto=="")//si foto esta igual a vacion sin imagen
@@ -68,41 +65,36 @@
             </td>
             <td><?php echo $row->fechaRegistro; ?></td>
             <td>
+              <div class="d-flex" style="display: flex; justify-content: center; align-items: center;">
               <?php
                 echo form_open_multipart('administration/producto/modificar');
             ?>
 
               <input type="hidden" value="<?php echo $row->id; ?>" name="idcliente">
-              <button type="submit" class="btn btn-success">Modificar</button>
+              <button type="submit" class="btn btn-success"><i class="fas fa-edit"></i></button>
 
             <?php
                 echo form_close();
             ?>
-            </td>
 
-            <td>
-              
-              <?php
+<?php
                 echo form_open_multipart('administration/producto/deshabilitarbd');
             ?>
 
               <input type="hidden" value="<?php echo $row->id; ?>" name="idproducto">
-              <button type="submit" class="btn btn-warning">Deshabilitar</button>
+              <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
 
             <?php
                 echo form_close();
             ?>
-
+              </div>
+              
             </td>
           </tr>
-
           <?php
             $indice++;
             }
           ?>
-
-          
-        </tbody>
       </table>
 
       <!--PARA ALMACENAR LOS VALORES DE PAGINAS SIGUIENTES-->
@@ -137,7 +129,7 @@
 <script>
   const table = document.getElementById('my-table');
   const rows = table.getElementsByTagName('tr');
-  const rowsPerPage = 3;//cantidad de filas a visualizar
+  const rowsPerPage = 4;//cantidad de filas a visualizar
   const totalPages = Math.ceil(rows.length / rowsPerPage);
   let currentPage = 1;
 
