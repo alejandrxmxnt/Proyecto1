@@ -84,7 +84,7 @@
                                         <div class="col-md-9 col-sm-9 col-xs-9"> 
                                             <div class="d-flex"><!--Antes todo estaba el select y el <a> fuera del <div class="d-flex">-->
 
-                                            <input class="form-control" type="text" id="autouser" name="cliente"> <!--VALORES TEXT-->
+                                            <input class="form-control" type="text" id="autouser" name="cliente" onkeypress="return soloCi(event)"> <!--VALORES TEXT-->
                                             <input type="hidden" id="cliente" name="idCliente"> <!--RECUPERAR ID-->
                                             
                                             <a href="<?php echo base_url();?>index.php/administration/cliente/agregar"> <!-- REGISTRAR NUEVO CLIENTE -->
@@ -100,7 +100,7 @@
                                         <div class="col-md-5 col-sm-5 col-xs-5">
                                             <input type="hidden" name="detalle_data" id="detalle_data" value="">
                                             <!--Seleccionar productos en lista-->
-                                            <input class="form-control" type="text" id="autoproduct" name="producto"> <!--VALORES TEXT-->
+                                            <input class="form-control" type="text" id="autoproduct" name="producto" onkeypress="return soloLetras(event)"> <!--VALORES TEXT-->
                                             <input type="hidden" id="producto" name="idProducto"> <!--RECUPERAR ID-->
                                             <!--Fin de busqueda de productos en lista-->
                                         </div>
@@ -125,11 +125,11 @@
                                                     <th style="color: black; font-weight: 600;">N°</th>
                                                     <th style="color: black; font-weight: 600;"></th> <!--id de producto-->
                                                     <th style="color: black; font-weight: 600;">Producto</th>
-                                                    <th style="color: black; font-weight: 600;">P/U</th><!--Precio Unitario-->
+                                                    <th style="color: black; font-weight: 600;">P/U Bs.</th><!--Precio Unitario-->
                                                     <th style="color: black; font-weight: 600;">stock</th>
                                                     <th style="color: black; font-weight: 600;">Descuento</th>
                                                     <th style="color: black; font-weight: 600;">Cantidad</th>
-                                                    <th style="color: black; font-weight: 600;">SubTotal</th> <!--importe de cada producto-->
+                                                    <th style="color: black; font-weight: 600;">Importe</th> <!--importe de cada producto-->
                                                     <th style="color: black; font-weight: 600;">Acción</th>
                                                 </tr>
                                             </thead>
@@ -357,7 +357,7 @@ function calcularImporte(fila) {
             fila.find("td:eq(7)").text(importe);
             return importe;
         }else{
-            if(cantidad<0){
+            if(cantidad<1){
                 swal("Error!", "La cantidad no puede ser menos que 1", "error");
                 cantidadInput.val(1);
                 cantidad=1;
@@ -386,8 +386,23 @@ function calcularTotal() {
     $("#total").val(total.toFixed(2));
 }
 //calcular total cada que la cantidad se actualice
+/*
 $(document).on("input", ".cantidad", function() {
     var fila = $(this).closest("tr");
+    calcularImporte(fila);
+
+    calcularTotal();
+});*/
+$(document).on("input", ".cantidad", function() {
+    var fila = $(this).closest("tr");
+    var cantidadInput = $(this);
+    var stock = parseInt(fila.find("td:eq(4)").text());
+
+    var cantidad = parseInt(cantidadInput.val());
+    if (cantidad > stock) {
+        swal("Error!", "No se cuenta con esa cantidad en stock", "error");
+        cantidadInput.val(stock);
+    }
     calcularImporte(fila);
 
     calcularTotal();
@@ -395,6 +410,15 @@ $(document).on("input", ".cantidad", function() {
 //calcular total cada que el descuento se actualice
 $(document).on("input", ".descuento", function() {
     var fila = $(this).closest("tr");
+    var descuentoInput = $(this);
+    var descuentoMaximo = 100;
+
+    var descuento = parseInt(descuentoInput.val());
+    if (descuento > descuentoMaximo) {
+        swal("Error!", "El descuento no puede ser mayor a 100", "error");
+        descuentoInput.val(descuentoMaximo);
+    }
+
     calcularImporte(fila);
 
     calcularTotal();
