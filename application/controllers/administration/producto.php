@@ -99,7 +99,7 @@
                         }*/
                         //redirect('administration/producto/subir2' . $idProducto);
 
-                        if($idProducto>0){
+                        if($idProducto){
                             $idproducto=$idProducto;
                             //$idproducto = $idProductoReciente;
                             $nombrearchivo=$idproducto.".jpg"; //nos aseguramos que el archivo tenga un nombre unico
