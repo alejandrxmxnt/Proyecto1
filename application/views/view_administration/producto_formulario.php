@@ -72,7 +72,7 @@
                     <div class="formulario__grupo" id="grupo__nombre">
                         <label for="nombre" class="formulario__label">Nombre:</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese el Nombre" value="<?php echo set_value('nombre'); ?>" required>
+                            <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese el Nombre" value="<?php echo set_value('nombre'); ?>" onkeypress="return soloLetras(event)" required>
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
                         <p><?php echo form_error('nombre'); ?></p>
@@ -91,7 +91,7 @@
                     <div class="formulario__grupo" id="grupo__precioUnitario">
                         <label for="precioUnitario" class="formulario__label">Precio Unitario Bs.:</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="precioUnitario" id="precioUnitario" value="<?php echo set_value('precioUnitario'); ?>" placeholder=" Bs.">
+                            <input type="text" class="formulario__input" name="precioUnitario" id="precioUnitario" value="<?php echo set_value('precioUnitario'); ?>" placeholder=" Bs." onkeypress="return soloNumeros(event)">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
                         <p><?php echo form_error('precioUnitario'); ?></p>
@@ -100,7 +100,7 @@
                     <div class="formulario__grupo" id="grupo__stock">
                         <label for="stock" class="formulario__label">Stock:</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="stock" id="stock" value="<?php echo set_value('stock'); ?>" placeholder="Stock Disponible" >
+                            <input type="text" class="formulario__input" name="stock" id="stock" value="<?php echo set_value('stock'); ?>" placeholder="Stock Disponible" onkeypress="return soloNumeros(event)">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
                         <p><?php echo form_error('stock'); ?></p>
@@ -120,6 +120,30 @@
                         <div class="formulario__grupo-input">                 
                             <input type="file" name="foto" id="foto" class="formulario__input" value="<?php// echo set_value('foto'); ?>" multiple>
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div> 
+                        <p><?php// echo form_error('foto'); ?></p>
+                    </div>
+                    <!-- Grupo: SELECCIONAR CATEGORIA -->
+                    <div class="formulario__grupo" id="grupo__categoria">
+                        <label for="categoria" class="formulario__label">Categoria del producto:</label>
+                        <div class="formulario__grupo-input_categoria">           
+                            <!--      
+                            <input type="file" name="categoria" id="categoria" class="formulario__input" value="<?php// echo set_value('foto'); ?>" multiple>
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i> -->
+                            <select name="categoria" id="categoria" class="form-control">
+                                <option value="" disabled selected>Categorias</option>
+                                <?php
+                                    foreach($listaCategorias->result() as $row){
+                                ?>
+                                <option value="<?php echo $row->id; ?>">
+                                    <?php
+                                        echo $row->nombre;
+                                    ?>
+                                </option>
+                                <?php
+                                    }
+                                ?>
+                            </select>
                         </div> 
                         <p><?php// echo form_error('foto'); ?></p>
                     </div>

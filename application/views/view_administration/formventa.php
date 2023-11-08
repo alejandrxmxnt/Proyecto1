@@ -1,13 +1,17 @@
 <!--
 <link rel="stylesheet" href="https://ajax.googleapis.formulario__btncom/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 -->
+<link rel="stylesheet" href="<?php echo base_url();?>bootstrap/scripts/cdn/css/select2.min.css"> 
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="<?php echo base_url();?>bootstrap/scripts/cdn/js/select2.min.js"></script> 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <!--scrip para el funcionamiento necesario-->
+<link rel="stylesheet" href="<?php echo base_url();?>bootstrap/scripts/bootstrap/css/bootstrap.min.css"> 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
+<script src="<?php echo base_url();?>bootstrap/scripts/jquery/jquery-3.6.0.min.js"></script> 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="<?php echo base_url();?>bootstrap/scripts/ajax/jquery/3.5.1/jquery.min.js"></script> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <style>
@@ -83,13 +87,12 @@
                                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Seleccione un cliente:</label>
                                         <div class="col-md-9 col-sm-9 col-xs-9"> 
                                             <div class="d-flex"><!--Antes todo estaba el select y el <a> fuera del <div class="d-flex">-->
-
-                                            <input class="form-control" type="text" id="autouser" name="cliente" onkeypress="return soloCi(event)"> <!--VALORES TEXT-->
-                                            <input type="hidden" id="cliente" name="idCliente"> <!--RECUPERAR ID-->
+                                                <input class="form-control" type="text" id="autouser" name="cliente" onkeypress="return soloCi(event)"> <!--VALORES TEXT-->
+                                                <input type="hidden" id="cliente" name="idCliente"> <!--RECUPERAR ID-->
                                             
-                                            <a href="<?php echo base_url();?>index.php/administration/cliente/agregar"> <!-- REGISTRAR NUEVO CLIENTE -->
-                                                <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="NuevoCliente"><i class="fa fa-plus"></i></button>
-                                            </a> 
+                                                <a href="<?php echo base_url();?>index.php/administration/cliente/agregar"> <!-- REGISTRAR NUEVO CLIENTE -->
+                                                    <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="NuevoCliente"><i class="fa fa-plus"></i></button>
+                                                </a> 
                                             <!--Fin de seleccion de clientes-->
                                             </div>
                                             
@@ -259,8 +262,10 @@
   </div>
 
 <!-- Script -->
+<script src="<?php echo base_url();?>bootstrap/scripts/ajax/jquery/3.3.1/jquery.min.js"></script> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- jQuery UI -->
+<script src="<?php echo base_url();?>bootstrap/scripts/ajax/jqueryui/1.12.1/jquery-ui.min.js"></script> 
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <!-- AUTOCOMPLETADO -->
 <script type='text/javascript'>
@@ -329,7 +334,6 @@
 
 var contadorFilas = 1; //para contar la filas en la tabla 
     //Funcion para calcular el importe de cada producto
-
 // Initialice el autocompletado en el primer elemento de texto
 
 function calcularImporte(fila) {
@@ -430,11 +434,10 @@ $("#btn-agregar").on("click", function() { //accion de agregado
     var producto_id = $("#producto").val(); //guardar el id del producto seleccionado
     var cliente_id = $("#cliente").val(); //guardar el id del producto seleccionado
 
-
     if (producto_id && cliente_id) { //control que se hallan llenado los valores de producto y un cliente sea seleccionado
 
         var fila = $("#fila-ejemplo").clone().removeAttr("id");
-
+        
         $.getJSON('<?php echo base_url() ?>index.php/administration/ajax/obtenerProductoPorId/' + producto_id, function(data) {
 
             if (data) {
@@ -516,4 +519,4 @@ $("#detalle_data").val(datosJSON);
     </script>
 <!--Funcion para buscador autocompletado de cliente-->
 
-<script src="<?php echo base_url() ?>assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

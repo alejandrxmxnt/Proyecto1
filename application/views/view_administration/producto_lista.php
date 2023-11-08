@@ -52,7 +52,7 @@
                     <?php
                 }else {//caso contrario se proyectara la imagen
                     ?>
-                    <img width="100" src="<?php echo base_url(); ?>uploads/productos/<?php echo $foto; ?>">
+                    <img style="max-width: 100px; max-height: 50px;" src="<?php echo base_url(); ?>uploads/productos/<?php echo $foto; ?>">
                     <?php
                 }
                 ?>

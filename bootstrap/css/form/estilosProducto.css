@@ -34,7 +34,7 @@ main {
 .formulario {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	gap: 20px;
+	gap: 5px;
 }
 
 #grupo__nombre
@@ -48,25 +48,30 @@ main {
     grid-column: span 3;
 }
 /*lineas agregadas recien para ampliar el texarea*/
+
 textarea{
 	width: 100%;
     height: 150px;
     min-width: 80%;
     resize: vertical;
-    top: -50px; /*separacion de un texto con otro por asi desirce interlineado*/
+    top: -50px; 
     color: black;
 }
 #descripcion{
     width: 100%;
-    height: 150px;
+    height: 100px;
     min-width: 80%;
     resize: vertical;
-    top: -50px; /*separacion de un texto con otro por asi desirce interlineado*/
+    top: -200px; /*separacion de un texto con otro por asi desirce interlineado*/
     color: black;
 }
+
 /*hasta aca*/
 #grupo__foto{
-    grid-column: span 3;
+    grid-column: span 2;
+}
+.formulario__grupo-input_categoria {
+	position: relative;
 }
 
 .formulario__label {
@@ -80,6 +85,7 @@ textarea{
 .formulario__grupo-input {
 	position: relative;
 }
+
 
 .formulario__input {
 	width: 100%;

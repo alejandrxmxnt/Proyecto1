@@ -36,11 +36,13 @@
             {
                 $tipo= $this->session->userdata('tipo');
                 if($tipo=='ADMINISTRADOR'){
+                    $lista = $this->categoria_model->listacategorias();
+                    $data['listaCategorias'] = $lista;
                     //mostar un formulario(vista) para agregar nuevo usuario.
                     $this->load->view('view_administration/admidesing/productoFormHeader');
                     $this->load->view('view_administration/admidesing/menuSuperior');
                     $this->load->view('view_administration/admidesing/menuLateral');
-                    $this->load->view('view_administration/producto_formulario');
+                    $this->load->view('view_administration/producto_formulario', $data);
                     $this->load->view('view_administration/admidesing/foot');
                 }else{
                     redirect('administration/empleado/index','refresh'); //si no hay sesion abierta direcciona al login
@@ -81,6 +83,7 @@
                         $data['precioUnitario']=$_POST['precioUnitario'];
                         $data['stock']=$_POST['stock'];
                         $data['codigo']=$_POST['codigo'];
+                        $data['idCategoria']=$_POST['categoria'];
 
                         //$data['foto']=$nombrearchivo;
                         //$databdd['foto']=$nombrearchivo;
