@@ -1,99 +1,164 @@
-<div class="page-wrapper">
-    <!-- ============================================================== -->
-    <!-- Bread crumb and right sidebar toggle -->
-    <!-- ============================================================== -->
-    <div class="page-breadcrumb bg-white">
-        <div class="row align-items-center">
-            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h4 class="page-title">MODIFICAR CLIENTE</h4>
-            </div>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-<div class="container-fluid">
-    <!-- ============================================================== -->
-    <!-- Start Page Content -->
-    <!-- ============================================================== -->
-    <!-- Row -->
-    <div class="row">
-        <!-- Column -->
-        <div class="col-lg-0 col-xlg-3 col-md-12">
-
-        </div>
-        <!-- Column -->
-        <!-- Column -->
-        <div class="col-lg-12 col-xlg-9 col-md-12">
-            <div class="card">
-                <div class="card-body">
-
-<?php
-    foreach ($infocliente->result() as $row) {
-    echo form_open_multipart('administration/cliente/modificarbd');
-?>
-<input type="hidden" class="form-control p-0 border-0" name="idcliente" value="<?php echo $row->id; ?>"> 
-
-<div class="form-group mb-4">
-    <label class="col-md-12 p-0">Nombre Completo</label>
-    <div class="col-md-4 border-bottom p-0">
-        <input type="text" placeholder="Nombres"
-            class="form-control p-0 border-0" name="nombre" value="<?php echo $row->nombre; ?>"> 
-    </div>
-    <div class="col-md-4 border-bottom p-0">
-        <input type="text" placeholder="Primer Apellido"
-            class="form-control p-0 border-0" name="apellido1" value="<?php echo $row->primerApellido; ?>"> 
-    </div>
-    <div class="col-md-4 border-bottom p-0">
-        <input type="text" placeholder="segundo Apellido"
-            class="form-control p-0 border-0" name="apellido2" value="<?php echo $row->segundoApellido; ?>"> 
-    </div>
-</div>
-<div class="form-group mb-4">
-    <label class="col-md-12 p-0">Cedula de Identidad / NIT</label>
-    <div class="col-md-12 border-bottom p-0">
-        <input type="text" placeholder="Ingrese CI/NIT" name="cinit"
-            class="form-control p-0 border-0" value="<?php echo $row->ciNit; ?>"> </div>
-</div>
-<div class="form-group mb-4">
-    <label class="col-md-12 p-0">Telefono/Celular</label>
-    <div class="col-md-12 border-bottom p-0">
-        <input type="text" placeholder="Ingrese el numero Celular/Telefono" name="celular"
-            class="form-control p-0 border-0" value="<?php echo $row->telefono; ?>"> </div>
-</div>
-<div class="form-group mb-4">
-    <label class="col-md-12 p-0">Dirección</label>
-    <div class="col-md-12 border-bottom p-0">
-        <input type="text" placeholder="Ingrese la Dirección." name="direccion" value="<?php echo $row->direccion; ?>"
-            class="form-control p-0 border-0"> </div>
-</div>
-<div class="form-group mb-4">
-    <label class="col-md-12 p-0">Razon Social</label>
-    <div class="col-md-12 border-bottom p-0">
-        <input type="text" placeholder="Ingrese la Razon Social" name="razonSocial" value="<?php echo $row->razonSocial; ?>"
-            class="form-control p-0 border-0"> </div>
-</div>
-<div class="form-group mb-4">
-    <div class="col-sm-12">
-        <button type="submit" class="btn btn-success">Modificar</button>
-    </div>
-</div>
-<?php
-    echo form_close();
+<style>
+    p{
+        color: red;
+        font-weight: 200;
+        padding-top: -1px;
     }
-?>
-                </div>
-            </div>
+    /* ----- MEDIAQUERIES ------ */ 
+    @media screen and (max-width: 1024px) {
+        main {
+            max-width: 800px;
+            width: 100%;
+            margin: auto;
+            padding: 40px;
+        }
+        /*Modificacion para responsibidad de columnas*/
+        .columna1 {
+            width: 8.33%;
+        }
+        .columna2 {
+            width: 91.67%;
+        }
+        
+        .formulario {
+            grid-template-columns: 1fr; /*Una columna*/
+        }
+        .formulario__grupo {
+            grid-column: 1;
+        }
+        #grupo__nombre {
+            grid-column: 1;
+        }
+        #grupo__descripcion{
+            grid-column: 1;
+            width: 100%;
+            height: 200px;
+            min-width: 80%;
+            resize: vertical;
+            top: -50px; /*separacion de un texto con otro por asi desirce interlineado*/
+            color: black;
+        }
+        #grupo__precioUnitario {
+            grid-column: 1;
+        }
+        #grupo__stock {
+            grid-column: 1;
+        }
+        #grupo__foto {
+            grid-column: 1;
+        }
+        .formulario__btn {
+            grid-column: 1;
+            text-align: center;
+            width: 100%;
+        }
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 columna1">
         </div>
-        <!-- Column -->
+        <div class="col-md-10 columna2">
+            <div class="regform">
+                <h1>Registro de Productos</h1>
+            </div>
+
+            <main class="main">
+                <?php
+                    foreach ($infoproducto->result() as $row) {
+                    echo form_open_multipart('administration/producto/modificarbd', array('id' => 'formulario', 'class' => 'formulario', 'method' => 'post'));
+                ?>
+                <input type="hidden" class="form-control p-0 border-0" name="idproducto" value="<?php echo $row->id; ?>">
+                    <!-- Grupo: PRODUCTO -->
+                    <!-- Grupo: Nombre -->
+                    <div class="formulario__grupo" id="grupo__nombre">
+                        <label for="nombre" class="formulario__label">Nombre:</label>
+                        <div class="formulario__grupo-input">
+                            <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese el Nombre" value="<?php echo $row->nombre; ?>" onkeypress="return soloLetras(event)" required>
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                    <!-- Grupo: Descripcion -->
+                    <div class="formulario__grupo" id="grupo__descripcion">
+                        <label for="descripcion" class="formulario__label">Descripción:</label>
+                        <div class="formulario__grupo-input">
+                            <textarea class="formulario__input" name="descripcion" id="descripcion" placeholder="Descripcion de producto"><?php echo $row->descripcion; ?></textarea>    
+                            <!-- <input type="text" class="formulario__input" name="descripcion" id="descripcion" placeholder="Descripción"> -->
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                    <!-- Grupo: Segundo Precio Unitario -->
+                    <div class="formulario__grupo" id="grupo__precioUnitario">
+                        <label for="precioUnitario" class="formulario__label">Precio Unitario Bs.:</label>
+                        <div class="formulario__grupo-input">
+                            <input type="text" class="formulario__input" name="precioUnitario" id="precioUnitario" value="<?php echo $row->precioUnitario; ?>" placeholder=" Bs." onkeypress="return soloNumeros(event)">
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                    <!-- Grupo: Stock -->
+                    <div class="formulario__grupo" id="grupo__stock">
+                        <label for="stock" class="formulario__label">Stock:</label>
+                        <div class="formulario__grupo-input">
+                            <input type="text" class="formulario__input" name="stock" id="stock" value="<?php echo $row->stock; ?>" placeholder="Stock Disponible" onkeypress="return soloNumeros(event)">
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                    <!-- Grupo: Codigo Producto -->
+                    <div class="formulario__grupo" id="grupo__codigo">
+                        <label for="codigo" class="formulario__label">Codigo:</label>
+                        <div class="formulario__grupo-input">
+                            <input type="text" class="formulario__input" name="codigo" id="codigo" value="<?php echo $row->codigo; ?>" placeholder="Codigo Producto">
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                    <!-- Grupo: CARGA DE IMAGENES -->
+                    <div class="formulario__grupo" id="grupo__foto">
+                        <label for="foto" class="formulario__label">Seleccione imagenes para subir:</label>
+                        <div class="formulario__grupo-input">                 
+                            <input type="file" name="userfile" id="foto" class="formulario__input" value="<?php echo $row->foto; ?>" multiple>
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div> 
+                    </div>
+                    <!-- Grupo: SELECCIONAR CATEGORIA -->
+                    <div class="formulario__grupo" id="grupo__categoria">
+                        <label for="categoria" class="formulario__label">Categoria del producto:</label>
+                        <div class="formulario__grupo-input_categoria">           
+                            <!--      
+                            <input type="file" name="categoria" id="categoria" class="formulario__input" value="<?php// echo set_value('foto'); ?>" multiple>
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i> -->
+                            <select name="categoria" id="categoria" class="form-control">
+                                <option value="<?php echo $row->idCategoria; ?>" disabled selected></option>
+                                <?php
+                                    foreach($listaCategorias->result() as $row){
+                                ?>
+                                <option value="<?php echo $row->id; ?>">
+                                    <?php
+                                        echo $row->nombre;
+                                    ?>
+                                </option>
+                                <?php
+                                    }
+                                ?>
+                            </select>
+                        </div> 
+                    </div>
+<br>
+                    <div class="formulario__grupo formulario__grupo-btn-enviar">
+                            <button type="submit" class="formulario__btn">Actualizar</button>
+                            <!--
+                            <button type="submit" class="formulario__btn">Enviar</button>
+    -->
+                    </div>
+        
+                <?php
+                    echo form_close();
+                                }
+                ?>
+            </main>
+
+        </div>
     </div>
-    <!-- Row -->
-    <!-- ============================================================== -->
-    <!-- End PAge Content -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Right sidebar -->
-    <!-- ============================================================== -->
-    <!-- .right-sidebar -->
-    <!-- ============================================================== -->
-    <!-- End Right sidebar -->
-    <!-- ============================================================== -->
 </div>
+<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+
+                    

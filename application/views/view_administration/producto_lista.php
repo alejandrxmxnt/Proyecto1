@@ -56,12 +56,6 @@
                     <?php
                 }
                 ?>
-                <?php
-                  echo form_open_multipart('administration/producto/subirfoto');
-                ?> <!--crear un boton para subir imagenes-->
-                <input type="hidden" name="id" value="<?php echo $row->id; ?>">
-                <button type="submit" class="btn btn-primary">Subir</button>
-            
             </td>
             <td><?php echo $row->fechaRegistro; ?></td>
             <td>
@@ -70,7 +64,7 @@
                 echo form_open_multipart('administration/producto/modificar');
             ?>
 
-              <input type="hidden" value="<?php echo $row->id; ?>" name="idcliente">
+              <input type="hidden" value="<?php echo $row->id; ?>" name="idproducto">
               <button type="submit" class="btn btn-success"><i class="fas fa-edit"></i></button>
 
             <?php
@@ -127,6 +121,7 @@
 </style>
 
 <script>
+  /*
   const table = document.getElementById('my-table');
   const rows = table.getElementsByTagName('tr');
   const rowsPerPage = 4;//cantidad de filas a visualizar
@@ -162,4 +157,5 @@
 
   showPage(currentPage);
   generatePagination();
+  */
 </script>
