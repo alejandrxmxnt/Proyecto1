@@ -436,36 +436,44 @@ $("#btn-agregar").on("click", function() { //accion de agregado
 
     if (producto_id && cliente_id) { //control que se hallan llenado los valores de producto y un cliente sea seleccionado
 
-        var fila = $("#fila-ejemplo").clone().removeAttr("id");
+        var filaExistente = $(".list-product .added-row input.producto-id[value='" + producto_id + "']").closest("tr");
+        if(filaExistente.length > 0){
+            var cantidadInput = filaExistente.find("td:eq(6) input");
+            var nuevaCantidad = parseInt(cantidadInput.val()) + 1;
+            cantidadInput.val(nuevaCantidad);
+            calcularImporte(filaExistente);
+        }else{
+            var fila = $("#fila-ejemplo").clone().removeAttr("id");
         
-        $.getJSON('<?php echo base_url() ?>index.php/administration/ajax/obtenerProductoPorId/' + producto_id, function(data) {
+            $.getJSON('<?php echo base_url() ?>index.php/administration/ajax/obtenerProductoPorId/' + producto_id, function(data) {
 
-            if (data) {
+                if (data) {
 
-                fila.find("td:eq(0)").text(contadorFilas);
-                fila.find("td:eq(1) input").val(producto_id);
-                fila.find("td:eq(2)").text(data[0].nombre);
-                fila.find("td:eq(3)").text(data[0].precioUnitario);
-                fila.find("td:eq(4)").text(data[0].stock);
-                fila.find("td:eq(5) input").val(0); //descuento
-                fila.find("td:eq(6) input").val(1); //cantidad
-                fila.find("td:eq(7)").text(data[0].precioUnitario); //
+                    fila.find("td:eq(0)").text(contadorFilas);
+                    fila.find("td:eq(1) input").val(producto_id);
+                    fila.find("td:eq(2)").text(data[0].nombre);
+                    fila.find("td:eq(3)").text(data[0].precioUnitario);
+                    fila.find("td:eq(4)").text(data[0].stock);
+                    fila.find("td:eq(5) input").val(0); //descuento
+                    fila.find("td:eq(6) input").val(1); //cantidad
+                    fila.find("td:eq(7)").text(data[0].precioUnitario); //
 
-                contadorFilas++;
+                    contadorFilas++;
 
-                fila.addClass("added-row");
+                    fila.addClass("added-row");
 
-                fila.show();
-                $(".list-product").append(fila);
+                    fila.show();
+                    $(".list-product").append(fila);
 
-                calcularImporte(fila);
-                calcularTotal();
-            } else {
-                alert("No se encontraron detalles del producto.");
-            }
-        }).fail(function(jqXHR, textStatus, errorThrown) {
-            console.log("Error en la solicitud AJAX: " + errorThrown);
-        });
+                    calcularImporte(fila);
+                    calcularTotal();
+                } else {
+                    alert("No se encontraron detalles del producto.");
+                }
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.log("Error en la solicitud AJAX: " + errorThrown);
+            });
+        }
     } else {
         //alert("Seleccione un Producto.");
         //alert("Seleccione un cliente y el producto a comprar");

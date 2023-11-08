@@ -421,7 +421,6 @@
 
         public function reporteRecientepdf(){
 
-            
             $lista=$this->reporte_model->reporteReciente();
             foreach($lista->result() as $row){
                 $idventas=$row->id;

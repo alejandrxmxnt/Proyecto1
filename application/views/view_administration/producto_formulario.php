@@ -118,7 +118,7 @@
                     <div class="formulario__grupo" id="grupo__foto">
                         <label for="foto" class="formulario__label">Seleccione imagenes para subir:</label>
                         <div class="formulario__grupo-input">                 
-                            <input type="file" name="foto" id="foto" class="formulario__input" value="<?php// echo set_value('foto'); ?>" multiple>
+                            <input type="file" name="userfile" id="foto" class="formulario__input" value="<?php// echo set_value('foto'); ?>" multiple>
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div> 
                         <p><?php// echo form_error('foto'); ?></p>

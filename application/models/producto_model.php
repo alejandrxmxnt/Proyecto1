@@ -38,4 +38,11 @@
             $this->db->where('estado','0');
             return $this->db->get(); 
         }
+
+        public function imagenproductoReciente(){
+            $this->db->select('P.id');
+            $this->db->from('producto P');
+            $this->db->where('P.id = (SELECT MAX(id) FROM producto)', NULL, FALSE);
+            return $this->db->get();
+        }
     }

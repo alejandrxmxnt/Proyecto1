@@ -78,18 +78,58 @@
                         $this->load->view('view_administration/admidesing/foot');
                         
                     }else{
+                        //CARGA LA DATA DE LOS VALORES 
                         $data['nombre']=$_POST['nombre'];
                         $data['descripcion']=$_POST['descripcion'];
                         $data['precioUnitario']=$_POST['precioUnitario'];
                         $data['stock']=$_POST['stock'];
                         $data['codigo']=$_POST['codigo'];
+                        //$data['foto'] = $_POST['foto'];
                         $data['idCategoria']=$_POST['categoria'];
 
-                        //$data['foto']=$nombrearchivo;
-                        //$databdd['foto']=$nombrearchivo;
-
                         $this->producto_model->agregarproducto($data); //hasta ahi ya guarda en BDD
-                        redirect('administration/producto/index','refresh');//con el refresh refrescamos de forma forsoza 
+                        
+
+                        $idProductoReciente = $this->producto_model->imagenproductoReciente(); //recupera el id reciente de producto
+                        foreach($idProductoReciente->result() as $row){
+                            $idProducto=$row->id;
+                        }/*
+                        if($idProducto>0){
+                            redirect('administration/producto/subir2' . $idProducto);  
+                        }*/
+                        //redirect('administration/producto/subir2' . $idProducto);
+
+                        if($idProducto>0){
+                            $idproducto=$idProducto;
+                            //$idproducto = $idProductoReciente;
+                            $nombrearchivo=$idproducto.".jpg"; //nos aseguramos que el archivo tenga un nombre unico
+                            //configuracion de subida
+                            $config['upload_path']='./uploads/productos/';  //direccion de subida // ./ dice que trabaja con la raiz del sistema
+                            $config['file_name']=$nombrearchivo; //juntamos la direccion del archivo
+                            $direccion='./uploads/productos/'.$nombrearchivo;//donde va estar ese archivo
+
+                            if(file_exists($direccion)){//si existe el archivo se borrara el anterior y agrega el nuevo
+                                unlink($direccion);
+                            }//si no existe significa que es la primera vez que se esta cargando una imagen
+                            $config['allowed_types']='jpg|png'; //tipos de archivos que voy a permitir |gif
+                            $this->load->library('upload',$config); //libreria upload nativa del modelo vista controlador con todos nuestros parametros de configuracion
+                            //PRUEBA DE SUBIDA
+                            if(!$this->upload->do_upload())
+                            {//si no se logra subir la foto //do_upload() hace el intento de subir
+                                //si no se ejecuta de manera efectiva
+                                $data['error']=$this->upload->display_errors(); //almancena todos los errores que salgan
+                                //archivos pesados, archivo no compatible
+                            }else{
+                                $data['foto']=$nombrearchivo; //data en el campo foto va almacenar el nombre del archivo que cuenta con la direccion 
+                                //trabajar en base de datos
+                                $this->producto_model->modificarproducto($idproducto,$data);
+                                //subir el archibo
+                                $this->upload->data();
+                            }
+                            redirect('administration/producto/index','refresh');
+                        }
+
+                        //redirect('administration/producto/agregar','refresh');
                     }
                 }else{
                     redirect('administration/empleado/index','refresh'); //si no hay sesion abierta direcciona al login
@@ -101,6 +141,7 @@
             } 
         }
 
+        //ACTUALIZAR FOTO
         public function subirfoto()
         {
             if($this->session->userdata('login'))
@@ -135,6 +176,49 @@
                 if($tipo=='ADMINISTRADOR'){
                     //$variable['BDD']=FORMULARIO
                     $idproducto=$_POST['id']; //resepcionar el id del producto
+                    $nombrearchivo=$idproducto.".jpg"; //nos aseguramos que el archivo tenga un nombre unico
+                    //configuracion de subida
+                    $config['upload_path']='./uploads/productos/';  //direccion de subida // ./ dice que trabaja con la raiz del sistema
+                    $config['file_name']=$nombrearchivo; //juntamos la direccion del archivo
+                    $direccion='./uploads/productos/'.$nombrearchivo;//donde va estar ese archivo
+
+                    if(file_exists($direccion)){//si existe el archivo se borrara el anterior y agrega el nuevo
+                        unlink($direccion);
+                    }//si no existe significa que es la primera vez que se esta cargando una imagen
+                    $config['allowed_types']='jpg|png'; //tipos de archivos que voy a permitir |gif
+                    $this->load->library('upload',$config); //libreria upload nativa del modelo vista controlador con todos nuestros parametros de configuracion
+                    //PRUEBA DE SUBIDA
+                    if(!$this->upload->do_upload())
+                    {//si no se logra subir la foto //do_upload() hace el intento de subir
+                        //si no se ejecuta de manera efectiva
+                        $data['error']=$this->upload->display_errors(); //almancena todos los errores que salgan
+                        //archivos pesados, archivo no compatible
+                    }else{
+                        $data['foto']=$nombrearchivo; //data en el campo foto va almacenar el nombre del archivo que cuenta con la direccion 
+                        //trabajar en base de datos
+                        $this->producto_model->modificarproducto($idproducto,$data);
+                        //subir el archibo
+                        $this->upload->data();
+                    }
+                    redirect('administration/producto/index','refresh');
+                }else{
+                    redirect('administration/empleado/index','refresh'); //si no hay sesion abierta direcciona al login
+                }
+            }
+            else
+            {
+                redirect('administration/usuarios/index','refresh');//cargara el login
+            }
+        }
+
+        public function subir2($idProducto)
+        {
+            if($this->session->userdata('login'))
+            {
+                $tipo= $this->session->userdata('tipo');
+                if($tipo=='ADMINISTRADOR'){
+                    //$variable['BDD']=FORMULARIO
+                    $idproducto=$idProducto; //resepcionar el id del producto
                     $nombrearchivo=$idproducto.".jpg"; //nos aseguramos que el archivo tenga un nombre unico
                     //configuracion de subida
                     $config['upload_path']='./uploads/productos/';  //direccion de subida // ./ dice que trabaja con la raiz del sistema
