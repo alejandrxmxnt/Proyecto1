@@ -72,7 +72,7 @@
                               <div class="item form-group has-feedback">
                                   <div class="col-md-10"></div>
                                   <div class="col-md-2" style="margin-left: 20px;">
-                                      <?php echo form_open_multipart('administration/reportes/generarPdf'); ?>
+                                      <?php echo form_open_multipart('administration/reportes/generarEmpleadoPdf'); ?>
                                       <button type="submit" class="btn btn-danger" name="enviar" formtarget="_blank"><i class="far fa-file-pdf"></i> GENERAR PDF</button>
                                       <?php echo form_close(); ?>
                                   </div>
@@ -88,7 +88,7 @@
                                           <th>FECHA VENTA</th>
                                       </tr>
                                       <?php
-                                      foreach ($fecha->result() as $row) {
+                                      foreach ($fechas->result() as $row) {
                                       ?>
                                           <tr>
                                               <td><?php echo $row->id; ?></td>

@@ -63,7 +63,19 @@
             return $this->db->query($query);
         }
 
+        public function ventaFechasRangoEmpleado($Inicio,$Fin,$idUsuario) //select
+        {
+            $query="SELECT V.id, V.fechaVenta, C.ciNit, C.nombre, C.primerApellido, C.segundoApellido ,C.razonSocial, V.total
+            FROM venta V
+            INNER JOIN cliente C ON C.id=V.idCliente
+            WHERE V.estado=1 AND V.idUsuario='". $idUsuario ."' AND V.fechaVenta BETWEEN '".$Inicio."' AND '".$Fin."'
+            ORDER BY 1";
+            return $this->db->query($query);
+        }
 
+        /////////////////////////////////////////
+        ////////  REPORTE GENERAL   /////////////
+        /////////////////////////////////////////
         // PDF -> Reporte datos de la empresa y usuario
         public function ventashistorial() //select
         {
@@ -79,6 +91,28 @@
         {
             $this->db->select('sum(total)');
             $this->db->from ('venta');
+            return $this->db->get(); 
+        }
+
+        /////////////////////////////////////////
+        ////////  REPORTE EMPLEADO  /////////////
+        /////////////////////////////////////////
+
+        //PDF -> Reporde datos de la empresa y usuario ventas realizadas por el idEmpleado
+        public function ventashistorialEmpleado($idEmpleado) //select
+        {
+            $query="SELECT V.id, V.fechaVenta, C.ciNit, C.nombre, C.primerApellido, C.segundoApellido ,C.razonSocial, V.total
+            FROM venta V
+            INNER JOIN cliente C ON C.id=V.idCliente
+            WHERE V.estado=1 AND V.idUsuario = " . $idEmpleado . "
+            ORDER BY 1";
+            return $this->db->query($query);
+        }
+        public function reporteTotalEmpleado($idEmpleado)
+        {
+            $this->db->select('sum(total)');
+            $this->db->from ('venta');
+            $this->db->where('idUsuario',$idEmpleado);
             return $this->db->get(); 
         }
 
