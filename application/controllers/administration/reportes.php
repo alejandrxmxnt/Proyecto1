@@ -16,7 +16,13 @@
                     $this->load->view('view_administration/reporte_lista');//ahi llega la informacion.
                     $this->load->view('view_administration/admidesing/foot');
                 }else{
-                    redirect('administration/empleado/index','refresh'); //si no hay sesion abierta direcciona al login
+                    //muestra interfaz de opciones a generar de reportes
+                    $this->load->view('view_administration/admidesing/headboard');
+                    $this->load->view('view_administration/admidesing/menuSuperior');
+                    $this->load->view('view_administration/admidesing/menuLateral2');
+                    $this->load->view('view_administration/reporte_lista_View_Empleado');//ahi llega la informacion.
+                    //$this->load->view('view_administration/reporte_lista');
+                    $this->load->view('view_administration/admidesing/foot');
                 }
             }
             else

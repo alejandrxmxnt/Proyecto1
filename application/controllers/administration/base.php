@@ -34,6 +34,15 @@ class Base extends CI_Controller { //HERENCIA EN PHP la clase se llama Welcome
 		$this->load->view('view_customer/catalogo',$data);
 		$this->load->view('view_customer/desing/pie');
 	}
+
+	public function iconos()
+	{
+		$this->load->view('view_administration/admidesing/headboard');
+		$this->load->view('view_administration/admidesing/menuSuperior');
+		$this->load->view('view_administration/admidesing/menuLateral');
+		$this->load->view('view_administration/iconos_lista');
+		$this->load->view('view_administration/admidesing/foot');
+	}
 	//metodo informacion del negocio
 	public function info()
 	{

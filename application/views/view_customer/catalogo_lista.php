@@ -1,8 +1,37 @@
+<style>
+    .section-title {
+        font-weight: 700;
+        color: black;
+    }
+
+    .img-wrap {
+        width: 100%;
+        height: 100%;
+    }
+
+    #contenidos {
+        align-content: center;
+    }
+
+    .img-wrap {
+        text-align: center; /* Alinea el texto y elementos inline al centro */
+        display: flex; /* Activa el modelo de caja flexible para alinear elementos hijos */
+        justify-content: center; /* Alinea elementos hijos horizontalmente al centro */
+        align-items: center; /* Alinea elementos hijos verticalmente al centro */
+    }
+
+    @media screen and (max-width: 1024px) {
+        .img-wrap {
+        width: 50;
+        height: 50;
+    }
+    }
+</style>
 <!-- Start Why Choose Us Section -->
 <div class="why-choose-section">
 			<div class="container">
-				<div class="row justify-content-between align-items-center">
-					<div class="col-lg-6">
+				<div class="row justify-content-between align-items-center" id="contenidos">
+					<div class="col-lg-6 col-md-6 col-sm-6">
                         <?php
                             $indice=1;
                             foreach($infocatalogo->result() as $row)
@@ -11,15 +40,29 @@
                         ?>
 
                         <!--CARGA DE TITULO DE PRODUCTO--> 
-						<h2 class="section-title"><?php echo $row->nombre;?></h2>
+						<h2 class="section-title">
+                            <?php 
+                                $nombreProducto = $row->nombre;
+                                echo strtoupper($nombreProducto);
+                            ?>
+                    
+                        </h2>
                         <!--CARGA DE DETALLE-->
 						<p><?php echo $row->descripcion;?></p>
                         <br>
                         <!--CARGA DE STOCK DISPONIBLE-->
                         <b>Stock Disponible: </b>
-                        <p><?php echo $row->stock;?></p>
+                        <p><?php 
+                                $disponible = $row->stock;
+                                if($disponible > 0) {
+                                    echo $disponible;
+                                }else{
+                                    echo "(AGOTADO)";
+                                }
+                            ?>
+                        </p>
                     </div>
-					<div class="col-lg-5">
+					<div class="col-lg-6 col-md-6 col-sm-6">
 						<div class="img-wrap">
                             <!--Carga de imagen de producto-->
                             <?php 

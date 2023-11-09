@@ -15,13 +15,13 @@
         </button>
       </a>
       <br> <br>
-      <h2 class="titulos_centro" > TABLA DE PRODUCTOS </h2>
+      <h2 class="titulos_centro" style="font-weight: 700;"> TABLA DE PRODUCTOS </h2>
       <table class="table" id="my-table"> <!-- FONDO A LA TABLA -->
           <tr class="header-row" id="header-row">
             <th>#</th>
             <th>Nombre</th>
             <th>Descripción</th>
-            <th>Precio U/N</th>
+            <th>Precio U/N Bs.</th>
             <th>Stock</th>
             <th>Imagen</th>
             <th>Creado</th>
@@ -37,10 +37,30 @@
           
           <tr>
             <th><?php echo $indice; ?></th>
-            <td><?php echo $row->nombre; ?></td>
-            <td><?php echo $row->descripcion; ?></td>
-            <td><?php echo $row->precioUnitario; ?></td>
-            <td><?php echo $row->stock; ?></td>
+            <td style="text-align: left;">
+              <?php 
+                $nombre = $row->nombre;
+                echo strtoupper($nombre); 
+              ?>
+            </td>
+            <td style="text-align: left;"><?php echo $row->descripcion; ?></td>
+            <td>
+              <?php
+                $precio = $row->precioUnitario; 
+                $ventaGeneral=number_format($precio, 2,',','.');
+                echo $ventaGeneral.' Bs.';
+              ?>
+            </td>
+            <td>
+              <?php 
+                $stockDisponible = $row->stock;
+                if($stockDisponible > 0) {
+                    echo $stockDisponible;
+                }else{
+                    echo '<span style="color: red; font-weight: 400;">(AGOTADO)</span>';
+                }
+              ?>
+            </td>
             <td>
 
                 <?php 

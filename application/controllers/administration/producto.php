@@ -19,9 +19,19 @@
                     $this->load->view('view_administration/admidesing/menuSuperior');
                     $this->load->view('view_administration/admidesing/menuLateral');
                     $this->load->view('view_administration/producto_lista',$data);//ahi llega la informacion.
+                    //$this->load->view('view_administration/producto_lista_View_Empleado',$data);
                     $this->load->view('view_administration/admidesing/foot');
                 }else{
-                    redirect('administration/empleado/index','refresh'); //si no hay sesion abierta direcciona al login
+                    //              modelo        metodo listausuarios
+                    $lista=$this->producto_model->listaproductos();
+                    //      nombre de posicion usuarios
+                    $data['productos']=$lista;
+
+                    $this->load->view('view_administration/admidesing/headboard');
+                    $this->load->view('view_administration/admidesing/menuSuperior');
+                    $this->load->view('view_administration/admidesing/menuLateral2');
+                    $this->load->view('view_administration/producto_lista_View_Empleado',$data);
+                    $this->load->view('view_administration/admidesing/foot');
                 }
             }
             else
@@ -45,7 +55,7 @@
                     $this->load->view('view_administration/producto_formulario', $data);
                     $this->load->view('view_administration/admidesing/foot');
                 }else{
-                    redirect('administration/empleado/index','refresh'); //si no hay sesion abierta direcciona al login
+                    redirect('administration/producto/index','refresh'); //si no hay sesion abierta direcciona al login
                 }
             }
             else
@@ -132,7 +142,7 @@
                         //redirect('administration/producto/agregar','refresh');
                     }
                 }else{
-                    redirect('administration/empleado/index','refresh'); //si no hay sesion abierta direcciona al login
+                    redirect('administration/producto/index','refresh'); //si no hay sesion abierta direcciona al login
                 }
             }
             else
@@ -158,7 +168,7 @@
                     $this->load->view('view_administration/subirproducto',$data);//ahi llega la informacion.
                     $this->load->view('view_administration/admidesing/foot');
                 }else{
-                    redirect('administration/empleado/index','refresh'); //si no hay sesion abierta direcciona al login
+                    redirect('administration/producto/index','refresh'); //si no hay sesion abierta direcciona al login
                 }
             }
             else
@@ -202,7 +212,7 @@
                     }
                     redirect('administration/producto/index','refresh');
                 }else{
-                    redirect('administration/empleado/index','refresh'); //si no hay sesion abierta direcciona al login
+                    redirect('administration/producto/index','refresh'); //si no hay sesion abierta direcciona al login
                 }
             }
             else
@@ -245,7 +255,7 @@
                     }
                     redirect('administration/producto/index','refresh');
                 }else{
-                    redirect('administration/empleado/index','refresh'); //si no hay sesion abierta direcciona al login
+                    redirect('administration/producto/index','refresh'); //si no hay sesion abierta direcciona al login
                 }
             }
             else
@@ -273,7 +283,7 @@
                     $this->load->view('view_administration/admidesing/foot');
                     
                 }else{
-                    redirect('administration/empleado/index','refresh'); //si no hay sesion abierta direcciona al login
+                    redirect('administration/producto/index','refresh'); //si no hay sesion abierta direcciona al login
                 }
             }
             else
@@ -345,7 +355,7 @@
                         redirect('administration/producto/index','refresh');
                     }
                 }else{
-                    redirect('administration/empleado/index','refresh'); //si no hay sesion abierta direcciona al login
+                    redirect('administration/producto/index','refresh'); //si no hay sesion abierta direcciona al login
                 }
             }
             else
@@ -366,7 +376,51 @@
 
                     redirect('administration/producto/index','refresh');
                 }else{
-                    redirect('administration/empleado/index','refresh'); //si no hay sesion abierta direcciona al login
+                    redirect('administration/producto/index','refresh'); //si no hay sesion abierta direcciona al login
+                }
+            }
+            else
+            {
+                redirect('administration/usuarios/index','refresh');//cargara el login
+            }  
+        }
+
+        public function deshabilitados(){
+            if($this->session->userdata('login'))
+            {
+                $tipo= $this->session->userdata('tipo');
+                if($tipo=='ADMINISTRADOR'){
+                    $data['infoproductodeshabilitados'] = $this->producto_model->listacproductosdeshabilitados();
+
+                    $this->load->view('view_administration/admidesing/headboard');
+                    $this->load->view('view_administration/admidesing/menuSuperior');
+                    $this->load->view('view_administration/admidesing/menuLateral');
+                    $this->load->view('view_administration/producto_lista_deshabilitados', $data);//ahi llega la informacion.
+                    $this->load->view('view_administration/admidesing/foot');
+                }else{
+                    redirect('administration/producto/index','refresh'); //Operacion no valida pentiente desarrollar modal de alerta
+                }
+            }
+            else
+            {
+                redirect('administration/usuarios/index','refresh');//cargara el login
+            }
+            
+        }
+
+        public function habilitarbd(){
+            if($this->session->userdata('login'))
+            {
+                $tipo= $this->session->userdata('tipo');
+                if($tipo=='ADMINISTRADOR'){
+                    $idproducto=$_POST['idproducto'];
+                    $data['estado']='1';
+
+                    $this->producto_model->modificarproducto($idproducto,$data);
+
+                    redirect('administration/producto/index','refresh');
+                }else{
+                    redirect('administration/producto/index','refresh'); //si no hay sesion abierta direcciona al login
                 }
             }
             else

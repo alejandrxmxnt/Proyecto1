@@ -22,6 +22,8 @@
 		<link href="<?php echo base_url();?>bootstrap/ViewCatalogo/css/tiny-slider.css" rel="stylesheet">
 		<link href="<?php echo base_url();?>bootstrap/ViewCatalogo/css/style.css" rel="stylesheet">
 		<title>Mueblería Lara</title>
+		<!--Estilos agregados adicionales hasta aqui-->
+		
 	</head>
 
 	<body>

@@ -4,43 +4,55 @@
     </div>
     <div class="col-md-10">
       <br>
-      
-      <a href="<?php echo base_url();?>index.php/administration/producto/index">
-        <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Volver"><i class="fa fa-mail-reply-all"></i></button>
-      </a>
-      <br> <br>
-      <h2 class="titulos_centro" style="font-weight: 700;"> TABLA DE PRODUCTOS DESHABILITADOS </h2>
+      <h2 class="titulos_centro" style="font-weight: 700;"> TABLA DE PRODUCTOS </h2>
       <table class="table" id="my-table"> <!-- FONDO A LA TABLA -->
           <tr class="header-row" id="header-row">
             <th>#</th>
             <th>Nombre</th>
             <th>Descripción</th>
-            <th>Precio U/N</th>
+            <th>Precio U/N Bs.</th>
             <th>Stock</th>
             <th>Imagen</th>
-            <th>Creado</th>
-            <th>Acciones</th>
+            <th>Registrado</th>
           </tr>
 
           <?php
             $indice=1;
-            foreach($infoproductodeshabilitados->result() as $row)
+            foreach($productos->result() as $row)
             {//impresion de valores de la data
               //acontinuacion de como se carga una tabla
           ?>
           
           <tr>
             <th><?php echo $indice; ?></th>
-            <td><?php echo $row->nombre; ?></td>
-            <td><?php echo $row->descripcion; ?></td>
-            <td>
-              <?php
-                $precio = $row->precioUnitario; 
-                $ventaGeneral=number_format($precio, 2,',','.');
-                echo $ventaGeneral.' Bs.';
-              ?>
+            <td style="text-align: left;">
+                <?php 
+                    $nombre = $row->nombre;
+                    echo strtoupper(utf8_decode($nombre)); 
+                ?>
             </td>
-            <td><?php echo $row->stock; ?></td>
+            <td style="text-align: left;">
+                <?php 
+                echo $row->descripcion; 
+                ?>
+            </td>
+            <td>
+                <?php
+                    $precio = $row->precioUnitario; 
+                    $ventaGeneral=number_format($precio, 2,',','.');
+                    echo $ventaGeneral.' Bs.';
+                ?>
+            </td>
+            <td>
+                <?php 
+                    $stockDisponible = $row->stock;
+                    if($stockDisponible > 0) {
+                        echo $stockDisponible;
+                    }else{
+                        echo '<span style="color: red; font-weight: 400;">(AGOTADO)</span>';
+                    }
+                ?>
+            </td>
             <td>
 
                 <?php 
@@ -58,20 +70,6 @@
                 ?>
             </td>
             <td><?php echo $row->fechaRegistro; ?></td>
-            <td>
-              <div class="d-flex" style="display: flex; justify-content: center; align-items: center;">
-                <?php
-                    echo form_open_multipart('administration/producto/habilitarbd');
-                ?>
-
-                  <input type="hidden" value="<?php echo $row->id; ?>" name="idproducto">
-                  <button type="submit" class="btn btn-success"><i class="fas fa-toggle-off"></i></button>
-
-                <?php
-                    echo form_close();
-                ?>
-              </div>
-            </td>
           </tr>
           <?php
             $indice++;

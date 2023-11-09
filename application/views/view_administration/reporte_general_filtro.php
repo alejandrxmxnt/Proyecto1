@@ -1,3 +1,24 @@
+<style>
+    #EstilosReporte {
+        background-color: #333; /* Color de fondo negro con transparencia */
+        text-align: center; /* Alineación al centro horizontal */
+        display: flex; /* Modelo de caja flexible para centrar verticalmente */
+        justify-content: center; /* Alineación vertical al centro */
+        align-items: center; /* Alineación vertical al centro */
+        height: 60px;
+
+    }
+    .title-fechas {
+        color: #fff;
+        font-weight: 600;
+    }
+    .table-fondo {
+        background-color: #333;
+        opacity: 0.9;
+        border-radius: 5px;
+    }
+</style>
+
 <div class="container">
     <div class="row">
         <div class="col-md-2">
@@ -16,13 +37,17 @@
                         <!-- Inicio Div row 2 -->
                         <div class="col-sm-12">
                             <!-- Inicio Div col-sm-12 2 -->
-                            <div class="card-box table-responsive">
+                            <div class="card-box table-responsive table-fondo">
                                 <?php
                                     echo form_open_multipart('administration/reportes/reporteGeneral');
                                     ?>
-                                    <button type="submit" class="btn btn-round  btn-success">
-                                        <i class="fa fa-search"></i> NUEVA BUSQUEDA
-                                    </button>
+                                    <br>
+                                    <div style="margin-left: 20px;">
+                                        <button type="submit" class="btn btn-round  btn-success">
+                                            <i class="fa fa-search"></i> NUEVA BUSQUEDA
+                                        </button>
+                                    </div>
+                                    
                                     <?php
                                     echo form_close();
                                     ?>
@@ -30,12 +55,12 @@
                                 <!-- Inicio Div card-box table-responsive -->
                                 <?php echo form_open_multipart('administration/reportes/reporteFechasPdf');?>
                                 <form  method="POST">
-                                    <div class="item form-group has-feedback">
-                                        <label class="col-form-label col-md-1 label-align">Fecha Inicio: </label>
+                                    <div class="item form-group has-feedback" id="EstilosReporte">
+                                        <label class="col-form-label col-md-1 label-align title-fechas">Fecha Inicio: </label>
                                         <div class="col-md-2">
                                             <input type="date" value="<?php echo $inicio; ?>" name="inicio" id="inicio" class="form-control"></input>
                                         </div>
-                                        <label class="col-form-label col-md-1 label-align">Fecha Fin: </label>
+                                        <label class="col-form-label col-md-1 label-align title-fechas">Fecha Fin: </label>
                                         <div class="col-md-2">
                                             <input type="date" value="<?php echo $fin; ?>" name="fin" id="fin" class="form-control"></input>
                                         </div>
@@ -47,17 +72,14 @@
                                 <?php echo form_close(); ?>
                                 <br>
                                 <!-- la tabla de abajo tenia un id por defecto que ordenaba los tr el id se llama  datatable-buttons-->
-                                <table id="datatable" class="table table-striped table-bordered jambo_table bulk_action" style="width:100%">
-                                  <thead>
-                                      <tr class="headings">
+                                <table class="table" id="my-table">
+                                      <tr class="header-row" id="header-row">
                                           <th>COMPROBANTE</th>
                                           <th>RAZON SOCIAL</th>
                                           <th>NIT</th>
                                           <th>TOTAL (Bs.)</th>
                                           <th>FECHA VENTA</th>
                                       </tr>
-                                  </thead>
-                                  <tbody>
                                       <?php
                                       foreach ($fecha->result() as $row) {
                                       ?>
@@ -72,7 +94,6 @@
                                       <?php
                                       }
                                       ?>
-                                  </tbody>
                               </table>
                                 <div class="item form-group has-feedback">
 

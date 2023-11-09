@@ -1,14 +1,53 @@
+<style>
+    #cuadros {
+        background-color: rgba(44, 43, 43, 0.596); 
+        border: transparent;
+        height: 250px;
+        width: 250px;
+        border-radius: 5px;
+    }
+    .title-producto {
+        color: white;
+        font-weight: 700;
+        font-size: 5mm;
+    }
 
+    .img-wrap {
+        text-align: center; /* Alinea el texto y elementos inline al centro */
+        display: flex; /* Activa el modelo de caja flexible para alinear elementos hijos */
+        justify-content: center; /* Alinea elementos hijos horizontalmente al centro */
+        align-items: center; /* Alinea elementos hijos verticalmente al centro */
+    }
+
+
+
+    /* Imagen de fondo */
+    body {
+        background-image: url('<?php echo base_url();?>img/fondos/fondoPc.jpeg');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        /*backdrop-filter: blur(3px);   borroso */
+        transition: 0.5s;
+        opacity: 1;
+    }
+    /*Vista desde celular 768*/
+    @media screen and (max-width: 1023px) {
+        body {
+            background-image: url('<?php echo base_url();?>img/fondos/fondoCelular.jpeg');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            transition: 0.5s;
+            opacity: 1;
+        }
+    }
+
+</style>
 <!-- End Hero Section -->
 
-<div class="untree_co-section product-section before-footer-section" style="background-image: url('<?php echo base_url();?>img/menu/fondo de pantalla catalogo.jpg'); background-repeat: no-repeat;
-    background-size: 100% 100%;
-    backdrop-filter: blur(3px);  /* borroso */
-    transition: 0.5s;
-    opacity: 1;">
+<div class="untree_co-section product-section before-footer-section">
     <div class="container">
     
-        <div class="row">
+        <div class="row img-wrap">
             <?php
                 foreach($catalogos->result() as $row)
                 {//impresion de valores de la data
@@ -23,7 +62,7 @@
                     echo form_open_multipart('customer/catalogo/infoProducto');
                 ?>
                     <input type="hidden" value="<?php echo $row->id; ?>" name="idcatalogo">
-                    <button type="submit" class="btn btn-success" style="background-color: rgb(255, 255, 255, 0.6); border: transparent;">
+                    <button type="submit" class="btn btn-success" id="cuadros">
                         <?php 
                             $foto=$row->foto;
                             if($foto=="")//si foto esta igual a vacion sin imagen
@@ -38,8 +77,8 @@
                             }
                         ?>
                         <!--<img src="images/product-3.png" class="img-fluid product-thumbnail">-->
-                        <h3 class="product-title" style="color: black; font-size: 5mm;"><?php echo $row->nombre;?></h3>
-                        <strong class="product-price" style="color: black;">Bs. <?php echo $row->precioUnitario;?></strong>
+                        <h3 class="product-title title-producto"><?php echo $row->nombre;?></h3>
+                        <strong class="product-price title-precioUnitario">Bs.<?php echo $row->precioUnitario;?></strong>
                     </button>
                         <?php
                             echo form_close();
