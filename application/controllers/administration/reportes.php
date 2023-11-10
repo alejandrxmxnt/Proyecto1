@@ -156,6 +156,13 @@
             $this->pdf->SetLeftMargin(15); //margen izquierdo
             $this->pdf->SetRightMargin(15); //margen derecho
 
+            //TITULO
+            $this->pdf->Cell(2); // Ajustar el espacio en blanco si es necesario
+            $this->pdf->SetFont('Courier', 'B', 20);
+            $this->pdf->SetXY(52, 17);
+            $this->pdf->Cell(89, 3,utf8_decode('REPORTE DE VENTAS GENERAL'), '', 2, 'L', 0);
+            //HASTA AQUI EL TITULO
+
             //importar imagenes
             $ruta=base_url()."img/logos/logomuebleria2.png"; //conocer la ruta de la imagen
             $this->pdf->Image($ruta, 17, 10, 25, 25); //Rescatar una imagen de la ruta anterior //coordenadas x pixeles //coordenada y pixeles hacia abajo // dimencianes para la imagen ancho y largo
@@ -617,6 +624,13 @@
             $this->pdf->SetTitle("REPORTE GENERAL DE VENTAS"); //titulo de reporte
             $this->pdf->SetLeftMargin(15); //margen izquierdo
             $this->pdf->SetRightMargin(15); //margen derecho
+
+            //TITULO
+            $this->pdf->Cell(2); // Ajustar el espacio en blanco si es necesario
+            $this->pdf->SetFont('Courier', 'B', 20);
+            $this->pdf->SetXY(52, 17);
+            $this->pdf->Cell(89, 3,utf8_decode('REPORTE DE VENTAS GENERAL'), '', 2, 'L', 0);
+            //HASTA AQUI EL TITULO
 
             //importar imagenes
             $ruta=base_url()."img/logos/logomuebleria2.png"; //conocer la ruta de la imagen
