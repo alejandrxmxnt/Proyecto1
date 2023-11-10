@@ -85,7 +85,16 @@
                     <tr>
                         <!--<th><?php //echo $indice; ?></th> -->
                         <th><?php echo $numeroComoCadena; ?></th>
-                        <td style="text-align: left;"><?php echo $row->nombre.' '.$row->primerApellido.' '.$row->razonSocial;?></td>
+                        <td style="text-align: left;">
+                            <?php 
+                                $nombreCompleto = trim($row->nombre.' '.$row->primerApellido.' '.$row->razonSocial);
+                                if($nombreCompleto){
+                                    echo $nombreCompleto;
+                                }else{
+                                    echo "Sin Nombre";
+                                }
+                            ?>
+                        </td>
                         <!--<td><?php echo $row->descuento; ?></td>-->
                         <td><?php echo $row->total_cantidad; ?></td>
                         <td><?php echo $row->total; ?></td>

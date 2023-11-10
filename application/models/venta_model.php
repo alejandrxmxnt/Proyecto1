@@ -52,6 +52,41 @@
         }
 
         ////////////////////////////////////////////////////////
+        ///////////    LISTA VENTAS ULTIMAS 1O    //////////////
+        ////////////////////////////////////////////////////////
+
+        public function listadoventasUltimas() 
+        {
+            $this->db->select('V.id, C.nombre, C.primerApellido, C.razonSocial, SUM(D.cantidad) as total_cantidad, V.total, V.fechaVenta');
+            $this->db->from('venta V');
+            $this->db->join('detalleventa D', 'V.id = D.idVenta');
+            $this->db->join('cliente C', 'C.id = V.idCliente');
+            $this->db->group_by('V.id, V.total, V.fechaVenta, V.estado');
+            $this->db->having('V.estado',1);
+            $this->db->order_by('V.id', 'desc');
+            $this->db->limit(10);
+            return $this->db->get();
+        }
+
+        public function listadoventasUltimasEmpleado($idUsuario) 
+        {
+            $query = "SELECT V.id, C.nombre, C.primerApellido, C.razonSocial, SUM(D.cantidad) as total_cantidad, V.total, V.fechaVenta
+            FROM venta V
+            JOIN detalleventa D ON V.id = D.idVenta
+            JOIN cliente C ON C.id = V.idCliente
+            WHERE V.estado = 1 AND V.idUsuario = '". $idUsuario ."'
+            GROUP BY V.id, C.nombre, C.primerApellido, C.razonSocial, V.total, V.fechaVenta
+            ORDER BY V.id DESC
+            LIMIT 10";
+            return $this->db->query($query);
+        }
+
+        ////////////////////////////////////////////////////////
+        ///////////    HASTA AQUI VENTAS ULTIMAS  //////////////
+        ////////////////////////////////////////////////////////
+
+
+        ////////////////////////////////////////////////////////
         ///////////      VENTA         /////////////////////////
         ////////////////////////////////////////////////////////
         

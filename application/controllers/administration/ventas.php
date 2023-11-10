@@ -17,7 +17,8 @@
             {
                 $tipo= $this->session->userdata('tipo');
                 if($tipo=='ADMINISTRADOR'){
-                    $lista=$this->venta_model->listadoventas();//Consulta para la lista venta
+                    //ACCESO A TODA LA LISTA DE VENTAS 
+                    $lista=$this->venta_model->listadoventasUltimas();//Consulta para la lista venta
                     $data['ventas']=$lista;
                     $this->load->view('view_administration/admidesing/ventaheadboard');
                     $this->load->view('view_administration/admidesing/menuSuperiorVenta');
@@ -25,7 +26,9 @@
                     $this->load->view('view_administration/venta_lista',$data);//TABLA DE VENTAS
                     $this->load->view('view_administration/admidesing/foot');
                 }else{
-                    $lista=$this->venta_model->listadoventas();//Consulta para la lista venta
+                    //ULTIMAS 10 VENTAS REALIZADAS POR EL EMPLEADO
+                    $idUsuario = $this->session->userdata('id');
+                    $lista=$this->venta_model->listadoventasUltimasEmpleado($idUsuario);//Consulta para la lista venta
                     $data['ventas']=$lista;
                     $this->load->view('view_administration/admidesing/ventaheadboard');
                     $this->load->view('view_administration/admidesing/menuSuperiorVenta');

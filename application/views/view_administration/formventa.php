@@ -495,6 +495,20 @@ calcularTotal();
 $("#btn-guardar").on("click", function() { //el evento click para iniciar el guardado
 var datos = []; // Array para almacenar los datos de todas las filas
 
+/*
+// Verifica si hay al menos una fila agregada
+if ($(".list-product .added-row").length === 0) {
+        //swal("Error!", "No se pueden guardar datos sin productos registrados.", "error");
+        alert("No se pueden guardar datos sin productos registrados.");
+        //window.location.href = "<?php// echo base_url();?>administration/ventas/viewsAddSale";
+        //window.location.href = "<?php// echo base_url('administration/ventas/viewsAddSale');?>";
+        <?php
+        //alert("No se pueden guardar datos sin productos registrados.");
+           // redirect('administration/ventas/viewsAddSale','refresh');
+        ?>
+    }
+
+*/
 // Recorre cada fila con la clase "added-row"
 $(".list-product .added-row").each(function() { 
     var fila = $(this); //se guarda todas las filas
