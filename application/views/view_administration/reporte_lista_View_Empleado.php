@@ -34,7 +34,7 @@ font-weight: bold;"> Lista de Reportes </h2>
                               <div class="h2 mb-0 font-weight-bold"><h3 class="fa fa-file-text" style="color: black;"> Productos mas vendidos</h3></div>
                           </div>
                           <div class="card-footer bg-lcv1 font-weight-bold">
-                                <a href="<?php echo base_url(); ?>index.php/administration/reportes/reporteGeneral">
+                                <a href="<?php echo base_url(); ?>index.php/administration/reportes/reporteProducto">
                                     <button type="button" class="btn btn-round btn-danger text-white">
                                     Ir a Reporte
                                     </button>

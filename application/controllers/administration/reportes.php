@@ -72,6 +72,44 @@
             
         }
 
+        public function generalfiltrocategoria()
+        {
+            if($this->session->userdata('login'))
+            {
+                $tipo= $this->session->userdata('tipo');
+                if($tipo=='ADMINISTRADOR'){ //TRAE EL REPORTE GENERAL
+                    $Inicio=$_POST['inicio'];
+                    $data['inicio']=$Inicio;
+                    $Fin=$_POST['fin'];
+                    $data['fin']=$Fin;
+                    $fecha= $this->reporte_model->ventaFechasRangoCategoria($Inicio,$Fin);
+                    $data['fecha']=$fecha;
+        
+                    $this->load->view('view_administration/admidesing/headboard');
+                    $this->load->view('view_administration/admidesing/menuSuperior');
+                    $this->load->view('view_administration/admidesing/menuLateral');
+                    $this->load->view('view_administration/reporte_general_filtro_categoria',$data);
+                    $this->load->view('view_administration/admidesing/foot');
+                }else{
+                    //SOLO GENERA REPORTE POR RANGO DE FECHAS ESTABLECIDAD POR EL USUARIO
+                    $idUsuario = $this->session->userdata('id');
+                    $Inicio=$_POST['inicio'];
+                    $data['inicio']=$Inicio;
+                    $Fin=$_POST['fin'];
+                    $data['fin']=$Fin;
+                    $fecha= $this->reporte_model->ventaFechasRangoCategoriaEmpleado($Inicio,$Fin,$idUsuario);
+                    $data['fecha']=$fecha;
+        
+                    $this->load->view('view_administration/admidesing/headboard');
+                    $this->load->view('view_administration/admidesing/menuSuperior');
+                    $this->load->view('view_administration/admidesing/menuLateral');
+                    $this->load->view('view_administration/reporte_general_filtro_categoria_View_Empleado',$data);
+                    $this->load->view('view_administration/admidesing/foot');
+                }
+            }
+            
+        }
+
         public function reporteGeneral()
         {
             if($this->session->userdata('login'))
@@ -103,16 +141,51 @@
 
                     $this->load->view('view_administration/admidesing/headboard');
                     $this->load->view('view_administration/admidesing/menuSuperior');
-                    $this->load->view('view_administration/admidesing/menuLateral');
+                    $this->load->view('view_administration/admidesing/menuLateral2');
                     $this->load->view('view_administration/reporte_general_View_Empleado',$datas);
                     $this->load->view('view_administration/admidesing/foot');
                 }
-        }
+            }
             else
             {
                 redirect('administration/usuarios/index','refresh');//cargara el login
             }
             
+        }
+
+        public function reporteProducto(){
+            if($this->session->userdata('login'))
+            {
+                $tipo= $this->session->userdata('tipo');
+                if($tipo=='ADMINISTRADOR'){
+
+                    $lista = $this->reporte_model->ventashistoriaRecaudacionporcategoria();
+                    $data['fecha'] = $lista;
+
+                    $this->load->view('view_administration/admidesing/headboard');
+                    $this->load->view('view_administration/admidesing/menuSuperior');
+                    $this->load->view('view_administration/admidesing/menuLateral');
+                    $this->load->view('view_administration/reporte_general_producto',$data);
+                    $this->load->view('view_administration/admidesing/foot');
+
+                }else{
+                    //PARA SACAR LA LISTA DE VENTAS DE ESE USUARIO
+                    $idEmpleado = $this->session->userdata('id');
+                    //Vista de reportes para el empleado
+                    $listas = $this->reporte_model->ventashistoriaRecaudacionporcategoria2();
+                    $datas['fecha'] = $listas;
+
+                    $this->load->view('view_administration/admidesing/headboard');
+                    $this->load->view('view_administration/admidesing/menuSuperior');
+                    $this->load->view('view_administration/admidesing/menuLateral2');
+                    $this->load->view('view_administration/reporte_general_producto_Empleado',$datas);
+                    $this->load->view('view_administration/admidesing/foot');
+                }
+            }
+            else
+            {
+                redirect('administration/usuarios/index','refresh');//cargara el login
+            }
         }
 
 

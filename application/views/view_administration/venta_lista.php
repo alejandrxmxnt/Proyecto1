@@ -55,8 +55,10 @@
         </div>
         <div class="col-md-10 columna2">
             <br>
+            
                 <div class="col-md-12">
                     <a href="<?php echo base_url();?>index.php/administration/ventas/viewsAddSale" style="background-color: green; border-color: black;" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span> Agregar Venta</a>
+                    <h1 style="text-align: center; font-weight: 600; color: white;">Ventas Recientes</h1>
                 </div>
                 <br>        
                 <table class="table" id="my-table">

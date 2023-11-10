@@ -62,6 +62,31 @@
             ORDER BY 1";
             return $this->db->query($query);
         }
+        //TOTAL RECAUDADO EN UN RANGO DE FECHAS 
+        public function ventaFechasRangoCategoria($Inicio,$Fin) //select
+        {
+            $query="SELECT
+            C.nombre AS nombre_categoria,
+            P.nombre AS nombre_producto,
+            SUM(D.cantidad) AS total_vendido,
+            SUM(D.importe) AS recaudacion_total
+            FROM
+                venta V
+            JOIN
+                detalleventa D ON V.id = D.idVenta
+            JOIN
+                producto P ON D.idProducto = P.id
+            JOIN
+                categoria C ON P.idCategoria = C.id
+            WHERE
+                V.estado = 1
+                AND V.fechaVenta BETWEEN '" . $Inicio . " 00:00:00 ' AND '" . $Fin . " 23:59:59' -- Reemplaza con el rango de fechas deseado
+            GROUP BY
+                C.id, P.nombre
+            ORDER BY
+                total_vendido DESC";
+            return $this->db->query($query);
+        }
 
         public function ventaFechasRangoEmpleado($Inicio,$Fin,$idUsuario) //select
         {
@@ -84,6 +109,53 @@
             INNER JOIN cliente C ON C.id=V.idCliente
             WHERE V.estado=1
             ORDER BY 1";
+            return $this->db->query($query);
+        }
+
+        ////////////////////////////////////////////
+        /////// PRODUCTO HISTORIA GENERAL //////////
+        ////////////////////////////////////////////
+        public function ventashistoriaRecaudacionporcategoria() //select
+        {
+            $query=" SELECT
+            C.nombre AS categoria,
+            P.nombre AS producto,
+            SUM(D.cantidad) AS total_cantidad,
+            SUM(D.importe) AS recaudacion_total
+            FROM
+                venta V
+            JOIN
+                detalleventa D ON V.id = D.idVenta
+            JOIN
+                producto P ON D.idProducto = P.id
+            JOIN
+                categoria C ON P.idCategoria = C.id
+            GROUP BY
+                C.nombre, P.nombre
+            ORDER BY
+                recaudacion_total DESC";
+            return $this->db->query($query);
+        }
+
+        public function ventashistoriaRecaudacionporcategoria2() //select
+        {
+            $query=" SELECT
+            C.nombre AS categoria,
+            P.nombre AS producto,
+            SUM(D.cantidad) AS total_cantidad,
+            SUM(D.importe) AS recaudacion_total
+            FROM
+                venta V
+            JOIN
+                detalleventa D ON V.id = D.idVenta
+            JOIN
+                producto P ON D.idProducto = P.id
+            JOIN
+                categoria C ON P.idCategoria = C.id
+            GROUP BY
+                C.nombre, P.nombre
+            ORDER BY
+                total_cantidad DESC";
             return $this->db->query($query);
         }
 
