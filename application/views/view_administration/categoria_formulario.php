@@ -58,7 +58,7 @@
         </div>
         <div class="col-md-10 columna2">
             <div class="regform">
-                <h1>Registro de Categorias</h1>
+                <h1>Registro de Categorías</h1>
             </div>
 
             <main class="main">
@@ -68,7 +68,7 @@
                         <div class="formulario__grupo" id="grupo__nombre">
                             <label for="nombre" class="formulario__label">Nombre:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese el Nombre" value="<?php echo set_value('nombre'); ?>" >
+                                <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese el Nombre" value="<?php echo set_value('nombre'); ?>" onkeypress="return soloLetras(event)">
                             </div>
                             <p><?php echo form_error('nombre'); ?></p>
                         </div>
@@ -77,7 +77,7 @@
                         <div class="formulario__grupo" id="grupo__detalle">
                             <label for="detalle" class="formulario__label">Descripcion:</label>
                             <div class="formulario__grupo-input">
-                                <textarea placeholder="Ingrese los detalles de categoria" id="detalle" name="detalle" class="detalle" value="<?php echo set_value('detalle'); ?>"></textarea>
+                                <textarea placeholder="Ingrese los detalles de categoria" id="detalle" name="detalle" class="detalle" value="<?php echo set_value('detalle'); ?>" onkeypress="return soloLetras(event)"></textarea>
                                 <!-- <input type="text" class="formulario__input" name="primerApellido" id="primerApellido" placeholder="Primer Apellido" value="<?php // echo set_value('primerApellido'); ?>"> -->
                             </div>
                             <p><?php echo form_error('detalle'); ?></p>

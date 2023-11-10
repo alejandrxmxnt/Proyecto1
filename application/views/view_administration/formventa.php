@@ -90,7 +90,7 @@
                                                 <input class="form-control" type="text" id="autouser" name="cliente" onkeypress="return soloCi(event)"> <!--VALORES TEXT-->
                                                 <input type="hidden" id="cliente" name="idCliente"> <!--RECUPERAR ID-->
                                             
-                                                <a href="<?php echo base_url();?>index.php/administration/cliente/agregar"> <!-- REGISTRAR NUEVO CLIENTE -->
+                                                <a href="<?php echo base_url();?>index.php/administration/cliente/agregarClienteVenta"> <!-- REGISTRAR NUEVO CLIENTE -->
                                                     <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="NuevoCliente"><i class="fa fa-plus"></i></button>
                                                 </a> 
                                             <!--Fin de seleccion de clientes-->
@@ -143,8 +143,8 @@
                                                     <td></td><!--Nombre producto-->
                                                     <td></td><!--Precio Unitario-->
                                                     <td></td><!--Stock disponible-->
-                                                    <td><input style="width: 70px;" type="number" required="required" value="0" class="form-control descuento" name="descuento[]" id="descuento"></td> <!--descuento-->
-                                                    <td><input style="width: 70px;" type="number" required="required" value="0" class="form-control cantidad" name="cantidad[]" id="cantidad"></td> <!--cantidad para llevar-->
+                                                    <td><input style="width: 70px;" type="number" required="required" value="0" class="form-control descuento" name="descuento[]" id="descuento" onkeypress="return soloNumeros(event)"></td> <!--descuento-->
+                                                    <td><input style="width: 70px;" type="number" required="required" value="0" class="form-control cantidad" name="cantidad[]" id="cantidad" onkeypress="return soloNumeros(event)"></td> <!--cantidad para llevar-->
                                                     <td></td><!--Sub total - importe de venta de cada producto -->
                                                     <td><button class="btn btn-danger btn-remove"><span class="glyphicon glyphicon-trash"> <!--BOTON DE ELIMINAR-->
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">

@@ -69,6 +69,37 @@
             
         }
 
+
+        public function agregarClienteVenta(){
+            if($this->session->userdata('login'))
+            {
+                $tipo= $this->session->userdata('tipo');
+                if($tipo=='ADMINISTRADOR'){
+                    //mostrar un formulario para agregar nuevo Cliente.
+                    //este formulario va estar una vista
+                    $this->load->view('view_administration/admidesing/clienteFormHeader');
+                    $this->load->view('view_administration/admidesing/menuSuperior');
+                    $this->load->view('view_administration/admidesing/menuLateral');
+                    $this->load->view('view_administration/cliente_formulario_desdeVenta');//direccion de vista.
+                    $this->load->view('view_administration/admidesing/foot');
+                }else{
+                    //mostrar un formulario para agregar nuevo Cliente.
+                    //este formulario va estar una vista
+                    $this->load->view('view_administration/admidesing/clienteFormHeader');
+                    $this->load->view('view_administration/admidesing/menuSuperior');
+                    $this->load->view('view_administration/admidesing/menuLateral2');
+                    $this->load->view('view_administration/cliente_formulario_desdeVenta');//direccion de vista.
+                    $this->load->view('view_administration/admidesing/foot');
+                }
+            }
+            else
+            {
+                redirect('administration/usuarios/index','refresh');//cargara el login
+            }
+            
+            
+        }
+
         public function agregarbd()
         {
             if($this->session->userdata('login'))
@@ -160,6 +191,103 @@
             }
             
         }
+
+
+
+        public function agregarbd2()
+        {
+            if($this->session->userdata('login'))
+            {
+                $tipo= $this->session->userdata('tipo');
+                if($tipo=='ADMINISTRADOR'){
+                    //  atributo.  BDD = name de formulario
+                    //validación nombres
+                    $this->form_validation->set_rules('nombre','Ingrese el nombre','min_length[1]|max_length[50]|regex_match[/^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/]',array('min_length'=>'Por lo menos debe haber 2 letras','max_length'=>'Cantidad maxima 50 letras','regex_match'=>'Solo se perminten letras'));
+                    //validación primer Apellido
+                    $this->form_validation->set_rules('primerApellido','Ingrese un apellido','min_length[1]|max_length[50]|regex_match[/^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/]',array('min_length'=>'Por lo menos debe haber 2 letras','max_length'=>'Cantidad maxima 50 letras','regex_match'=>'Solo se perminten letras'));
+                    //validación segundo Apellido
+                    $this->form_validation->set_rules('segundoApellido','Ingrese otro apellido','min_length[1]|max_length[50]|regex_match[/^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/]',array('min_length'=>'Por lo menos debe haber 2 letras','max_length'=>'Cantidad maxima 50 letras','regex_match'=>'Solo se perminten letras'));
+                    //validación Telefono
+                    $this->form_validation->set_rules('telefono','Ingrese celular/telefono','min_length[0]|max_length[50]|regex_match[/^[0-9]+$/]',array('min_length'=>'debe ser mayor a 7 digitos','max_length'=>'Solo puedes registras 3 lineas de telefono o celular','regex_match'=>'Solo se perminten numeros'));
+                    //validación ciNit
+                    $this->form_validation->set_rules('ciNit','Ingrese cedula de indentidad','required|min_length[0]|max_length[20]|regex_match[/^[a-zA-Z0-9-]+$/]',array('required'=>'Se requiere CI o NIT','min_length'=>'Debe ser mayor a 7 caracteres','max_length'=>'capacidad maxima 20 caractes','regex_match'=>'Solo puede ingresar letras, numeros y guiones'));
+                    //validación direccion
+                    $this->form_validation->set_rules('direccion','Ingrese una dirección valida','min_length[0]|max_length[200]|regex_match[/^[a-zA-Z0-9\-\/,.\sáéíóúÁÉÍÓÚñÑ]+$/]',array('min_length'=>'Almenos debe nombrar una calle','max_length'=>'Solo se permiten 200 letras','regex_match'=>''));
+                    //validación razon Social
+                    $this->form_validation->set_rules('razonSocial','Ingrese la razon social','min_length[0]|max_length[100]|regex_match[/^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/]',array('min_length'=>'Nombre no valido','max_length'=>'Nombre excede de los 100 caracteres','regex_match'=>'Verifique si escribio correctamente los valores'));
+
+                    if($this->form_validation->run()==FALSE){
+                        //SI NO SUPERA LA VALIDACION CARGA NUEVAMENTE EL FORMULARIO
+                        $this->load->view('view_administration/admidesing/clienteFormHeader');
+                        $this->load->view('view_administration/admidesing/menuSuperior');
+                        $this->load->view('view_administration/admidesing/menuLateral');
+                        $this->load->view('view_administration/cliente_formulario_desdeVenta');//direccion de vista.
+                        $this->load->view('view_administration/admidesing/foot');
+                        
+                    }else{
+                        //SI SE SUPERO LA VALIDACION RECIEN SE ENVIA LOS VALORES
+                        $data['nombre']=$_POST['nombre'];
+                        $data['primerApellido']=$_POST['primerApellido'];
+                        $data['segundoApellido']=$_POST['segundoApellido'];
+                        $data['ciNit']=$_POST['ciNit'];
+                        $data['telefono']=$_POST['telefono'];
+                        $data['direccion']=$_POST['direccion'];
+                        $data['razonSocial']=$_POST['razonSocial'];
+
+                        $this->cliente_model->agregarcliente($data); //hasta ahi ya guarda en BDD
+
+                        redirect('administration/ventas/viewsAddSale','refresh');//con el refresh refrescamos de forma forsoza si es que hay problema
+                    }
+                }else{//ROL EMPLEADO
+                    //  atributo.  BDD = name de formulario
+                    //validación nombres
+                    $this->form_validation->set_rules('nombre','Ingrese el nombre','min_length[1]|max_length[50]|regex_match[/^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/]',array('min_length'=>'Por lo menos debe haber 2 letras','max_length'=>'Cantidad maxima 50 letras','regex_match'=>'Solo se perminten letras'));
+                    //validación primer Apellido
+                    $this->form_validation->set_rules('primerApellido','Ingrese un apellido','required|min_length[1]|max_length[50]|regex_match[/^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/]',array('required'=>'Se requiere un apellido','min_length'=>'Por lo menos debe haber 2 letras','max_length'=>'Cantidad maxima 50 letras','regex_match'=>'Solo se perminten letras'));
+                    //validación segundo Apellido
+                    $this->form_validation->set_rules('segundoApellido','Ingrese otro apellido','min_length[1]|max_length[50]|regex_match[/^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/]',array('min_length'=>'Por lo menos debe haber 2 letras','max_length'=>'Cantidad maxima 50 letras','regex_match'=>'Solo se perminten letras'));
+                    //validación Telefono
+                    $this->form_validation->set_rules('telefono','Ingrese celular/telefono','min_length[0]|max_length[50]|regex_match[/^[0-9]+$/]',array('min_length'=>'debe ser mayor a 7 digitos','max_length'=>'Solo puedes registras 3 lineas de telefono o celular','regex_match'=>'Solo se perminten numeros'));
+                    //validación ciNit
+                    $this->form_validation->set_rules('ciNit','Ingrese cedula de indentidad','required|min_length[0]|max_length[20]|regex_match[/^[a-zA-Z0-9-]+$/]',array('required'=>'Se requiere CI o NIT','min_length'=>'Debe ser mayor a 7 caracteres','max_length'=>'capacidad maxima 20 caractes','regex_match'=>'Solo puede ingresar letras, numeros y guiones'));
+                    //validación direccion
+                    $this->form_validation->set_rules('direccion','Ingrese una dirección valida','min_length[0]|max_length[200]|regex_match[/^[a-zA-Z0-9\-\/,.\sáéíóúÁÉÍÓÚñÑ]+$/]',array('min_length'=>'Almenos debe nombrar una calle','max_length'=>'Solo se permiten 200 letras','regex_match'=>''));
+                    //validación razon Social
+                    $this->form_validation->set_rules('razonSocial','Ingrese la razon social','min_length[0]|max_length[100]|regex_match[/^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/]',array('min_length'=>'Nombre no valido','max_length'=>'Nombre excede de los 100 caracteres','regex_match'=>'Verifique si escribio correctamente los valores'));
+
+                    if($this->form_validation->run()==FALSE){
+                        //SI NO SUPERA LA VALIDACION CARGA NUEVAMENTE EL FORMULARIO
+                        $this->load->view('view_administration/admidesing/clienteFormHeader');
+                        $this->load->view('view_administration/admidesing/menuSuperior');
+                        $this->load->view('view_administration/admidesing/menuLateral2');
+                        $this->load->view('view_administration/cliente_formulario_desdeVenta');//direccion de vista.
+                        $this->load->view('view_administration/admidesing/foot');
+                        
+                    }else{
+                        //SI SE SUPERO LA VALIDACION RECIEN SE ENVIA LOS VALORES
+                        $data['nombre']=$_POST['nombre'];
+                        $data['primerApellido']=$_POST['primerApellido'];
+                        $data['segundoApellido']=$_POST['segundoApellido'];
+                        $data['ciNit']=$_POST['ciNit'];
+                        $data['telefono']=$_POST['telefono'];
+                        $data['direccion']=$_POST['direccion'];
+                        $data['razonSocial']=$_POST['razonSocial'];
+
+                        $this->cliente_model->agregarcliente($data); //hasta ahi ya guarda en BDD
+
+                        redirect('administration/ventas/viewsAddSale','refresh');//con el refresh refrescamos de forma forsoza si es que hay problema
+                    }
+                }
+            }
+            else
+            {
+                redirect('administration/usuarios/index','refresh');//cargara el login
+            }
+            
+        }
+
+
+
         //PARA HARD DELETE
         public function eliminarbd()
         {   

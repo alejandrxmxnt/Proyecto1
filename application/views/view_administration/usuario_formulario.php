@@ -62,7 +62,7 @@
                         <div class="formulario__grupo" id="grupo__nombre">
                             <label for="nombre" class="formulario__label">Nombre:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese el Nombre" value="<?php echo set_value('nombre'); ?>">
+                                <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese el Nombre" value="<?php echo set_value('nombre'); ?>" onkeypress="return soloLetras(event)">
                                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
                             </div>
                             <p><?php echo form_error('nombre'); ?></p>
@@ -72,7 +72,7 @@
                         <div class="formulario__grupo" id="grupo__primerApellido">
                             <label for="primerApellido" class="formulario__label">Primer Apellido:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="primerApellido" id="primerApellido" placeholder="Primer Apellido" value="<?php echo set_value('primerApellido'); ?>">
+                                <input type="text" class="formulario__input" name="primerApellido" id="primerApellido" placeholder="Primer Apellido" value="<?php echo set_value('primerApellido'); ?>" onkeypress="return soloLetras(event)">
                                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
                             </div>
                             <p><?php echo form_error('primerApellido'); ?></p>
@@ -81,7 +81,7 @@
                         <div class="formulario__grupo" id="grupo__segundoApellido">
                             <label for="segundoApellido" class="formulario__label">Segundo Apellido:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="segundoApellido" id="segundoApellido" placeholder="Segundo Apellido" value="<?php echo set_value('segundoApellido'); ?>">
+                                <input type="text" class="formulario__input" name="segundoApellido" id="segundoApellido" placeholder="Segundo Apellido" value="<?php echo set_value('segundoApellido'); ?>" onkeypress="return soloLetras(event)">
                                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
                             </div>
                             <p><?php echo form_error('segundoApellido'); ?></p>
@@ -90,7 +90,7 @@
                         <div class="formulario__grupo" id="grupo__telefono">
                             <label for="telefono" class="formulario__label">Celular/Telefono:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="Celular/telefono" value="<?php echo set_value('telefono'); ?>">
+                                <input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="Celular/telefono" value="<?php echo set_value('telefono'); ?>" onkeypress="return soloNumeros(event)">
                                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
                             </div>
                             <p><?php echo form_error('telefono'); ?></p>
@@ -99,10 +99,10 @@
                         <div class="formulario__grupo" id="grupo__ciNit">
                             <label for="ciNit" class="formulario__label">Cedula de Identidad:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="ci" id="ci" placeholder="Cedula de identidad" value="<?php echo set_value('ci'); ?>">
+                                <input type="text" class="formulario__input" name="ci" id="ci" placeholder="Cedula de identidad" value="<?php echo set_value('ci'); ?>" onkeypress="return soloCi(event)">
                                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
                             </div>
-                            <p><?php echo form_error('ci'); ?>.</p>
+                            <p><?php echo form_error('ci'); ?></p>
                         </div>
                         <!-- Grupo: Correo -->
                         <div class="formulario__grupo" id="grupo__correo">

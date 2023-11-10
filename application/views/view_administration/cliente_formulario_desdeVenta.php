@@ -36,10 +36,6 @@
         .formulario__btn {
             width: 100%;
         }
-
-        @media screen and (max-width: 800px){
-            
-        }
     }
 </style>
 <div class="container">
@@ -48,82 +44,83 @@
         </div>
         <div class="col-md-10 columna2">
             <div class="regform">
-                <h1>Modificar Registro Cliente</h1>
+                <h1>Registro de Clientes</h1>
             </div>
 
             <main class="main">
+                
                 <?php
-                    foreach ($infocliente->result() as $row) {
-                    echo form_open_multipart('administration/cliente/modificarbd', array('id' => 'formulario', 'class' => 'formulario', 'method' => 'post'));
+                    echo form_open_multipart('administration/cliente/agregarbd2', array('id' => 'formulario', 'class' => 'formulario', 'method' => 'post'));
                 ?>
-                <input type="hidden" class="form-control p-0 border-0" name="idcliente" value="<?php echo $row->id; ?>">
                         <div class="formulario__grupo" id="grupo__nombre">
                             <label for="nombre" class="formulario__label">Nombre:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese el Nombre" value="<?php echo $row->nombre; ?>" onkeypress="return soloLetras(event)">
+                                <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese el Nombre" value="<?php echo set_value('nombre'); ?>" onkeypress="return soloLetras(event)" >
                             </div>
-                            <p></p>
+                            <p><?php echo form_error('nombre'); ?></p> 
                         </div>
 
                         <!-- Grupo: Primer Apellido -->
                         <div class="formulario__grupo" id="grupo__primerApellido">
                             <label for="primerApellido" class="formulario__label">Primer Apellido:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="primerApellido" id="primerApellido" placeholder="Primer Apellido" value="<?php echo $row->primerApellido; ?>" onkeypress="return soloLetras(event)">
+                                <input type="text" class="formulario__input" name="primerApellido" id="primerApellido" placeholder="Primer Apellido" value="<?php echo set_value('primerApellido'); ?>" onkeypress="return soloLetras(event)">
                             </div>
-                            <p></p>
+                            <p><?php echo form_error('primerApellido'); ?></p>
                         </div>
                         <!-- Grupo: Segundo Apellido -->
                         <div class="formulario__grupo" id="grupo__segundoApellido">
                             <label for="segundoApellido" class="formulario__label">Segundo Apellido:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="segundoApellido" id="segundoApellido" placeholder="Segundo Apellido" value="<?php echo $row->segundoApellido; ?>" onkeypress="return soloLetras(event)">
+                                <input type="text" class="formulario__input" name="segundoApellido" id="segundoApellido" placeholder="Segundo Apellido" value="<?php echo set_value('segundoAPellido'); ?>" onkeypress="return soloLetras(event)">
                             </div>
-                            <p></p>
+                            <p><?php echo form_error('segundoApellido'); ?></p>
                         </div>
                         <!-- Grupo: Telefono/Celular -->
                         <div class="formulario__grupo" id="grupo__telefono">
                             <label for="telefono" class="formulario__label">Celular/Telefono:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="Celular/Telefono" value="<?php echo $row->telefono; ?>" onkeypress="return soloNumeros(event)">
+                                <input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="Celular/Telefono" value="<?php echo set_value('telefono'); ?>"  onkeypress="return soloNumeros(event)">
                             </div>
-                            <p></p>
+                            <p><?php echo form_error('telefono'); ?></p>
                         </div>
                         <!-- Grupo: Cedula de Identidad -->
                         <div class="formulario__grupo" id="grupo__ciNit">
                             <label for="ciNit" class="formulario__label">Cedula de Identidad:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="ciNit" id="ciNit" placeholder="" value="<?php echo $row->ciNit; ?>" onkeypress="return soloCi(event)">
+                                <input type="text" class="formulario__input" name="ciNit" id="ciNit" placeholder="" value="<?php echo set_value('ciNit'); ?>" onkeypress="return soloCi(event)">
                             </div>
-                            <p></p>
+                            <p><?php echo form_error('ciNit'); ?></p>
                         </div>
                         <!-- Grupo: Direccion -->
                         <div class="formulario__grupo" id="grupo__direccion">
                             <label for="direccion" class="formulario__label">Dirección:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="direccion" id="direccion" placeholder="Avenida/Calle" value="<?php echo $row->direccion; ?>">
+                                <input type="text" class="formulario__input" name="direccion" id="direccion" placeholder="Avenida/Calle" value="<?php echo set_value('direccion'); ?>">
                             </div>
-                            <p></p>
+                            <p><?php echo form_error('direccion'); ?></p>
                         </div>
                         <!-- Grupo: Razon Social -->
                         <div class="formulario__grupo" id="grupo__razonSocial">
                             <label for="razonSocial" class="formulario__label">Razón Social:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="razonSocial" id="razonSocial" placeholder="" value="<?php echo $row->razonSocial; ?>">
+                                <input type="text" class="formulario__input" name="razonSocial" id="razonSocial" placeholder="" value="<?php echo set_value('razonSocial'); ?>">
                             </div>
-                            <p></p>
+                            <p><?php echo form_error('razonSocial'); ?></p>
                         </div>
             
                         <div class="formulario__grupo formulario__grupo-btn-enviar">
                             <button type="submit" class="formulario__btn">Registrar</button>
                         </div>
-                    <?php
+                <?php
                     echo form_close();
-                    }
-                    ?>
+                ?>
             </main>
 
         </div>
     </div>
 </div>
+<!--
+<script src="<?php echo base_url();?>bootstrap/js/formulario/formularioCliente.js"></script>  
+<script src="<?php echo base_url();?>bootstrap/js/formulario/validacionCliente.js"></script>  -->
 <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>

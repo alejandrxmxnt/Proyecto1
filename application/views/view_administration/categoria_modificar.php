@@ -57,7 +57,7 @@
         </div>
         <div class="col-md-10 columna2">
             <div class="regform">
-            <h1>ACTUALIZAR CATEGORIAS</h1>
+            <h1>ACTUALIZAR CATEGORÍAS</h1>
             </div>
 
             <main class="main">
@@ -69,7 +69,7 @@
                         <div class="formulario__grupo" id="grupo__nombre">
                             <label for="nombre" class="formulario__label">Nombre:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese el Nombre" value="<?php echo $row->nombre; ?>" >
+                                <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingrese el Nombre" value="<?php echo $row->nombre; ?>" onkeypress="return soloLetras(event)">
                             </div>
                             <p><?php echo form_error('nombre'); ?></p>
                         </div>
@@ -78,7 +78,7 @@
                         <div class="formulario__grupo" id="grupo__detalle">
                             <label for="detalle" class="formulario__label">Descripcion:</label>
                             <div class="formulario__grupo-input">
-                                <textarea placeholder="Ingrese los detalles de categoria" id="detalle" name="detalle" class="detalle"><?php echo $row->descripcion; ?></textarea>
+                                <textarea placeholder="Ingrese los detalles de categoria" id="detalle" name="detalle" class="detalle" onkeypress="return soloLetras(event)"><?php echo $row->descripcion; ?></textarea>
                                 <!-- <input type="text" class="formulario__input" name="primerApellido" id="primerApellido" placeholder="Primer Apellido" value="<?php // echo set_value('primerApellido'); ?>"> -->
                             </div>
                             <p><?php echo form_error('detalle'); ?></p>
