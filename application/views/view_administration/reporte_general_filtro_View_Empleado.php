@@ -79,17 +79,45 @@
                                           <th>NIT</th>
                                           <th>TOTAL (Bs.)</th>
                                           <th>FECHA VENTA</th>
+                                          <th>PDF</th>
                                       </tr>
                                       <?php
                                       foreach ($fecha->result() as $row) {
+                                        $numero = $row->id;
+                                        $numeroComoCadena = strval($numero);
+                                        //$longitud = strlen($numeroComoCadena);
+                                        if(strlen($numeroComoCadena) < 8){
+                                            $numeroComoCadena = str_pad($numeroComoCadena,8,'0', STR_PAD_LEFT);
+                                        }
                                       ?>
                                           <tr>
-                                              <td><?php echo $row->id; ?></td>
-                                              <td><?php echo $row->nombre.' '.$row->primerApellido.' '.$row->segundoApellido.' '.$row->razonSocial; ?></td>
+                                              <td><?php echo $numeroComoCadena; ?></td>
+                                              <td style="text-align: left;"><?php echo $row->nombre.' '.$row->primerApellido.' '.$row->segundoApellido.' '.$row->razonSocial; ?></td>
                                               <td><?php echo $row->ciNit; ?></td>
-                                              <td> <?php echo 'Bs. '.$row->total; ?></td>                                                
+                                              <td>
+                                                <?php 
+                                                    $total = $row->total; 
+                                                    $totalBs=number_format($total, 2,',','.');
+                                                    echo $totalBs;
+                                                ?>
+                                                </td>                                                
                                               <td><?php echo $row->fechaVenta; ?></td>
-          
+                                              <td>
+                                                <div class="d-flex" style="display: flex; justify-content: center; align-items: center;">
+                                                    <?php
+                                                        echo form_open_multipart('administration/ventas/reportepdf', array('target' => '_blank'));
+                                                    ?>
+                    
+                                                    <input type="hidden" value="<?php echo $row->id; ?>" name="idventas">
+                                                    <button type="submit" class="btn btn-warning">
+                                                        <i class="fas fa-file-pdf"></i>
+                                                    </button>
+                    
+                                                    <?php
+                                                        echo form_close();
+                                                    ?>
+                                                </div>
+                                              </td>
                                           </tr>
                                       <?php
                                       }

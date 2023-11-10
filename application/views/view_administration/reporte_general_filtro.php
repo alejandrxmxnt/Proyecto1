@@ -79,6 +79,7 @@
                                           <th>NIT</th>
                                           <th>TOTAL (Bs.)</th>
                                           <th>FECHA VENTA</th>
+                                          <th>PDF</th>
                                       </tr>
                                       <?php
                                       foreach ($fecha->result() as $row) {
@@ -101,7 +102,22 @@
                                                     ?>
                                                 </td>                                                
                                               <td><?php echo $row->fechaVenta; ?></td>
-          
+                                              <td>
+                                                <div class="d-flex" style="display: flex; justify-content: center; align-items: center;">
+                                                    <?php
+                                                        echo form_open_multipart('administration/ventas/reportepdf', array('target' => '_blank'));
+                                                    ?>
+                    
+                                                    <input type="hidden" value="<?php echo $row->id; ?>" name="idventas">
+                                                    <button type="submit" class="btn btn-warning">
+                                                        <i class="fas fa-file-pdf"></i>
+                                                    </button>
+                    
+                                                    <?php
+                                                        echo form_close();
+                                                    ?>
+                                                </div>
+                                              </td>
                                           </tr>
                                       <?php
                                       }
