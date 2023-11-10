@@ -135,6 +135,7 @@
 <script src="<?php echo base_url();?>bootstrap/js/tablas/pagina.js"></script>-->
 
 <script>
+  /*
   const table = document.getElementById('my-table');
   const rows = table.getElementsByTagName('tr');
   const rowsPerPage = 8;//cantidad de filas a visualizar
@@ -170,4 +171,5 @@
 
   showPage(currentPage);
   generatePagination();
+  */
 </script>

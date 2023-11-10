@@ -11,7 +11,7 @@ class Pdf extends FPDF {
         
         $this->SetFont('Courier','B',20);
         $this->Cell(2);
-        $this->Cell(180,15,'COMPROBANTE DE VENTA',0,0,'C');
+        //$this->Cell(180,15,'COMPROBANTE DE VENTA',0,0,'C');
         $this->Ln('5');
     }
 

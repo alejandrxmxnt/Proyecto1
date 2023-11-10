@@ -89,9 +89,15 @@
                                       </tr>
                                       <?php
                                       foreach ($fecha->result() as $row) {
+                                        $numero = $row->id;
+                                        $numeroComoCadena = strval($numero);
+                                        //$longitud = strlen($numeroComoCadena);
+                                        if(strlen($numeroComoCadena) < 8){
+                                            $numeroComoCadena = str_pad($numeroComoCadena,8,'0', STR_PAD_LEFT);
+                                        }
                                       ?>
                                           <tr>
-                                              <td><?php echo $row->id; ?></td>
+                                              <td><?php echo $numeroComoCadena; //echo $row->id; ?></td>
                                               <td><?php echo $row->nombre.' '.$row->primerApellido.' '.$row->segundoApellido.' '.$row->razonSocial; ?></td>
                                               <td><?php echo $row->ciNit; ?></td>
                                               <td> <?php echo 'Bs. '.$row->total; ?></td>                                                

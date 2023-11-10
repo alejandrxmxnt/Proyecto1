@@ -426,11 +426,24 @@
 
         public function usuario_update_password(){
             //cargar la vista
-            $this->load->view('view_administration/admidesing/updatePasswordFormHeader');
-            $this->load->view('view_administration/admidesing/menuSuperior');
-            $this->load->view('view_administration/admidesing/menuLateral');
-            $this->load->view('view_administration/usuario_update_password');//ahi llega la informacion.
-            $this->load->view('view_administration/admidesing/foot');
+            if($this->session->userdata('login'))
+            {
+                $tipo= $this->session->userdata('tipo');
+                if($tipo=='ADMINISTRADOR'){
+                    $this->load->view('view_administration/admidesing/updatePasswordFormHeader');
+                    $this->load->view('view_administration/admidesing/menuSuperior');
+                    $this->load->view('view_administration/admidesing/menuLateral');
+                    $this->load->view('view_administration/usuario_update_password');//ahi llega la informacion.
+                    $this->load->view('view_administration/admidesing/foot');
+                }else{
+                    $this->load->view('view_administration/admidesing/updatePasswordFormHeader');
+                    $this->load->view('view_administration/admidesing/menuSuperior');
+                    $this->load->view('view_administration/admidesing/menuLateral2');
+                    $this->load->view('view_administration/usuario_update_password');//ahi llega la informacion.
+                    $this->load->view('view_administration/admidesing/foot');
+                }
+            }
+            
         }
 
         public function updatepassword(){

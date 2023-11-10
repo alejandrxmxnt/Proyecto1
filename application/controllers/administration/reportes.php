@@ -305,9 +305,17 @@
             $this->pdf->SetTitle("REPORTE GENERAL DE VENTAS"); //titulo de reporte
             $this->pdf->SetLeftMargin(15); //margen izquierdo
             $this->pdf->SetRightMargin(15); //margen derecho
+
+            //TITULO
+            $this->pdf->Cell(2); // Ajustar el espacio en blanco si es necesario
+            $this->pdf->SetFont('Courier', 'B', 20);
+            $this->pdf->SetXY(64, 16);
+            $this->pdf->Cell(89, 3,utf8_decode('REPORTE DE VENTAS'), '', 2, 'L', 0);
+            //HASTA AQUI EL TITULO
             
             $this->pdf->Cell(2); // Ajustar el espacio en blanco si es necesario
             $this->pdf->SetFont('Courier', 'B', 10);
+
             // Ajustar la coordenada X (posición horizontal)
             $this->pdf->SetXY(63, 22);
             $this->pdf->Cell(89, 3,utf8_decode('Desde: '.$verInicio.' Hasta: '.$verFin), '', 2, 'L', 0);
@@ -462,6 +470,13 @@
             $this->pdf->SetTitle("REPORTE GENERAL DE VENTAS"); //titulo de reporte
             $this->pdf->SetLeftMargin(15); //margen izquierdo
             $this->pdf->SetRightMargin(15); //margen derecho
+
+            //TITULO
+            $this->pdf->Cell(2); // Ajustar el espacio en blanco si es necesario
+            $this->pdf->SetFont('Courier', 'B', 20);
+            $this->pdf->SetXY(64, 16);
+            $this->pdf->Cell(89, 3,utf8_decode('REPORTE DE VENTAS'), '', 2, 'L', 0);
+            //HASTA AQUI EL TITULO
             
             $this->pdf->Cell(2); // Ajustar el espacio en blanco si es necesario
             $this->pdf->SetFont('Courier', 'B', 10);

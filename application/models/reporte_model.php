@@ -58,7 +58,7 @@
             $query="SELECT V.id, V.fechaVenta, C.ciNit, C.nombre, C.primerApellido, C.segundoApellido ,C.razonSocial, V.total
             FROM venta V
             INNER JOIN cliente C ON C.id=V.idCliente
-            WHERE V.estado=1 AND V.fechaVenta BETWEEN '".$Inicio."' AND '".$Fin."'
+            WHERE V.estado=1 AND V.fechaVenta BETWEEN '".$Inicio." 00:00:00 ' AND '".$Fin." 23:59:59'
             ORDER BY 1";
             return $this->db->query($query);
         }
@@ -68,7 +68,7 @@
             $query="SELECT V.id, V.fechaVenta, C.ciNit, C.nombre, C.primerApellido, C.segundoApellido ,C.razonSocial, V.total
             FROM venta V
             INNER JOIN cliente C ON C.id=V.idCliente
-            WHERE V.estado=1 AND V.idUsuario='". $idUsuario ."' AND V.fechaVenta BETWEEN '".$Inicio."' AND '".$Fin."'
+            WHERE V.estado=1 AND V.idUsuario='". $idUsuario ."' AND V.fechaVenta BETWEEN '".$Inicio." 00:00:00 ' AND '".$Fin." 23:59:59'
             ORDER BY 1";
             return $this->db->query($query);
         }

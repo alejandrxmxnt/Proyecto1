@@ -83,7 +83,7 @@
                     ?>
                     
                     <tr>
-                        <!--<th><?php echo $indice; ?></th> -->
+                        <!--<th><?php //echo $indice; ?></th> -->
                         <th><?php echo $numeroComoCadena; ?></th>
                         <td style="text-align: left;"><?php echo $row->nombre.' '.$row->primerApellido.' '.$row->razonSocial;?></td>
                         <!--<td><?php echo $row->descuento; ?></td>-->
