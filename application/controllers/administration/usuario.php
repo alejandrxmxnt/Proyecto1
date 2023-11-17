@@ -446,16 +446,121 @@
             
         }
 
+        public function datosPersonales(){
+            //cargar la vista
+            if($this->session->userdata('login'))
+            {
+                $tipo= $this->session->userdata('tipo');
+                if($tipo=='ADMINISTRADOR'){
+                    $idUsuario = $this->session->userdata('id');
+                    $lista=$this->usuario_model->datosPersonalesUser($idUsuario);
+                    //      nombre de posicion usuarios
+                    $data['personal']=$lista;
+                    $this->load->view('view_administration/admidesing/updatePasswordFormHeader');
+                    $this->load->view('view_administration/admidesing/menuSuperior');
+                    $this->load->view('view_administration/admidesing/menuLateral');
+                    $this->load->view('view_administration/datosPersonalesUsuario', $data);//ahi llega la informacion.
+                    $this->load->view('view_administration/admidesing/foot');
+                }else{
+                    $idUsuario = $this->session->userdata('id');
+                    $lista=$this->usuario_model->datosPersonalesUser($idUsuario);
+                    //      nombre de posicion usuarios
+                    $data['personal']=$lista;
+                    $this->load->view('view_administration/admidesing/updatePasswordFormHeader');
+                    $this->load->view('view_administration/admidesing/menuSuperior');
+                    $this->load->view('view_administration/admidesing/menuLateral2');
+                    $this->load->view('view_administration/datosPersonalesUsuario', $data);//ahi llega la informacion.
+                    $this->load->view('view_administration/admidesing/foot');
+                }
+            }
+            else
+            {
+                redirect('administration/usuarios/index','refresh');//cargara el login
+            }
+            
+        }
+
         public function updatepassword(){
-            ?>
-                <script src="<?php echo base_url();?>bootstrap/js/formulario/formularioUpdatePassword.js"></script> 
-            <?php
-            $idusuario=$_POST['idUsuario'];
-            $oldpassword=md5($_POST['password']);
-            $newpassword=md5($_POST['password2']);
-            $this->usuario_model->modificarpassword($idusuario,$oldpassword,$newpassword);
-            $this->session->sess_destroy();//desctruir variables de session
-            redirect('administration/usuarios/index','refresh');//redirige a login 
+            //cargar la vista
+            if($this->session->userdata('login'))
+            {
+                $tipo= $this->session->userdata('tipo');
+                if($tipo=='ADMINISTRADOR'){
+
+                    $this->form_validation->set_rules('usuario','Ingrese su Contraseña','required|min_length[8]|max_length[50]|regex_match[/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ0-9_]+$/]',array('required'=>'Ingrese su contraseña','min_length'=>'Su contraseña debe ser mayor a 8 caracteres','max_length'=>'Cantidad maxima 50 letras','regex_match'=>'No se permite caracteres especiales %&/(-)='));
+                    $this->form_validation->set_rules('password','Ingrese su Contraseña','required|min_length[8]|max_length[50]|regex_match[/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ0-9_]+$/]',array('required'=>'Ingrese su contraseña','min_length'=>'Su contraseña debe ser mayor a 8 caracteres','max_length'=>'Cantidad maxima 50 letras','regex_match'=>'No se permite caracteres especiales %&/(-)='));
+                    $this->form_validation->set_rules('password2','Ingrese su Contraseña','required|min_length[8]|max_length[50]|regex_match[/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ0-9_]+$/]',array('required'=>'Ingrese su contraseña','min_length'=>'Su contraseña debe ser mayor a 8 caracteres','max_length'=>'Cantidad maxima 50 letras','regex_match'=>'No se permite caracteres especiales %&/(-)='));
+                    
+                    if($this->form_validation->run()==FALSE){
+                        $this->load->view('view_administration/admidesing/updatePasswordFormHeader');
+                        $this->load->view('view_administration/admidesing/menuSuperior');
+                        $this->load->view('view_administration/admidesing/menuLateral');
+                        $this->load->view('view_administration/usuario_update_password');//ahi llega la informacion.
+                        $this->load->view('view_administration/admidesing/foot');
+                    }else{
+                        $idUsuario = $this->session->userdata('id');
+                        $passwordanterior = md5($_POST['usuario']);
+                        $hashmd5 = $_POST['hashResult'];
+                        $passwordnew1 = md5($_POST['password']);
+                        $passwordnew2 = md5($_POST['password2']);
+            
+                        if($passwordanterior == $hashmd5){
+                            if($passwordnew1 == $passwordnew2){
+                                $data['password'] = $passwordnew1;
+                                $this->usuario_model->actualizarDatosUser($idUsuario, $data);
+                                echo '<script>
+                                swal("ÉXITO!", "CONTRASEÑA MODIFICADA CON EXITO", "success");
+                                </script>';
+                                redirect('administration/usuario/datosPersonales','refresh');
+                            }
+                            else{
+                                redirect('administration/usuario/usuario_update_password','refresh');    
+                            }
+                        }else{
+                            redirect('administration/usuario/usuario_update_password','refresh');
+                        }
+                    }       
+                }else{
+
+                    $this->form_validation->set_rules('usuario','Ingrese su Contraseña','required|min_length[8]|max_length[50]|regex_match[/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ0-9_]+$/]',array('required'=>'Ingrese su contraseña','min_length'=>'Su contraseña debe ser mayor a 8 caracteres','max_length'=>'Cantidad maxima 50 letras','regex_match'=>'No se permite caracteres especiales %&/(-)='));
+                    $this->form_validation->set_rules('password','Ingrese su Contraseña','required|min_length[8]|max_length[50]|regex_match[/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ0-9_]+$/]',array('required'=>'Ingrese su contraseña','min_length'=>'Su contraseña debe ser mayor a 8 caracteres','max_length'=>'Cantidad maxima 50 letras','regex_match'=>'No se permite caracteres especiales %&/(-)='));
+                    $this->form_validation->set_rules('password2','Ingrese su Contraseña','required|min_length[8]|max_length[50]|regex_match[/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ0-9_]+$/]',array('required'=>'Ingrese su contraseña','min_length'=>'Su contraseña debe ser mayor a 8 caracteres','max_length'=>'Cantidad maxima 50 letras','regex_match'=>'No se permite caracteres especiales %&/(-)='));
+                    
+                    if($this->form_validation->run()==FALSE){
+                        $this->load->view('view_administration/admidesing/updatePasswordFormHeader');
+                        $this->load->view('view_administration/admidesing/menuSuperior');
+                        $this->load->view('view_administration/admidesing/menuLateral2');
+                        $this->load->view('view_administration/usuario_update_password');//ahi llega la informacion.
+                        $this->load->view('view_administration/admidesing/foot');
+                    }else{
+                        $idUsuario = $this->session->userdata('id');
+                        $passwordanterior = md5($_POST['usuario']);
+                        $hashmd5 = $_POST['hashResult'];
+                        $passwordnew1 = md5($_POST['password']);
+                        $passwordnew2 = md5($_POST['password2']);
+            
+                        if($passwordanterior == $hashmd5){
+                            if($passwordnew1 == $passwordnew2){
+                                $data['password'] = $passwordnew1;
+                                $this->usuario_model->actualizarDatosUser($idUsuario, $data);
+                                echo '<script>
+                                swal("ÉXITO!", "CONTRASEÑA MODIFICADA CON EXITO", "success");
+                                </script>';
+                                redirect('administration/usuario/datosPersonales','refresh');
+                            }
+                            else{
+                                redirect('administration/usuario/usuario_update_password','refresh');    
+                            }
+                        }else{
+                            redirect('administration/usuario/usuario_update_password','refresh');
+                        }
+                    }
+                }
+            }
+            else
+            {
+                redirect('administration/usuarios/index','refresh');//cargara el login
+            }
         }
         
         public function datosUsuario() {
@@ -469,5 +574,4 @@
                 }
             }
         }
-        
     }

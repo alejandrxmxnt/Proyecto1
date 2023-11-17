@@ -69,7 +69,7 @@
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li>
-                            <a class="profile-pic" href="<?php echo base_url();?>index.php/administration/usuario/usuario_update_password">
+                            <a class="profile-pic" href="<?php echo base_url();?>index.php/administration/usuario/datosPersonales">
                             <!--    
                             <img src="<?php// echo base_url();?>img/logos/logomuebleria.jpeg" alt="user-img" width="36"
 -->

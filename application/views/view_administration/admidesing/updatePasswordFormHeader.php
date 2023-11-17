@@ -32,6 +32,10 @@
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
 	<link rel="stylesheet" href="<?php echo base_url();?>bootstrap/css/form/estilosUpdatePassword.css">
     <!--Estilos adicionales agregados para formulario hasta aqui-->
+
+    <!-- PARA ENCRIPTAR DATOS EN TIEMPO REAL -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <!-- HATA AQUI ENCRIPTADO DE DATOS EN TIEMPO REAL -->
     <style>
         /* Imagen de fondo */
         body {

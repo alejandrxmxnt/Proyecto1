@@ -48,4 +48,20 @@
             $query="CALL ufcUpdatePassword($idusuario,MD5('$oldpassword'),MD5('$newpassword'))";
             //return $this->db->query($query);
         }
+
+        public function actualizarDatosUser($idUsuario, $data)
+        {
+            $this->db->where('id',$idUsuario); //coinsida el id con el que le llega
+            $this->db->where('estado', 1);
+            $this->db->update('usuario', $data);
+        }
+
+        public function datosPersonalesUser($idUsuario)
+        {
+            $this->db->select('*');
+            $this->db->from('usuario');
+            $this->db->where('estado','1');
+            $this->db->where('id', $idUsuario);
+            return $this->db->get();
+        }
     }
