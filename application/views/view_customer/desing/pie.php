@@ -12,7 +12,7 @@
 							<li><a href=""><span class="fa fa-brands fa-instagram"></span></a></li>
 						</ul>
 					</div>
-
+<!--
 					<div class="col-lg-8">
 						<div class="row links-wrap">
 							<div class="col-6 col-sm-6 col-md-3">
@@ -50,7 +50,7 @@
 							</div>
 						</div>
 					</div>
-
+	-->
 				</div>
 
 			</div>

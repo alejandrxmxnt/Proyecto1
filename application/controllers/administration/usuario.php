@@ -458,6 +458,16 @@
             redirect('administration/usuarios/index','refresh');//redirige a login 
         }
         
-
+        public function datosUsuario() {
+            if($this->session->userdata('login'))
+            {
+                $tipo= $this->session->userdata('tipo');
+                if($tipo=='ADMINISTRADOR'){
+                    
+                }else{
+                    
+                }
+            }
+        }
         
     }

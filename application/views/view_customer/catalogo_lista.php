@@ -20,6 +20,12 @@
         align-items: center; /* Alinea elementos hijos verticalmente al centro */
     }
 
+    .imagen {
+        max-width: 100%;
+    height: auto;
+
+    }
+
     @media screen and (max-width: 1024px) {
         .img-wrap {
         width: 50;
@@ -70,11 +76,11 @@
                                 if($foto=="")//si foto esta igual a vacion sin imagen
                                 {//cargar una imagen en caso de no tener una imagen que sea vacio
                                     ?>
-                                    <img width="100" src="<?php echo base_url(); ?>uploads/productos/vacio.jpg" alt="Image" class="img-fluid">
+                                    <img class="imagen" src="<?php echo base_url(); ?>uploads/productos/vacio.jpg" alt="Image" class="img-fluid">
                                     <?php
                                 }else {//caso contrario se proyectara la imagen
                                     ?>
-                                    <img width="100" src="<?php echo base_url(); ?>uploads/productos/<?php echo $foto; ?>" style="width: auto;">
+                                    <img class="imagen" src="<?php echo base_url(); ?>uploads/productos/<?php echo $foto; ?>" style="width: auto;">
                                     <?php
                                 }
                             ?>

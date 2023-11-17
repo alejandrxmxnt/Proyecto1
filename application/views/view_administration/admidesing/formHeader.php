@@ -14,7 +14,7 @@
     <title>Muebleria Lara</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url();?>img/logos/logomuebleria.jpeg"> <!--Diseño de imagen de ventana-->
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url();?>img/logos/logomuebleria4.jpg"> <!--Diseño de imagen de ventana-->
     <!-- Custom CSS -->
     <link href="<?php echo base_url();?>bootstrap/plugins/bower_components/chartist/dist/chartist.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url();?>bootstrap/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css">

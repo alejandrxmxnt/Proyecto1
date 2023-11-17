@@ -21,7 +21,7 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="dashboard.html">
+                    <a class="navbar-brand" href="<?php echo base_url();?>index.php/administration/ventas/index">
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!-- Dark Logo icon -->
@@ -29,10 +29,11 @@
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
+                        <!--
                         <span class="logo-text">
-                            <!-- dark Logo text -->
-                            <img src="<?php echo base_url();?>img/logos/titulo3dd.png" alt="homepage" />
+                            <img src="<?php // echo base_url();?>img/logos/titulo3dd.png" alt="homepage" />
                         </span>
+-->
                     </a>
                     <!-- ============================================================== -->
                     <!-- End Logo -->
@@ -58,7 +59,7 @@
                         <!-- ============================================================== -->
                         <li class=" in">
                             <form role="search" class="app-search d-none d-md-block me-3">
-                                <input type="text" placeholder="Search..." class="form-control mt-0">
+                                <input type="text" placeholder="Buscar..." class="form-control mt-0">
                                 <a href="" class="active">
                                     <i class="fa fa-search"></i>
                                 </a>
@@ -68,8 +69,11 @@
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li>
-                            <a class="profile-pic" href="#">
-                                <img src="<?php echo base_url();?>img/logos/logomuebleria.jpeg" alt="user-img" width="36"
+                            <a class="profile-pic" href="<?php echo base_url();?>index.php/administration/usuario/usuario_update_password">
+                            <!--    
+                            <img src="<?php// echo base_url();?>img/logos/logomuebleria.jpeg" alt="user-img" width="36"
+-->
+                                <img src="<?php echo base_url();?>img/logos/logomuebleria4.jpg" alt="user-img" width="36"
                                     class="img-circle"><span class="text-white font-medium">Usuario: <?php echo $this->session->userdata('login'); ?> </span></a>
                         </li>
                         <!-- ============================================================== -->

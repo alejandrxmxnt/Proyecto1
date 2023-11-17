@@ -69,6 +69,7 @@
                                   </div><br>
                               </form>
                               <?php echo form_close(); ?>
+                              <!--
                               <div class="item form-group has-feedback">
                                   <div class="col-md-10"></div>
                                   <div class="col-md-2" style="margin-left: 20px;">
@@ -76,7 +77,7 @@
                                       <button type="submit" class="btn btn-danger" name="enviar" formtarget="_blank"><i class="far fa-file-pdf"></i> GENERAR PDF</button>
                                       <?php echo form_close(); ?>
                                   </div>
-                              </div>
+                              </div> -->
                               <br>
                               <h1 style="text-align: center; font-weight: 700; color: white;">RECAUDACIÓN GENERAL POR CATEGORÍA</h1>
                               <!-- la tabla de abajo tenia un id por defecto que ordenaba los tr el id se llama  datatable-buttons-->

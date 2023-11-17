@@ -19,6 +19,12 @@
         align-items: center; /* Alinea elementos hijos verticalmente al centro */
     }
 
+    .imagen {
+        max-width: 100%;
+    height: auto;
+
+    }
+
 
 
     /* Imagen de fondo */
@@ -68,11 +74,11 @@
                             if($foto=="")//si foto esta igual a vacion sin imagen
                             {//cargar una imagen en caso de no tener una imagen que sea vacio
                                 ?>
-                                <img width="100" src="<?php echo base_url(); ?>uploads/productos/vacio.jpg" class="img-fluid product-thumbnail">
+                                <img class="imagen" width="100" src="<?php echo base_url(); ?>uploads/productos/vacio.jpg" class="img-fluid product-thumbnail">
                                 <?php
                             }else {//caso contrario se proyectara la imagen
                                 ?>
-                                <img width="100" src="<?php echo base_url(); ?>uploads/productos/<?php echo $foto; ?>" class="img-fluid product-thumbnail">
+                                <img class="imagen" width="100" src="<?php echo base_url(); ?>uploads/productos/<?php echo $foto; ?>" class="img-fluid product-thumbnail">
                                 <?php
                             }
                         ?>

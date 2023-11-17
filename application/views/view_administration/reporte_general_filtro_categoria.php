@@ -79,6 +79,7 @@
                                           <th>PRODUCTO</th>
                                           <th>VENDIDOS</th>
                                           <th>RECAUDADO Bs.</th>
+                                          <!--<th>PDF</th>-->
                                       </tr>
                                       <?php
                                       $indice = 1;
@@ -96,7 +97,24 @@
                                                         $totalBs=number_format($total, 2,',','.');
                                                         echo $totalBs;
                                                     ?>
-                                                </td>                                                
+                                                </td>
+                                                <!--
+                                                <td>
+                                                <div class="d-flex" style="display: flex; justify-content: center; align-items: center;">
+                                                    <?php
+                                                       // echo form_open_multipart('administration/reportes/reportepdf', array('target' => '_blank'));
+                                                    ?>
+                    
+                                                    <input type="hidden" value="<?php //echo $row->nombre_categoria; ?>" name="idventas">
+                                                    <button type="submit" class="btn btn-warning">
+                                                        <i class="fas fa-file-pdf"></i>
+                                                    </button>
+                    
+                                                    <?php
+                                                       // echo form_close();
+                                                    ?>
+                                                </div>
+                                              </td>  -->                                              
                                           </tr>
                                       <?php
                                       $indice++;

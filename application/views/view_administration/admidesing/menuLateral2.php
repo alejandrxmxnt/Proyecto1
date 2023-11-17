@@ -11,9 +11,9 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                     <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url();?>index.php/customer/catalogo/index"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url();?>index.php/customer/catalogo/index" target="_blank"
                                 aria-expanded="false">
-                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <i class="far fa-image" aria-hidden="true"></i>
                                 <span class="hide-menu">Catalogo</span>
                             </a>
                         </li>
@@ -46,13 +46,15 @@
                                 <span class="hide-menu">Productos</span>
                             </a>
                         </li>
+                        <!--
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url();?>index.php/administration/usuario/usuario_update_password"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php // echo base_url();?>index.php/administration/usuario/usuario_update_password"
                                 aria-expanded="false">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
                                 <span class="hide-menu">Configuraciones</span>
                             </a>
                         </li>
+-->
                         <li class="text-center p-20 upgrade-btn">
                             <a href="<?php echo base_url();?>index.php/administration/usuarios/logout"
                                 class="btn d-grid btn-danger text-white">

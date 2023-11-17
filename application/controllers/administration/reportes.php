@@ -64,7 +64,7 @@
         
                     $this->load->view('view_administration/admidesing/headboard');
                     $this->load->view('view_administration/admidesing/menuSuperior');
-                    $this->load->view('view_administration/admidesing/menuLateral');
+                    $this->load->view('view_administration/admidesing/menuLateral2');
                     $this->load->view('view_administration/reporte_general_filtro_View_Empleado',$data);
                     $this->load->view('view_administration/admidesing/foot');
                 }

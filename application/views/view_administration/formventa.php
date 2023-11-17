@@ -87,7 +87,7 @@
                                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Seleccione un cliente:</label>
                                         <div class="col-md-9 col-sm-9 col-xs-9"> 
                                             <div class="d-flex"><!--Antes todo estaba el select y el <a> fuera del <div class="d-flex">-->
-                                                <input class="form-control" type="text" id="autouser" name="cliente" onkeypress="return soloCi(event)"> <!--VALORES TEXT-->
+                                                <input class="form-control" type="text" id="autouser" name="cliente" > <!--VALORES TEXT-->
                                                 <input type="hidden" id="cliente" name="idCliente"> <!--RECUPERAR ID-->
                                             
                                                 <a href="<?php echo base_url();?>index.php/administration/cliente/agregarClienteVenta"> <!-- REGISTRAR NUEVO CLIENTE -->
@@ -103,7 +103,7 @@
                                         <div class="col-md-5 col-sm-5 col-xs-5">
                                             <input type="hidden" name="detalle_data" id="detalle_data" value="">
                                             <!--Seleccionar productos en lista-->
-                                            <input class="form-control" type="text" id="autoproduct" name="producto" onkeypress="return soloLetras(event)"> <!--VALORES TEXT-->
+                                            <input class="form-control" type="text" id="autoproduct" name="producto" > <!--VALORES TEXT-->
                                             <input type="hidden" id="producto" name="idProducto"> <!--RECUPERAR ID-->
                                             <!--Fin de busqueda de productos en lista-->
                                         </div>
@@ -215,8 +215,9 @@
             <tbody>
     
               <?php
+
                 $indice=1;
-                
+                echo form_open_multipart('administration/ventas/realizarTransaccionVenta', array('id' => 'ventaForm', 'class' => 'needs-validation', 'method' => 'post'));
                 foreach($productos->result() as $row){ 
                   //impresion de valores de la data
                   //acontinuacion de como se carga una tabla
@@ -224,7 +225,11 @@
               
               <tr>
                 <th><?php echo $indice; ?></th>
-                <td><button id="btn-agregar" type="button" class="btn btn-success" data-dismiss="modal">Agregar</button></td>
+                <td>
+                    <input type="hidden" name="detalle_data" id="detalle_data" value="">
+                    <input type="hidden" id="producto2" name="idProducto">
+                    <button id="btn-agregar2" type="button" class="btn btn-success" data-dismiss="modal">Agregar</button>
+                </td>
                 <td><?php echo $row->nombre; ?></td>
                 <td><?php echo $row->stock; ?></td>
                 <td><?php echo $row->precioUnitario; ?></td>
@@ -248,6 +253,7 @@
               <?php
                 $indice++;
                 } 
+                echo form_close();
               ?>
     
               
@@ -431,7 +437,7 @@ $(document).on("input", ".descuento", function() {
 //METODO PARA CARGAR LA TABLA 
 $("#btn-agregar").on("click", function() { //accion de agregado
     
-    var producto_id = $("#producto").val(); //guardar el id del producto seleccionado
+    var producto_id = $("#producto, #producto2").val(); //guardar el id del producto seleccionado
     var cliente_id = $("#cliente").val(); //guardar el id del producto seleccionado
 
     if (producto_id && cliente_id) { //control que se hallan llenado los valores de producto y un cliente sea seleccionado
@@ -480,6 +486,7 @@ $("#btn-agregar").on("click", function() { //accion de agregado
         swal("Error!", "Seleccione un cliente y producto para realizar la compra", "error");
     }
 });
+
 
 $(document).on("click", ".btn-remove", function() {
     var fila = $(this).closest("tr");

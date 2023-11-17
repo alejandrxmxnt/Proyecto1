@@ -137,6 +137,56 @@
             return $this->db->query($query);
         }
 
+        public function reporte_Categoria_General($idCategoria, $idProducto) //select
+        {
+            $query=" SELECT
+            C.nombre AS categoria,
+            P.nombre AS producto,
+            D.descuento AS detalle_descuento,
+            D.cantidad AS detalle_cantidad,
+            D.importe AS detalle_recaudado,
+            V.fechaVenta AS venta_fecha
+            FROM
+                venta V
+            JOIN
+                detalleventa D ON V.id = D.idVenta
+            JOIN
+                producto P ON D.idProducto = P.id
+            JOIN
+                categoria C ON P.idCategoria = C.id
+            WHERE 
+                C.id = '" . $idCategoria . "' AND P.id = '" . $idProducto . "'
+            ORDER BY
+                1 DESC";
+            return $this->db->query($query);
+        }
+
+
+        public function reporte_Categoria_General_RangoFechas($idCategoria, $idProducto, $Inicio, $Fin) //select
+        {
+            $query=" SELECT
+            C.nombre AS categoria,
+            P.nombre AS producto,
+            D.descuento AS detalle_descuento,
+            D.cantidad AS detalle_cantidad,
+            D.importe AS detalle_recaudado,
+            V.fechaVenta AS venta_fecha
+            FROM
+                venta V
+            JOIN
+                detalleventa D ON V.id = D.idVenta
+            JOIN
+                producto P ON D.idProducto = P.id
+            JOIN
+                categoria C ON P.idCategoria = C.id
+            WHERE 
+                C.id = '" . $idCategoria . "' AND P.id = '" . $idProducto . "'
+                AND V.fechaVenta BETWEEN '" . $Inicio . " 00:00:00 ' AND '" . $Fin . " 23:59:59'
+            ORDER BY
+                1 DESC";
+            return $this->db->query($query);
+        }
+
         public function ventashistoriaRecaudacionporcategoria2() //select
         {
             $query=" SELECT

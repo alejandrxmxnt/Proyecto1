@@ -14,6 +14,7 @@
         {//usuario correctamente validado
             $this->db->select('*');
             $this->db->from('usuario');//conmo el BDD
+            $this->db->where('estado',1); //usuario activo
             //BDD   |   $login y $password que esta llegando por el formulario
             $this->db->where('login',$login);//condiciones
             $this->db->where('password',$password);//condiciones

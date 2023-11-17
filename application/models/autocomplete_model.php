@@ -10,7 +10,7 @@ class Autocomplete_model extends CI_Model{
             //si la busqueda es POST obtenga todos los registros de la tabla y use $postData['search'] en la cláusula WHERE para buscar en el campo de nombre de usuario
             $this->db->select('*');
             $this->db->where('estado',1);
-            $this->db->where('ciNit like "%'.$postData['search'].'%"'); //parametro de comparación 
+            $this->db->where("CONCAT(nombre, ' ', primerApellido, ' ', ciNit) LIKE '%" . $postData['search'] . "%'");
             //$this->db->like('ciNit',$postData['search']);
             $records = $this->db->get('cliente')->result(); //nombre de la tabla
 

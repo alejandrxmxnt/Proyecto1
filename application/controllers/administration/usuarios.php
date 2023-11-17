@@ -41,6 +41,7 @@
                         $this->session->set_userdata('id',$row->id);
                         $this->session->set_userdata('login',$row->login);
                         $this->session->set_userdata('tipo',$row->tipo);
+                        $this->session->set_userdata('estado',$row->estado);
                         redirect('administration/usuarios/panel','refresh');
                     }
     
@@ -91,7 +92,8 @@
             if($this->session->userdata('login'))//controla si existe esta variable.
             {//verdadero - redirecciona a una ventada de un usuario correctamente autentificado.
                 $tipo= $this->session->userdata('tipo');
-                if($tipo=='ADMINISTRADOR'){
+                $estado = $this->session->userdata('estado');
+                if($tipo=='ADMINISTRADOR' && $estado == 1){
                     redirect('administration/usuario/index','refresh');//interfaz de admin con sesion abierta
                 }else{
                     redirect('administration/empleado/index','refresh');//interfaz de empleado con sesion abierta
