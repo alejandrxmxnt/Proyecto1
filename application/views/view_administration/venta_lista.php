@@ -84,7 +84,7 @@
                         }
                     ?>
                     
-                    <tr>
+                    <tr class="fila-consejo">
                         <!--<th><?php //echo $indice; ?></th> -->
                         <th><?php echo $numeroComoCadena; ?></th>
                         <td style="text-align: left;">
@@ -170,3 +170,22 @@
   <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+<script src="<?php echo base_url(); ?>bootstrap/js/buscador/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    //Captura del evento de cambio en el campo de busqueda
+    $("#searchInput").on("input", function () {
+      var valorBusqueda = $(this).val().toLowerCase(); //Obtener el valor de busqueda en minusculas
+      //Filtra las filas de la tabla
+      $(".fila-consejo").each(function () {
+        var textoFila = $(this).text().toLowerCase(); //texto de la fila en minusculas
+        if (textoFila.indexOf(valorBusqueda) === -1){
+        $(this).hide(); //Oculta la fila si no coincide con la busqueda
+      } else {
+        $(this).show(); //Muestra la fila si coincide con la busqueda
+      }
+      });
+    });
+  });
+</script>

@@ -110,7 +110,9 @@
                                         <!--agregar mediante este boton a la tabla-->
                                         <div class="col-md-4 col-sm-4 col-xs-4">
                                             <button id="btn-agregar" type="button" class="btn btn-success">Agregar</button>
+                                            <!--
                                             <button type="button" class="btn btn-primary" id="btn-buscar-producto" data-toggle="modal" data-target="#modal-buscar-producto">Buscar</button>
+-->
                                         </div>
                                         <!--Fin de boton para agregado a la tabla-->
                                     </div>

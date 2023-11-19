@@ -274,7 +274,7 @@
                     $idproducto=$_POST['idproducto'];
                     //variable de transferencia de informacion 
                     $data['infoproducto']=$this->producto_model->recuperarproductos($idproducto); //asi hago llegar el idcliente al modelo
-                    $data['listaCategorias'] = $this->categoria_model->listacategorias();
+                    $data['listaCategorias'] = $this->categoria_model->listacategoriasProducto($idproducto);
                     //cargar la vista
                     $this->load->view('view_administration/admidesing/productoFormHeader');
                     $this->load->view('view_administration/admidesing/menuSuperior');
@@ -299,34 +299,35 @@
                 $tipo= $this->session->userdata('tipo');
                 if($tipo=='ADMINISTRADOR'){
                     // variable         formulario
-                    /*$idproducto=$_POST['idproducto'];//almacena el id
-                    // BDD              formulario
-                    $data['nombre']=$_POST['nombre'];
-                    $data['descripcion']=$_POST['descripcion'];
-                    $data['precioUnitario']=$_POST['precioUnitario'];
-                    $data['stock']=$_POST['stock'];
-                    $data['codigo']=$_POST['codigo'];
-                    $data['foto']=$_POST['foto'];
-                    $data['idCategoria']=$_POST['idCategoria'];
-                    //$data['fechaActualizacion']="CURRENT_TIMESTAMP()";
-
-                    $this->producto_model->modificarproducto($idproducto,$data);
-
-                    redirect('administration/producto/index','refresh');*/
-
-                    //CARGA LA DATA DE LOS VALORES 
-                    $idproducto=$_POST['idproducto'];//almacena el id
-                    $data['nombre']=$_POST['nombre'];
-                    $data['descripcion']=$_POST['descripcion'];
-                    $data['precioUnitario']=$_POST['precioUnitario'];
-                    $data['stock']=$_POST['stock'];
-                    $data['codigo']=$_POST['codigo'];
-                    $data['idCategoria']=$_POST['categoria'];
-
-                    $this->producto_model->modificarproducto($idproducto,$data);
-                    $idProducto = $idproducto;
-                    if($idProducto){
-                        $idproducto=$idProducto;
+                    //CARGA LA DATA DE LOS VALORES   
+                    $foto = $_FILES['userfile'];
+                    //$foto = $_POST['userfile'];
+                    
+                    if(empty($foto['name'])){
+                        // Código a ejecutar si $data['foto'] está vacía o no está definida
+                        
+                        $idproducto=$_POST['idproducto'];//almacena el id
+                        $data['nombre']=$_POST['nombre'];
+                        $data['descripcion']=$_POST['descripcion'];
+                        $data['precioUnitario']=$_POST['precioUnitario'];
+                        $data['stock']=$_POST['stock'];
+                        $data['codigo']=$_POST['codigo'];
+                        $data['idCategoria']=$_POST['idcategoria'];
+                        
+                        $this->producto_model->modificarproducto($idproducto,$data);
+                        redirect('administration/producto/index','refresh');
+                    }else{
+                        // Código a ejecutar si $data['foto'] no está vacía
+                        $idproducto=$_POST['idproducto'];//almacena el id
+                        $data['nombre']=$_POST['nombre'];
+                        $data['descripcion']=$_POST['descripcion'];
+                        $data['precioUnitario']=$_POST['precioUnitario'];
+                        $data['stock']=$_POST['stock'];
+                        $data['codigo']=$_POST['codigo'];
+                        $data['idCategoria']=$_POST['idcategoria'];
+                        
+                        $idProducto = $idproducto;
+                        $idproducto = $idProducto;
                         //$idproducto = $idProductoReciente;
                         $nombrearchivo=$idproducto.".jpg"; //nos aseguramos que el archivo tenga un nombre unico
                         //configuracion de subida
@@ -354,6 +355,38 @@
                         }
                         redirect('administration/producto/index','refresh');
                     }
+
+                    /*
+                    $idProducto = $idproducto;
+                    if($idProducto){
+                        $idproducto=$idProducto;
+                        //$idproducto = $idProductoReciente;
+                        $nombrearchivo=$idproducto.".jpg"; //nos aseguramos que el archivo tenga un nombre unico
+                        //configuracion de subida
+                        $config['upload_path']='./uploads/productos/';  //direccion de subida // ./ dice que trabaja con la raiz del sistema
+                        $config['file_name']=$nombrearchivo; //juntamos la direccion del archivo
+                        $direccion='./uploads/productos/'.$nombrearchivo;//donde va estar ese archivo
+
+                        if(file_exists($direccion)){//si existe el archivo se borrara el anterior y agrega el nuevo
+                            unlink($direccion);
+                        }//si no existe significa que es la primera vez que se esta cargando una imagen
+                        $config['allowed_types']='jpg|png'; //tipos de archivos que voy a permitir |gif
+                        $this->load->library('upload',$config); //libreria upload nativa del modelo vista controlador con todos nuestros parametros de configuracion
+                        //PRUEBA DE SUBIDA
+                        if(!$this->upload->do_upload())
+                        {//si no se logra subir la foto //do_upload() hace el intento de subir
+                            //si no se ejecuta de manera efectiva
+                            $data['error']=$this->upload->display_errors(); //almancena todos los errores que salgan
+                            //archivos pesados, archivo no compatible
+                        }else{
+                            $data['foto']=$nombrearchivo; //data en el campo foto va almacenar el nombre del archivo que cuenta con la direccion 
+                            //trabajar en base de datos
+                            $this->producto_model->modificarproducto($idproducto,$data);
+                            //subir el archibo
+                            $this->upload->data();
+                        }*/
+                       redirect('administration/producto/index','refresh');
+                    //}
                 }else{
                     redirect('administration/producto/index','refresh'); //si no hay sesion abierta direcciona al login
                 }

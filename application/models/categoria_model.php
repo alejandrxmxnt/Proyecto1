@@ -8,6 +8,15 @@
             $this->db->where('estado','1');
             return $this->db->get(); 
         } 
+
+        public function listacategoriasProducto($idproducto)
+        { 
+            $query = "SELECT P.id AS IdProducto, P.nombre AS nombreProducto, C.id AS IdCategoria, C.nombre AS nombreCategoria
+            FROM producto P
+            INNER JOIN categoria C ON P.idCategoria = C.id
+            WHERE P.id = '" . $idproducto . "'";
+            return $this->db->query($query);
+        } 
         //INSERTAR DATOS.
         //recibe una data de valores y es cargado
         public function agregarcategoria($data)

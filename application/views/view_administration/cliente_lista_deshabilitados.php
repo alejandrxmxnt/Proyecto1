@@ -28,7 +28,7 @@
               {//impresion de valores de la data
                 //acontinuacion de como se carga una tabla
             ?>          
-            <tr>
+            <tr class="fila-consejo">
               <th><?php echo $indice; ?></th>
               <td><?php echo $row->nombre.' '.$row->primerApellido.' '.$row->segundoApellido; ?></td>
               <td><?php echo $row->ciNit; ?></td>
@@ -88,3 +88,22 @@
 <!--JS-->
 
 <script src="<?php echo base_url();?>bootstrap/js/tablas/pagina.js"></script>
+
+<script src="<?php echo base_url(); ?>bootstrap/js/buscador/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    //Captura del evento de cambio en el campo de busqueda
+    $("#searchInput").on("input", function () {
+      var valorBusqueda = $(this).val().toLowerCase(); //Obtener el valor de busqueda en minusculas
+      //Filtra las filas de la tabla
+      $(".fila-consejo").each(function () {
+        var textoFila = $(this).text().toLowerCase(); //texto de la fila en minusculas
+        if (textoFila.indexOf(valorBusqueda) === -1){
+        $(this).hide(); //Oculta la fila si no coincide con la busqueda
+      } else {
+        $(this).show(); //Muestra la fila si coincide con la busqueda
+      }
+      });
+    });
+  });
+</script>

@@ -58,12 +58,16 @@
                         <!-- Search -->
                         <!-- ============================================================== -->
                         <li class=" in">
-                            <form role="search" class="app-search d-none d-md-block me-3">
-                                <input type="text" placeholder="Buscar..." class="form-control mt-0">
-                                <a href="" class="active">
-                                    <i class="fa fa-search"></i>
-                                </a>
-                            </form>
+                        <div class="form-inline justify-content-end"> 
+                            <div class="input-group">
+                                <input id="searchInput" class="form-control" type="search" placeholder="Buscar..." aria-label="Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-dark">
+                                        <i class="fas fa-search fa-fw"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                         </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->

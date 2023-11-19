@@ -88,13 +88,14 @@
                                           <th>PRODUCTO</th>
                                           <th>CANTIDAD</th>
                                           <th>RECAUDADO Bs.</th>
+                                          <th>PDF</th>
                                       </tr>
                                       <?php
                                       $indice = 1;
                                       foreach ($fecha->result() as $row) {
                                         
                                       ?>
-                                          <tr>
+                                          <tr class="fila-consejo">
                                               <td><?php echo $indice; ?></td>
                                               <td style="text-align: left;"><?php echo $row->categoria;?></td>
                                               <td><?php echo $row->producto; ?></td>
@@ -105,7 +106,8 @@
                                                     $totalBs=number_format($total, 2,',','.');
                                                     echo $totalBs;
                                                 ?>
-                                              </td>                                                
+                                              </td>
+                                                                                      
                                               
                                           </tr>
                                       <?php
@@ -129,3 +131,22 @@
         </div>
     </div>
 </div>
+
+<script src="<?php echo base_url(); ?>bootstrap/js/buscador/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    //Captura del evento de cambio en el campo de busqueda
+    $("#searchInput").on("input", function () {
+      var valorBusqueda = $(this).val().toLowerCase(); //Obtener el valor de busqueda en minusculas
+      //Filtra las filas de la tabla
+      $(".fila-consejo").each(function () {
+        var textoFila = $(this).text().toLowerCase(); //texto de la fila en minusculas
+        if (textoFila.indexOf(valorBusqueda) === -1){
+        $(this).hide(); //Oculta la fila si no coincide con la busqueda
+      } else {
+        $(this).show(); //Muestra la fila si coincide con la busqueda
+      }
+      });
+    });
+  });
+</script>

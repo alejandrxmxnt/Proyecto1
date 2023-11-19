@@ -797,4 +797,171 @@
             $this->pdf->Output("reporte".$idUsuario.".pdf","I");
         }
 
+        public function reportefiltrocategoriapdf()
+        {
+            if($this->session->userdata('login'))
+            {
+                $tipo= $this->session->userdata('tipo');
+                if($tipo=='ADMINISTRADOR'){
+
+                    $idusuario= $this->session->userdata('id');
+                    $infousuario=$this->usuario_model->recuperarusuarios($idusuario);
+                    $infousuario = $infousuario->result();
+                    foreach ($infousuario as $info) {
+                        $idUsuario = $info->id;
+                        $usuario = $info->nombre.' '.$info->primerApellido;
+                    }
+
+                    $id_categoria = $_POST['id_Categoria'];
+                    $id_producto = $_POST['id_producto'];
+
+                    $reportecategoriafechas = $this->reporte_model->reportecategoria_fechas_ids($id_categoria, $id_producto);
+                    $reportecategoriafechas = $reportecategoriafechas->result();
+
+                    $totalGeneral = 0.00;
+                    foreach ($reportecategoriafechas as $total) {
+                        $totalGeneral = $totalGeneral+($total->detalle_recaudado);
+                    }
+
+                    $total=number_format($totalGeneral, 2,',','.');//para agregar los dos cecimales de centavos
+
+                    $valor = $totalGeneral;
+                    $parte_entera = floor($valor); //capura de valor entero
+                    $parte_decimal = $valor - $parte_entera; //captura de decimal
+
+                    $fraccion = $parte_decimal."/100";
+
+                    $totalpagar=$parte_entera; //MANDAR EL NUMERO TOTAL
+
+                    require_once APPPATH."cifrarAletras/CifrasEnLetras.php";
+                    $v=new CifrasEnLetras(); 
+                    //Convertimos el total en letras
+                    $letra=($v->convertirEurosEnLetras($totalpagar));
+
+                    //CREACION DEL REPORTE
+                    $this->pdf=new Pdf(); //creacion de nuevo pdf
+                    $this->pdf->AddPage(); //agregando una pagina
+                    $this->pdf->AliasNbPages(); //paginacion
+                    $this->pdf->SetTitle("REPORTE GENERAL DE VENTAS"); //titulo de reporte
+                    $this->pdf->SetLeftMargin(15); //margen izquierdo
+                    $this->pdf->SetRightMargin(15); //margen derecho
+
+                    //TITULO
+                    $this->pdf->Cell(2); // Ajustar el espacio en blanco si es necesario
+                    $this->pdf->SetFont('Courier', 'B', 20);
+                    $this->pdf->SetXY(64, 16);
+                    $this->pdf->Cell(89, 3,utf8_decode('RECAUDACIÓN GENERAL'), '', 2, 'L', 0);
+                    //HASTA AQUI EL TITULO
+
+                    //CATEGORIA:
+                    $this->pdf->Cell(2);
+                    $this->pdf->SetFont('Courier', '', 12);
+                    $this->pdf->SetXY(64, 22);
+                    $this->pdf->Cell(89, 3,utf8_decode('CATEGORIA: '), '', 2, 'L', 0);
+                    
+                    $this->pdf->Cell(2); // Ajustar el espacio en blanco si es necesario
+                    $this->pdf->SetFont('Courier', 'B', 10);
+
+                    //importar imagenes
+                    $ruta=base_url()."img/logos/logomuebleria2.png"; //conocer la ruta de la imagen
+                    $this->pdf->Image($ruta, 17, 10, 25, 25); //Rescatar una imagen de la ruta anterior //coordenadas x pixeles //coordenada y pixeles hacia abajo // dimencianes para la imagen ancho y largo
+                    //configurar el tipo de letra - esto solo es texto
+                    
+                    //coordenadas para generar el numero de venta
+                    $this->pdf->Cell(2); // Ajustar el espacio en blanco si es necesario
+                    $this->pdf->SetFont('Courier', 'B', 10);
+                    // Ajustar la coordenada X (posición horizontal)
+                    $this->pdf->SetXY(165, 10);
+                    //$this->pdf->Cell(89, 3,utf8_decode('N° '), '', 2, 'L', 0);
+                    $this->pdf->SetFont('Courier', '', 10);
+                    // Ajustar la coordenada X para el valor de fecha
+                    $this->pdf->SetXY(180, 10);
+                    //$this->pdf->Cell(89, 3, $numeroComoCadena, '', 2, 'L', 0); VERIFICAR
+
+                    $this->pdf->SetFont('Courier','B',10); //tipoi de letra, negrilla, tamaño
+                    $this->pdf->Ln(25);//salto de linea
+
+                    //listo para poner contenido - descripcion del negocio - estatico
+                    
+                    $this->pdf->Cell(2); //celda en blanco 
+                    $this->pdf->Cell(89,3,utf8_decode('MUEBLERIA LARA '),'R',2,'L',0); //100 de ancho, 3 de alto, el texto que tendra, margenes, TBLR , Aliniacion de texto a la izquierda L=izquierda | C=centro | R=derecha, 0 sin relleno 1 con relleno
+
+                    $this->pdf->Ln(0); //Salto de linea
+                    
+                    $this->pdf->SetFont('Courier','B',9); //letra - sin negrilla - tamaño
+                    $this->pdf->Cell(2);
+                    $this->pdf->Cell(89,3,utf8_decode('Av. Beiging entre Av. Tadeo Haenke.'),'R',2,'L',0);
+                    
+                    $this->pdf->Ln(0);
+                    
+                    $this->pdf->Cell(2);
+                    $this->pdf->Cell(89,3,'Cochabamba - Bolivia','R',2,'L',0);
+                    $this->pdf->SetFont('Courier','B',10);
+                    
+                    $this->pdf->Ln(0);
+                    
+                    $this->pdf->Cell(2);
+                    $this->pdf->Cell(38,3,'Telefono/Celular: ','',0,'L',0);
+                    $this->pdf->SetFont('Courier','B',9); //letra - sin negrilla - tamaño
+                    $this->pdf->Cell(51,3,'+591 62701312', 'R',1,'L',0);  
+                    
+                    //COORDENDAS PARA MOSTRA EL EMPLEADO QUE ATENDIO EN LA VENTA
+                    $this->pdf->Cell(2); // Ajustar el espacio en blanco si es necesario
+                    $this->pdf->SetFont('Courier', 'B', 10);
+                    // Ajustar la coordenada X (posición horizontal)
+                    $this->pdf->SetXY(110, 40);
+                    $this->pdf->Cell(89, 3, 'Generado por: ', '', 2, 'L', 0);
+                    $this->pdf->SetFont('Courier', '', 10);
+                    // Ajustar la coordenada X para el valor de fecha
+                    $this->pdf->SetXY(110, 47);
+                    $this->pdf->Cell(89, 0,utf8_decode($usuario), '', 2, 'L', 0);
+
+                    $this->pdf->Ln(10);
+
+                    $this->pdf->SetFont('Courier','B',10);
+                    $this->pdf->SetFillColor(238,208,157);
+                    $this->pdf->SetTextColor(0,0,0);
+                    $this->pdf->SetDrawColor(0,0,0);
+                    $this->pdf->Cell(63,5,'PRODUCTO','TBLR',0,'C',1);
+                    $this->pdf->Cell(24,5,'CANTIDAD','TBLR',0,'C',1);
+                    $this->pdf->Cell(24,5,'DESCUENTO','TBLR',0,'C',1);
+                    $this->pdf->Cell(28,5,'IMPORTE Bs.','TBLR',0,'C',1);
+                    $this->pdf->Cell(41,5,'FECHAS','TBLR',0,'C',1);
+                    //$this->pdf->Cell(22,5,'IMPORTE','TBLR',0,'C',1);
+
+                    $this->pdf->Ln(5);
+                    $this->pdf->SetTextColor(0,0,0);
+                    $this->pdf->SetFont('Courier','B',10);
+                    
+                    foreach ($reportecategoriafechas as $historia) {
+                        $this->pdf->SetFillColor(255,255,255);
+                        $this->pdf->Cell(63,5,utf8_decode($historia->producto),'TBLR',0,'L',0);
+                        $this->pdf->Cell(24,5,$historia->detalle_cantidad,'TBLR',0,'C',0);
+                        $this->pdf->Cell(24,5,intval($historia->detalle_descuento).' %','TBLR',0,'R',0);
+                        $this->pdf->Cell(28,5,number_format($historia->detalle_recaudado, 2,',','.'),'TBLR',0,'R',0);//DIVIDIR CADA MIL CON UN .
+                        $this->pdf->Cell(41,5,$historia->detalle_fecha,'TBLR',0,'C',0);
+                        $this->pdf->Ln(5);
+                    }
+
+                    $this->pdf->Ln(5);
+                    $this->pdf->Cell(1);
+                    $this->pdf->Cell(87,5,'TOTAL Bs.','TBL',0,'C',0);
+                    $this->pdf->Cell(52,5,$total,'TBR',0,'C',0);
+
+                    $this->pdf->Ln(15);
+
+                    $this->pdf->Cell(2); //celda en blanco 
+                    $this->pdf->Cell(89,3,strtoupper(utf8_decode('Son: '.$letra.' '.$fraccion.' Bolivianos.')),'',2,'L',0);
+                    
+                    $this->pdf->Output("reporte".$idUsuario.".pdf","I");
+
+
+                }else{
+                    redirect('administration/reportes/reporteProducto','refresh');
+                }
+            }else{
+                redirect('administration/usuarios/index','refresh');//cargara el login
+            }
+        }
+
     }

@@ -63,9 +63,12 @@
             return $this->db->query($query);
         }
         //TOTAL RECAUDADO EN UN RANGO DE FECHAS 
+        //Obtengo valores deacuerdo al rango capturando el id de categoria y producto para la siguiente consulta
         public function ventaFechasRangoCategoria($Inicio,$Fin) //select
         {
             $query="SELECT
+            P.idCategoria AS id_categoria,
+            P.id AS id_producto,
             C.nombre AS nombre_categoria,
             P.nombre AS nombre_producto,
             SUM(D.cantidad) AS total_vendido,
@@ -130,10 +133,12 @@
                 producto P ON D.idProducto = P.id
             JOIN
                 categoria C ON P.idCategoria = C.id
+            WHERE
+                V.estado = 1
             GROUP BY
                 C.nombre, P.nombre
             ORDER BY
-                recaudacion_total DESC";
+                total_cantidad DESC";
             return $this->db->query($query);
         }
 
@@ -160,7 +165,6 @@
                 1 DESC";
             return $this->db->query($query);
         }
-
 
         public function reporte_Categoria_General_RangoFechas($idCategoria, $idProducto, $Inicio, $Fin) //select
         {
@@ -202,6 +206,8 @@
                 producto P ON D.idProducto = P.id
             JOIN
                 categoria C ON P.idCategoria = C.id
+            WHERE 
+                V.estado = 1
             GROUP BY
                 C.nombre, P.nombre
             ORDER BY
@@ -246,5 +252,27 @@
         }
 
 
+        public function reportecategoria_fechas_ids($id_categoria, $id_producto){
+            $query="SELECT
+            C.nombre AS categoria,
+            P.nombre AS producto,
+            D.descuento AS detalle_descuento,
+            D.cantidad AS detalle_cantidad,
+            D.importe AS detalle_recaudado,
+            V.fechaVenta AS detalle_fecha
+        FROM
+            venta V
+        JOIN
+            detalleventa D ON V.id = D.idVenta
+        JOIN
+            producto P ON D.idProducto = P.id
+        JOIN
+            categoria C ON P.idCategoria = C.id
+        WHERE 
+            C.id = '" . $id_categoria . "' AND P.id = '" . $id_producto . "'
+        ORDER BY
+            1 DESC";
+            return $this->db->query($query);
+        }
 
     }

@@ -28,15 +28,14 @@
 
 
     /* Imagen de fondo */
+    /*
     body {
         background-image: url('<?php echo base_url();?>img/fondos/fondoPc.jpeg');
         background-repeat: no-repeat;
         background-size: 100% 100%;
-        /*backdrop-filter: blur(3px);   borroso */
         transition: 0.5s;
         opacity: 1;
     }
-    /*Vista desde celular 768*/
     @media screen and (max-width: 1023px) {
         body {
             background-image: url('<?php echo base_url();?>img/fondos/fondoCelular.jpeg');
@@ -45,7 +44,7 @@
             transition: 0.5s;
             opacity: 1;
         }
-    }
+    }*/
 
 </style>
 <!-- End Hero Section -->

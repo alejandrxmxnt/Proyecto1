@@ -91,7 +91,7 @@
                     <div class="formulario__grupo" id="grupo__precioUnitario">
                         <label for="precioUnitario" class="formulario__label">Precio Unitario Bs.:</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="precioUnitario" id="precioUnitario" value="<?php echo set_value('precioUnitario'); ?>" placeholder=" Bs." onkeypress="return soloNumeros(event)">
+                            <input required type="text" class="formulario__input" name="precioUnitario" id="precioUnitario" value="<?php echo set_value('precioUnitario'); ?>" placeholder=" Bs." onkeypress="return soloNumeros(event)">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
                         <p><?php echo form_error('precioUnitario'); ?></p>
@@ -100,7 +100,7 @@
                     <div class="formulario__grupo" id="grupo__stock">
                         <label for="stock" class="formulario__label">Stock:</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="stock" id="stock" value="<?php echo set_value('stock'); ?>" placeholder="Stock Disponible" onkeypress="return soloNumeros(event)">
+                            <input required type="text" class="formulario__input" name="stock" id="stock" value="<?php echo set_value('stock'); ?>" placeholder="Stock Disponible" onkeypress="return soloNumeros(event)">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
                         <p><?php echo form_error('stock'); ?></p>

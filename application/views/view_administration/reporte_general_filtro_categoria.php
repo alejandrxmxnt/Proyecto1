@@ -53,7 +53,7 @@
                                     ?>
                                     <br><br>
                                 <!-- Inicio Div card-box table-responsive -->
-                                <?php echo form_open_multipart('administration/reportes/reporteFechasPdf');?>
+                                <?php echo form_open_multipart('administration/reportes/generalfiltrocategoria');?>
                                 <form  method="POST">
                                     <div class="item form-group has-feedback" id="EstilosReporte">
                                         <label class="col-form-label col-md-1 label-align title-fechas">Fecha Inicio: </label>
@@ -79,6 +79,7 @@
                                           <th>PRODUCTO</th>
                                           <th>VENDIDOS</th>
                                           <th>RECAUDADO Bs.</th>
+                                          <th>PDF</th>
                                           <!--<th>PDF</th>-->
                                       </tr>
                                       <?php
@@ -86,7 +87,7 @@
                                       foreach ($fecha->result() as $row) {
                                         
                                       ?>
-                                          <tr>
+                                          <tr class="fila-consejo">
                                                 <td><?php echo $indice; // echo $row->id; ?></td>
                                                 <td style="text-align: left;"><?php echo $row->nombre_categoria; ?></td>
                                                 <td><?php echo $row->nombre_producto; ?></td>
@@ -97,6 +98,21 @@
                                                         $totalBs=number_format($total, 2,',','.');
                                                         echo $totalBs;
                                                     ?>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex" style="display: flex; justify-content: center; align-items: center;">
+                                                        <?php
+                                                            echo form_open_multipart('administration/reportes/reportefiltrocategoriapdf', array('target' => '_blank'));
+                                                        ?>
+                                                            <input type="hidden" value="<?php echo $row->id_categoria; ?>" name="id_Categoria">
+                                                            <input type="hidden" value="<?php echo $row->id_producto; ?>" name="id_producto">
+                                                            <button type="submit" class="btn btn-warning">
+                                                                <i class="fas fa-file-pdf"></i>
+                                                            </button>
+                                                        <?php
+                                                            echo form_close();
+                                                        ?>
+                                                    </div>
                                                 </td>
                                                 <!--
                                                 <td>
@@ -129,10 +145,26 @@
                     </div>
                     </div>
                 </div>
-
-
-
             </main>
         </div>
     </div>
 </div>
+
+<script src="<?php echo base_url(); ?>bootstrap/js/buscador/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    //Captura del evento de cambio en el campo de busqueda
+    $("#searchInput").on("input", function () {
+      var valorBusqueda = $(this).val().toLowerCase(); //Obtener el valor de busqueda en minusculas
+      //Filtra las filas de la tabla
+      $(".fila-consejo").each(function () {
+        var textoFila = $(this).text().toLowerCase(); //texto de la fila en minusculas
+        if (textoFila.indexOf(valorBusqueda) === -1){
+        $(this).hide(); //Oculta la fila si no coincide con la busqueda
+      } else {
+        $(this).show(); //Muestra la fila si coincide con la busqueda
+      }
+      });
+    });
+  });
+</script>

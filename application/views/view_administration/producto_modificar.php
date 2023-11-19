@@ -126,15 +126,12 @@
                             <!--      
                             <input type="file" name="categoria" id="categoria" class="formulario__input" value="<?php// echo set_value('foto'); ?>" multiple>
                             <i class="formulario__validacion-estado fas fa-times-circle"></i> -->
-                            <select name="categoria" id="categoria" class="form-control">
-                                <option value="<?php echo $row->idCategoria; ?>" disabled selected></option>
+                            <select name="idcategoria" id="categoria" class="form-control">
                                 <?php
-                                    foreach($listaCategorias->result() as $row){
+                                    foreach($listaCategorias->result() as $rowCategoria){
                                 ?>
-                                <option value="<?php echo $row->id; ?>">
-                                    <?php
-                                        echo $row->nombre;
-                                    ?>
+                                <option value="<?php echo $rowCategoria->IdCategoria; ?>">
+                                    <?php echo $rowCategoria->nombreCategoria; ?>
                                 </option>
                                 <?php
                                     }
