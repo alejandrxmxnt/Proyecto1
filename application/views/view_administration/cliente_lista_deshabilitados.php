@@ -19,7 +19,6 @@
               <th>CI / NIT</th>
               <th>Telefono</th>
               <th>Referencias</th>
-              <th>Razón Social</th>
               <th>Acciones</th>
             </tr>
             <?php
@@ -30,11 +29,28 @@
             ?>          
             <tr class="fila-consejo">
               <th><?php echo $indice; ?></th>
-              <td><?php echo $row->nombre.' '.$row->primerApellido.' '.$row->segundoApellido; ?></td>
-              <td><?php echo $row->ciNit; ?></td>
+              <td>
+                <?php 
+                 //echo $row->nombre.' '.$row->primerApellido.' '.$row->segundoApellido; 
+                  if($row->primerApellido === ''){
+                    echo 'Sin nombre';
+                  }else{
+                    echo $row->nombre." ".$row->primerApellido." ".$row->segundoApellido;
+                  }
+                ?>
+              </td>
+              <td>
+                <?php 
+                  $cedula = $row->ciNit;
+                  if($cedula === 'ANONIMO'){
+                    echo '';
+                  } else {
+                    echo $cedula;
+                  }
+                ?>
+              </td>
               <td><?php echo $row->telefono; ?></td>
               <td><?php echo $row->direccion; ?></td>
-              <td><?php echo $row->razonSocial; ?></td>
               <td>
                 <div class="d-flex" style="display: flex; justify-content: center; align-items: center;">
                   <?php

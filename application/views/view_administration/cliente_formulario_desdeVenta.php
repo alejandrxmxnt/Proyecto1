@@ -101,13 +101,9 @@
                             <p><?php echo form_error('direccion'); ?></p>
                         </div>
                         <!-- Grupo: Razon Social -->
-                        <div class="formulario__grupo" id="grupo__razonSocial">
-                            <label for="razonSocial" class="formulario__label">Razón Social:</label>
-                            <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="razonSocial" id="razonSocial" placeholder="" value="<?php echo set_value('razonSocial'); ?>">
-                            </div>
-                            <p><?php echo form_error('razonSocial'); ?></p>
-                        </div>
+                        <!-- CAMPO DESHABILITADO -->
+                        <input type="hidden" class="formulario__input" name="razonSocial" id="razonSocial" placeholder="" value="<?php echo set_value('razonSocial'); ?>">
+                                <!--<p><?php // echo form_error('razonSocial'); ?></p>> -->
             
                         <div class="formulario__grupo formulario__grupo-btn-enviar">
                             <button type="submit" class="formulario__btn">Registrar</button>

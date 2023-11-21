@@ -92,6 +92,7 @@
                     $this->load->view('view_administration/admidesing/foot');
                 }else{
                     //SOLO GENERA REPORTE POR RANGO DE FECHAS ESTABLECIDAD POR EL USUARIO
+                    /*
                     $idUsuario = $this->session->userdata('id');
                     $Inicio=$_POST['inicio'];
                     $data['inicio']=$Inicio;
@@ -104,10 +105,11 @@
                     $this->load->view('view_administration/admidesing/menuSuperior');
                     $this->load->view('view_administration/admidesing/menuLateral');
                     $this->load->view('view_administration/reporte_general_filtro_categoria_View_Empleado',$data);
-                    $this->load->view('view_administration/admidesing/foot');
+                    $this->load->view('view_administration/admidesing/foot');*/
+                    redirect('administration/reportes/reporteProducto','refresh');
+
                 }
-            }
-            
+            }  
         }
 
         public function reporteGeneral()
@@ -307,9 +309,21 @@
             $this->pdf->SetFont('Courier','B',10);
             
             foreach ($historiaVenta as $historia){
+                $apellido = $historia->primerApellido;
+                if($apellido === ''){
+                    $nombreCompleto = 'Sin nombre';
+                }else{
+                    $nombreCompleto = $historia->nombre.' '.$historia->primerApellido.' '.$historia->segundoApellido.' '.$historia->razonSocial;
+                }
+                $nit = $historia->ciNit;
+                if($nit === 'ANONIMO'){
+                    $cinit = '';
+                }else{
+                    $cinit = $historia->ciNit;
+                }
                 $this->pdf->SetFillColor(255,255,255);
-                $this->pdf->Cell(87,5,utf8_decode($historia->nombre.' '.$historia->primerApellido.' '.$historia->segundoApellido.' '.$historia->razonSocial),'TBLR',0,'L',0);
-                $this->pdf->Cell(26,5,$historia->ciNit,'TBLR',0,'L',0);
+                $this->pdf->Cell(87,5,utf8_decode($nombreCompleto),'TBLR',0,'L',0);
+                $this->pdf->Cell(26,5,$cinit,'TBLR',0,'L',0);
                 $this->pdf->Cell(26,5,number_format($historia->total, 2,',','.'),'TBLR',0,'R',0);//DIVIDIR CADA MIL CON UN .
                 $this->pdf->Cell(41,5,$historia->fechaVenta,'TBLR',0,'C',0);
                 $this->pdf->Ln(5);
@@ -471,9 +485,20 @@
             $this->pdf->SetFont('Courier','B',10);
             
             foreach ($historiaVenta as $historia){
+                if($historia->primerApellido === ''){
+                    $nombrecompleto = 'Sin nombre';
+                }else{
+                    $nombrecompleto = $historia->nombre.' '.$historia->primerApellido.' '.$historia->segundoApellido.' '.$historia->razonSocial;
+                }
+
+                if($historia->ciNit === 'ANONIMO'){
+                    $cinit = '';
+                }else{
+                    $cinit = $historia->ciNit;
+                }
                 $this->pdf->SetFillColor(255,255,255);
-                $this->pdf->Cell(87,5,utf8_decode($historia->nombre.' '.$historia->primerApellido.' '.$historia->segundoApellido.' '.$historia->razonSocial),'TBLR',0,'L',0);
-                $this->pdf->Cell(26,5,$historia->ciNit,'TBLR',0,'L',0);
+                $this->pdf->Cell(87,5,utf8_decode($nombrecompleto),'TBLR',0,'L',0);
+                $this->pdf->Cell(26,5,$cinit,'TBLR',0,'L',0);
                 $this->pdf->Cell(26,5,number_format($historia->total, 2,',','.'),'TBLR',0,'R',0);
                 $this->pdf->Cell(41,5,$historia->fechaVenta,'TBLR',0,'C',0);
                 $this->pdf->Ln(5);
@@ -806,6 +831,7 @@
 
                     $idusuario= $this->session->userdata('id');
                     $infousuario=$this->usuario_model->recuperarusuarios($idusuario);
+                    //en lugar de recuperar usuario // recuperar categoria y producto
                     $infousuario = $infousuario->result();
                     foreach ($infousuario as $info) {
                         $idUsuario = $info->id;
@@ -814,6 +840,14 @@
 
                     $id_categoria = $_POST['id_Categoria'];
                     $id_producto = $_POST['id_producto'];
+
+                    $categoriaProducto = $this->reporte_model->filtrocategoria($id_producto);
+                    $categoriaProducto = $categoriaProducto->result();
+                    foreach($categoriaProducto as $datos){
+                        $nombreproducto = $datos->NombreProducto;
+                        $nombrecategoria = $datos->NombreCategoria;
+                    }
+
 
                     $reportecategoriafechas = $this->reporte_model->reportecategoria_fechas_ids($id_categoria, $id_producto);
                     $reportecategoriafechas = $reportecategoriafechas->result();
@@ -852,12 +886,6 @@
                     $this->pdf->SetXY(64, 16);
                     $this->pdf->Cell(89, 3,utf8_decode('RECAUDACIÓN GENERAL'), '', 2, 'L', 0);
                     //HASTA AQUI EL TITULO
-
-                    //CATEGORIA:
-                    $this->pdf->Cell(2);
-                    $this->pdf->SetFont('Courier', '', 12);
-                    $this->pdf->SetXY(64, 22);
-                    $this->pdf->Cell(89, 3,utf8_decode('CATEGORIA: '), '', 2, 'L', 0);
                     
                     $this->pdf->Cell(2); // Ajustar el espacio en blanco si es necesario
                     $this->pdf->SetFont('Courier', 'B', 10);
@@ -909,12 +937,12 @@
                     $this->pdf->Cell(2); // Ajustar el espacio en blanco si es necesario
                     $this->pdf->SetFont('Courier', 'B', 10);
                     // Ajustar la coordenada X (posición horizontal)
-                    $this->pdf->SetXY(110, 40);
-                    $this->pdf->Cell(89, 3, 'Generado por: ', '', 2, 'L', 0);
-                    $this->pdf->SetFont('Courier', '', 10);
+                    $this->pdf->SetXY(110, 35);
+                    $this->pdf->Cell(89, 3, utf8_decode('CATEGORIA: '.$nombrecategoria), '', 2, 'L', 0);
+                    $this->pdf->SetFont('Courier', 'B', 10);
                     // Ajustar la coordenada X para el valor de fecha
-                    $this->pdf->SetXY(110, 47);
-                    $this->pdf->Cell(89, 0,utf8_decode($usuario), '', 2, 'L', 0);
+                    $this->pdf->SetXY(110, 40);
+                    $this->pdf->Cell(89, 0,utf8_decode('PRODUCTO: '.$nombreproducto), '', 2, 'L', 0);
 
                     $this->pdf->Ln(10);
 
@@ -922,7 +950,7 @@
                     $this->pdf->SetFillColor(238,208,157);
                     $this->pdf->SetTextColor(0,0,0);
                     $this->pdf->SetDrawColor(0,0,0);
-                    $this->pdf->Cell(63,5,'PRODUCTO','TBLR',0,'C',1);
+                    $this->pdf->Cell(63,5,'COMPROBANTE','TBLR',0,'C',1);
                     $this->pdf->Cell(24,5,'CANTIDAD','TBLR',0,'C',1);
                     $this->pdf->Cell(24,5,'DESCUENTO','TBLR',0,'C',1);
                     $this->pdf->Cell(28,5,'IMPORTE Bs.','TBLR',0,'C',1);
@@ -934,8 +962,14 @@
                     $this->pdf->SetFont('Courier','B',10);
                     
                     foreach ($reportecategoriafechas as $historia) {
+                        $numero = $historia->detalle_idVenta;
+                        $numeroComoCadena = strval($numero);
+                        //$longitud = strlen($numeroComoCadena);
+                        if(strlen($numeroComoCadena) < 8){
+                            $numeroComoCadena = str_pad($numeroComoCadena,8,'0', STR_PAD_LEFT);
+                        }
                         $this->pdf->SetFillColor(255,255,255);
-                        $this->pdf->Cell(63,5,utf8_decode($historia->producto),'TBLR',0,'L',0);
+                        $this->pdf->Cell(63,5,$numeroComoCadena,'TBLR',0,'C',0);
                         $this->pdf->Cell(24,5,$historia->detalle_cantidad,'TBLR',0,'C',0);
                         $this->pdf->Cell(24,5,intval($historia->detalle_descuento).' %','TBLR',0,'R',0);
                         $this->pdf->Cell(28,5,number_format($historia->detalle_recaudado, 2,',','.'),'TBLR',0,'R',0);//DIVIDIR CADA MIL CON UN .

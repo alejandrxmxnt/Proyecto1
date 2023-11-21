@@ -64,9 +64,10 @@
                                         <div class="col-md-2">
                                             <input type="date" value="<?php echo $fin; ?>" name="fin" id="fin" class="form-control"></input>
                                         </div>
+                                        <!--
                                         <div class="col-md-3">
                                             <button type="submit" class="btn btn-danger" name="enviar" formtarget="_blank"><i class="fa fa-file-pdf-o"></i>  REPORTE PDF</button>
-                                        </div>
+                                        </div> -->
                                     </div><br>
                                 </form>
                                 <?php echo form_close(); ?>

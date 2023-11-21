@@ -107,7 +107,21 @@
                                                     echo $totalBs;
                                                 ?>
                                               </td>
-                                                                                      
+                                               <td>
+                                                <div class="d-flex" style="display: flex; justify-content: center; align-items: center;">
+                                                    <?php
+                                                        echo form_open_multipart('administration/reportes/reportefiltrocategoriapdf', array('target' => '_blank'));
+                                                    ?>
+                                                        <input type="hidden" value="<?php echo $row->id_categoria; ?>" name="id_Categoria">
+                                                        <input type="hidden" value="<?php echo $row->id_producto; ?>" name="id_producto">
+                                                        <button type="submit" class="btn btn-warning">
+                                                            <i class="fas fa-file-pdf"></i>
+                                                        </button>
+                                                    <?php
+                                                        echo form_close();
+                                                    ?>
+                                                </div>
+                                               </td>                                       
                                               
                                           </tr>
                                       <?php

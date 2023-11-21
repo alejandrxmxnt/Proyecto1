@@ -233,9 +233,18 @@
             foreach ($listaventacliente as $ventacliente) {
                 $idVenta = $ventacliente->id;
                 $cliente_razonSocial = $ventacliente->nombre.' '.$ventacliente->primerApellido.' '.$ventacliente->razonSocial;
+                $primerapellido = $ventacliente->primerApellido;
                 $cliente_nit = $ventacliente->ciNit;
                 $venta_total = $ventacliente->total;
                 $fecha_venta = $ventacliente->fechaVenta;
+            }
+            //EN CASO QUE EL CAMPO DE PRIMER APELLIDO ESTE VACIO
+            if($primerapellido === ''){
+                $cliente_razonSocial='Sin nombre';
+            }
+
+            if($cliente_nit === 'ANONIMO'){
+                $cliente_nit = '';
             }
             //CAPTURA DE DATOS PARA USUARIO DE LA VENTA
             foreach ($listaventausuario as $ventausuario){
@@ -454,9 +463,17 @@
             foreach ($listaventacliente as $ventacliente) {
                 $idVenta = $ventacliente->id;
                 $cliente_razonSocial = $ventacliente->nombre.' '.$ventacliente->primerApellido.' '.$ventacliente->razonSocial;
+                $primerape = $ventacliente->primerApellido;
                 $cliente_nit = $ventacliente->ciNit;
                 $venta_total = $ventacliente->total;
                 $fecha_venta = $ventacliente->fechaVenta;
+            }
+            //CONTROL DE APELLIDO
+            if($primerape === ''){
+                $cliente_razonSocial = 'Sin nombre';
+            }//CONTROL DE CINIT
+            if($cliente_nit === 'ANONIMO'){
+                $cliente_nit = '';
             }
             //CAPTURA DE DATOS PARA USUARIO DE LA VENTA
             foreach ($listaventausuario as $ventausuario){

@@ -91,6 +91,32 @@
             return $this->db->query($query);
         }
 
+        public function ventaFechasCategoria() //select
+        {
+            $query="SELECT
+            P.idCategoria AS id_categoria,
+            P.id AS id_producto,
+            C.nombre AS nombre_categoria,
+            P.nombre AS nombre_producto,
+            SUM(D.cantidad) AS total_vendido,
+            SUM(D.importe) AS recaudacion_total
+            FROM
+                venta V
+            JOIN
+                detalleventa D ON V.id = D.idVenta
+            JOIN
+                producto P ON D.idProducto = P.id
+            JOIN
+                categoria C ON P.idCategoria = C.id
+            WHERE
+                V.estado = 1
+            GROUP BY
+                C.id, P.nombre
+            ORDER BY
+                total_vendido DESC";
+            return $this->db->query($query);
+        }
+
         public function ventaFechasRangoEmpleado($Inicio,$Fin,$idUsuario) //select
         {
             $query="SELECT V.id, V.fechaVenta, C.ciNit, C.nombre, C.primerApellido, C.segundoApellido ,C.razonSocial, V.total
@@ -121,6 +147,8 @@
         public function ventashistoriaRecaudacionporcategoria() //select
         {
             $query=" SELECT
+            P.idCategoria AS id_categoria,
+            P.id AS id_producto,
             C.nombre AS categoria,
             P.nombre AS producto,
             SUM(D.cantidad) AS total_cantidad,
@@ -215,6 +243,15 @@
             return $this->db->query($query);
         }
 
+        public function filtrocategoria($id_producto)
+        {
+            $query="SELECT P.id AS IDProducto, P.nombre AS NombreProducto, C.nombre AS NombreCategoria
+            FROM producto P
+            INNER JOIN categoria C ON C.id = P.idCategoria
+            WHERE P.estado = 1 AND P.id = '" . $id_producto . "'";
+            return $this->db->query($query);
+        }
+
         public function reporteTotal()
         {
             $this->db->select('sum(total)');
@@ -254,6 +291,7 @@
 
         public function reportecategoria_fechas_ids($id_categoria, $id_producto){
             $query="SELECT
+            V.id AS detalle_idVenta,
             C.nombre AS categoria,
             P.nombre AS producto,
             D.descuento AS detalle_descuento,
@@ -269,7 +307,7 @@
         JOIN
             categoria C ON P.idCategoria = C.id
         WHERE 
-            C.id = '" . $id_categoria . "' AND P.id = '" . $id_producto . "'
+            C.id = '" . $id_categoria . "' AND P.id = '" . $id_producto . "' AND V.estado = 1
         ORDER BY
             1 DESC";
             return $this->db->query($query);

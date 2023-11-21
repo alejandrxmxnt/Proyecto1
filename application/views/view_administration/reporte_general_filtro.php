@@ -92,8 +92,26 @@
                                       ?>
                                           <tr class="fila-consejo">
                                               <td><?php echo $numeroComoCadena; // echo $row->id; ?></td>
-                                              <td style="text-align: left;"><?php echo $row->nombre.' '.$row->primerApellido.' '.$row->segundoApellido.' '.$row->razonSocial; ?></td>
-                                              <td><?php echo $row->ciNit; ?></td>
+                                              <td style="text-align: left;">
+                                              <?php 
+                                              
+                                              if($row->primerApellido === ''){
+                                                echo 'Sin nombre';
+                                              } else {
+                                                echo $row->nombre.' '.$row->primerApellido.' '.$row->segundoApellido.' '.$row->razonSocial; 
+                                              }
+                                              ?>
+                                            </td>
+                                              <td>
+                                                <?php 
+                                                    $cedula = $row->ciNit; 
+                                                    if($cedula === 'ANONIMO'){
+                                                        echo '';
+                                                    } else {
+                                                        echo $cedula;
+                                                    }
+                                                ?>
+                                            </td>
                                                 <td> 
                                                     <?php 
                                                         $total = $row->total; 
