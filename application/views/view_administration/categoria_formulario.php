@@ -58,7 +58,7 @@
         </div>
         <div class="col-md-10 columna2">
             <div class="regform">
-                <h1>Registro de Categorías</h1>
+                <h1 class="titulos_centro">Registro de Categorías</h1>
             </div>
 
             <main class="main">

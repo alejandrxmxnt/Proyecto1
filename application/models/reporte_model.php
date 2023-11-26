@@ -87,7 +87,7 @@
             GROUP BY
                 C.id, P.nombre
             ORDER BY
-                total_vendido DESC";
+                recaudacion_total DESC";
             return $this->db->query($query);
         }
 
@@ -137,7 +137,7 @@
             FROM venta V
             INNER JOIN cliente C ON C.id=V.idCliente
             WHERE V.estado=1
-            ORDER BY 1";
+            ORDER BY 1 DESC";
             return $this->db->query($query);
         }
 
@@ -270,7 +270,7 @@
             FROM venta V
             INNER JOIN cliente C ON C.id=V.idCliente
             WHERE V.estado=1 AND V.idUsuario = " . $idEmpleado . "
-            ORDER BY 1";
+            ORDER BY 1 DESC";
             return $this->db->query($query);
         }
         public function reporteTotalEmpleado($idEmpleado)
@@ -307,9 +307,34 @@
         JOIN
             categoria C ON P.idCategoria = C.id
         WHERE 
-            C.id = '" . $id_categoria . "' AND P.id = '" . $id_producto . "' AND V.estado = 1
+            C.id = '" . $id_categoria . "' AND P.id = '" . $id_producto . "'
         ORDER BY
             1 DESC";
+            return $this->db->query($query);
+        }
+
+        public function reportecategoriaRangoFechas($idcategoria, $idproducto, $verInicio, $verFin){
+            $query="SELECT
+            V.id AS idVenta,
+            P.idCategoria AS id_categoria,
+            P.id AS id_producto,
+            C.nombre AS nombre_categoria,
+            P.nombre AS nombre_producto,
+            D.cantidad AS cantidad_vendida,
+            D.descuento AS detalle_descuento,
+            D.importe AS importe_total,
+            V.fechaVenta AS fechaVenta
+            FROM
+                venta V
+            JOIN
+                detalleventa D ON V.id = D.idVenta
+            JOIN
+                producto P ON D.idProducto = P.id
+            JOIN
+                categoria C ON P.idCategoria = C.id
+            WHERE
+                V.estado = 1 AND P.idCategoria = ' " . $idcategoria . " ' AND D.idProducto = ' " . $idproducto . " '
+                AND V.fechaVenta BETWEEN ' " . $verInicio . " 00:00:00' AND ' " . $verFin . " 23:59:59' ";
             return $this->db->query($query);
         }
 

@@ -6,7 +6,7 @@
       <br>
       <a href="<?php echo base_url(); ?>index.php/administration/producto/agregar">
         <button type="button" class="btn btn-primary" style="">
-          Nuevo Producto
+          Nuevo
         </button>
       </a>
       <a href="<?php echo base_url(); ?>index.php/administration/producto/deshabilitados">
@@ -16,7 +16,7 @@
       </a>
       
       <br> <br>
-      <h2 class="titulos_centro" style="font-weight: 700;"> TABLA DE PRODUCTOS </h2>
+      <h2 class="titulos_centro" style="font-weight: 700;"> Tabla de Productos </h2>
       <!--
       <div class="form-inline justify-content-end">
                             

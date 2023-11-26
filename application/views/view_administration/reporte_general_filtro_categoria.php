@@ -103,9 +103,11 @@
                                                 <td>
                                                     <div class="d-flex" style="display: flex; justify-content: center; align-items: center;">
                                                         <?php
-                                                            echo form_open_multipart('administration/reportes/reportefiltrocategoriapdf', array('target' => '_blank'));
+                                                            echo form_open_multipart('administration/reportes/reportefiltrocategoriaRangoFechapdf', array('target' => '_blank'));
                                                         ?>
-                                                            <input type="hidden" value="<?php echo $row->id_categoria; ?>" name="id_Categoria">
+                                                        <input type="hidden" value="<?php echo $inicio; ?>" name="inicio" id="inicio" class="form-control"></input>
+                                                        <input type="hidden" value="<?php echo $fin; ?>" name="fin" id="fin" class="form-control"></input>    
+                                                        <input type="hidden" value="<?php echo $row->id_categoria; ?>" name="id_Categoria">
                                                             <input type="hidden" value="<?php echo $row->id_producto; ?>" name="id_producto">
                                                             <button type="submit" class="btn btn-warning">
                                                                 <i class="fas fa-file-pdf"></i>
@@ -114,24 +116,7 @@
                                                             echo form_close();
                                                         ?>
                                                     </div>
-                                                </td>
-                                                <!--
-                                                <td>
-                                                <div class="d-flex" style="display: flex; justify-content: center; align-items: center;">
-                                                    <?php
-                                                       // echo form_open_multipart('administration/reportes/reportepdf', array('target' => '_blank'));
-                                                    ?>
-                    
-                                                    <input type="hidden" value="<?php //echo $row->nombre_categoria; ?>" name="idventas">
-                                                    <button type="submit" class="btn btn-warning">
-                                                        <i class="fas fa-file-pdf"></i>
-                                                    </button>
-                    
-                                                    <?php
-                                                       // echo form_close();
-                                                    ?>
-                                                </div>
-                                              </td>  -->                                              
+                                                </td>                                          
                                           </tr>
                                       <?php
                                       $indice++;

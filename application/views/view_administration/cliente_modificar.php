@@ -48,7 +48,7 @@
         </div>
         <div class="col-md-10 columna2">
             <div class="regform">
-                <h1>Modificar Registro Cliente</h1>
+                <h1 class="titulos_centro">Modificar Registro Cliente</h1>
             </div>
 
             <main class="main">
@@ -106,13 +106,7 @@
                             <p></p>
                         </div>
                         <!-- Grupo: Razon Social -->
-                        <div class="formulario__grupo" id="grupo__razonSocial">
-                            <label for="razonSocial" class="formulario__label">Razón Social:</label>
-                            <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="razonSocial" id="razonSocial" placeholder="" value="<?php echo $row->razonSocial; ?>">
-                            </div>
-                            <p></p>
-                        </div>
+                        <input type="hidden" class="formulario__input" name="razonSocial" id="razonSocial" placeholder="" value="<?php echo $row->razonSocial; ?>">
             
                         <div class="formulario__grupo formulario__grupo-btn-enviar">
                             <button type="submit" class="formulario__btn">Registrar</button>

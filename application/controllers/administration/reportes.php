@@ -660,9 +660,21 @@
             $this->pdf->SetFont('Courier','B',10);
             
             foreach ($historiaVenta as $historia){
+                $nombreCliente = $historia->primerApellido;
+                if($nombreCliente === ''){
+                    $nombreCliente = 'Sin nombre';
+                }else{
+                    $nombreCliente =$historia->nombre.' '.$historia->primerApellido.' '.$historia->segundoApellido.' '.$historia->razonSocial;
+                }
+                $datosNit = $historia->ciNit;
+                if($datosNit === 'ANONIMO'){
+                    $datosNit = '';
+                }else{
+                    $datosNit = $historia->ciNit;
+                }
                 $this->pdf->SetFillColor(255,255,255);
-                $this->pdf->Cell(87,5,utf8_decode($historia->nombre.' '.$historia->primerApellido.' '.$historia->segundoApellido.' '.$historia->razonSocial),'TBLR',0,'L',0);
-                $this->pdf->Cell(26,5,$historia->ciNit,'TBLR',0,'L',0);
+                $this->pdf->Cell(87,5,utf8_decode($nombreCliente),'TBLR',0,'L',0);
+                $this->pdf->Cell(26,5,$datosNit,'TBLR',0,'L',0);
                 $this->pdf->Cell(26,5,number_format($historia->total, 2,',','.'),'TBLR',0,'R',0);
                 $this->pdf->Cell(41,5,$historia->fechaVenta,'TBLR',0,'C',0);
                 $this->pdf->Ln(5);
@@ -801,9 +813,21 @@
             $this->pdf->SetFont('Courier','B',10);
             
             foreach ($historiaVenta as $historia){
+                $nombreCliente = $historia->primerApellido;
+                if($nombreCliente === ''){
+                    $nombreCliente = 'Sin nombre';
+                }else{
+                    $nombreCliente = $historia->nombre.' '.$historia->primerApellido.' '.$historia->segundoApellido.' '.$historia->razonSocial;
+                }
+                $datosNit = $historia->ciNit;
+                if($datosNit === 'ANONIMO'){
+                    $datosNit = '';
+                }else{
+                    $datosNit = $historia->ciNit;
+                }
                 $this->pdf->SetFillColor(255,255,255);
-                $this->pdf->Cell(87,5,utf8_decode($historia->nombre.' '.$historia->primerApellido.' '.$historia->segundoApellido.' '.$historia->razonSocial),'TBLR',0,'L',0);
-                $this->pdf->Cell(26,5,$historia->ciNit,'TBLR',0,'L',0);
+                $this->pdf->Cell(87,5,utf8_decode($nombreCliente),'TBLR',0,'L',0);
+                $this->pdf->Cell(26,5,$datosNit,'TBLR',0,'L',0);
                 $this->pdf->Cell(26,5,number_format($historia->total, 2,',','.'),'TBLR',0,'R',0);//DIVIDIR CADA MIL CON UN .
                 $this->pdf->Cell(41,5,$historia->fechaVenta,'TBLR',0,'C',0);
                 $this->pdf->Ln(5);
@@ -996,6 +1020,177 @@
             }else{
                 redirect('administration/usuarios/index','refresh');//cargara el login
             }
+        }
+
+        public function reportefiltrocategoriaRangoFechapdf(){
+            $totalGeneral = 0.00;
+            //RECUPERAR VALORES DE FECHAS
+            if (isset($_POST['inicio']) && isset($_POST['fin'])) {
+                $inicio = $_POST['inicio'];
+                $fin = $_POST['fin'];
+                $verInicio = date('Y/m/d', strtotime($inicio));
+                $verFin = date('Y/m/d', strtotime($fin));
+            } else {
+                $inicio = '1111-01-01';
+                $fin = '9999-12-30';
+            
+                $verInicio = '_/_/_'; // imprime la fecha inicio eliminando los valores de hora
+                $verFin = '_/_/_'; // imprime la fecha fin eliminando los valores de hora
+            }
+
+            $idcategoria = $_POST['id_Categoria']; //traer de formulario
+            $idproducto = $_POST['id_producto']; //traer de formulario
+            $categoriaProducto = $this->reporte_model->filtrocategoria($idproducto); //recuperar datos del producto
+            $categoriaProducto = $categoriaProducto->result();
+            foreach($categoriaProducto as $datos){
+                $nombreproducto = $datos->NombreProducto; #nombre de producto
+                $nombrecategoria = $datos->NombreCategoria; #nombre de categoria
+            }
+
+            $datosVentas = $this->reporte_model->reportecategoriaRangoFechas($idcategoria, $idproducto, $verInicio, $verFin);
+            $datosVentas = $datosVentas->result();
+
+            foreach($datosVentas as $datosNuevos){
+                $totalGeneral = $totalGeneral + ($datosNuevos->importe_total);
+            }
+
+            $total=number_format($totalGeneral, 2,',','.');//para agregar los dos cecimales de centavos
+
+            $valor = $totalGeneral;
+            $parte_entera = floor($valor); //capura de valor entero
+            $parte_decimal = $valor - $parte_entera; //captura de decimal
+
+            $fraccion = $parte_decimal."/100";
+
+            $totalpagar=$parte_entera; //MANDAR EL NUMERO TOTAL
+
+            require_once APPPATH."cifrarAletras/CifrasEnLetras.php";
+            $v=new CifrasEnLetras(); 
+            //Convertimos el total en letras
+            $letra=($v->convertirEurosEnLetras($totalpagar));
+
+
+            //CREACION DEL REPORTE
+            $this->pdf=new Pdf(); //creacion de nuevo pdf
+            $this->pdf->AddPage(); //agregando una pagina
+            $this->pdf->AliasNbPages(); //paginacion
+            $this->pdf->SetTitle("REPORTE GENERAL DE VENTAS"); //titulo de reporte
+            $this->pdf->SetLeftMargin(15); //margen izquierdo
+            $this->pdf->SetRightMargin(15); //margen derecho
+
+            //TITULO
+            $this->pdf->Cell(2); // Ajustar el espacio en blanco si es necesario
+            $this->pdf->SetFont('Courier', 'B', 20);
+            $this->pdf->SetXY(63, 16);
+            $this->pdf->Cell(89, 3,utf8_decode('RECAUDACIÓN GENERAL'), '', 2, 'L', 0);
+            //HASTA AQUI EL TITULO
+            
+            $this->pdf->Cell(2); // Ajustar el espacio en blanco si es necesario
+            $this->pdf->SetFont('Courier', 'B', 10);
+
+            // Ajustar la coordenada X (posición horizontal)
+            $this->pdf->SetXY(64, 22);
+            $this->pdf->Cell(89, 3,utf8_decode('Desde: '.$verInicio.' Hasta: '.$verFin), '', 2, 'L', 0);
+
+            //importar imagenes
+            $ruta=base_url()."img/logos/logomuebleria2.png"; //conocer la ruta de la imagen
+            $this->pdf->Image($ruta, 17, 10, 25, 25); //Rescatar una imagen de la ruta anterior //coordenadas x pixeles //coordenada y pixeles hacia abajo // dimencianes para la imagen ancho y largo
+            //configurar el tipo de letra - esto solo es texto
+            
+            //coordenadas para generar el numero de venta
+            $this->pdf->Cell(2); // Ajustar el espacio en blanco si es necesario
+            $this->pdf->SetFont('Courier', 'B', 10);
+            // Ajustar la coordenada X (posición horizontal)
+            $this->pdf->SetXY(165, 10);
+            //$this->pdf->Cell(89, 3,utf8_decode('N° '), '', 2, 'L', 0);
+            $this->pdf->SetFont('Courier', '', 10);
+            // Ajustar la coordenada X para el valor de fecha
+            $this->pdf->SetXY(180, 10);
+            //$this->pdf->Cell(89, 3, $numeroComoCadena, '', 2, 'L', 0); VERIFICAR
+
+            $this->pdf->SetFont('Courier','B',10); //tipoi de letra, negrilla, tamaño
+            $this->pdf->Ln(25);//salto de linea
+
+            //listo para poner contenido - descripcion del negocio - estatico
+            
+            $this->pdf->Cell(2); //celda en blanco 
+            $this->pdf->Cell(89,3,utf8_decode('MUEBLERIA LARA '),'R',2,'L',0); //100 de ancho, 3 de alto, el texto que tendra, margenes, TBLR , Aliniacion de texto a la izquierda L=izquierda | C=centro | R=derecha, 0 sin relleno 1 con relleno
+
+            $this->pdf->Ln(0); //Salto de linea
+            
+            $this->pdf->SetFont('Courier','B',9); //letra - sin negrilla - tamaño
+            $this->pdf->Cell(2);
+            $this->pdf->Cell(89,3,utf8_decode('Av. Beiging entre Av. Tadeo Haenke.'),'R',2,'L',0);
+            
+            $this->pdf->Ln(0);
+            
+            $this->pdf->Cell(2);
+            $this->pdf->Cell(89,3,'Cochabamba - Bolivia','R',2,'L',0);
+            $this->pdf->SetFont('Courier','B',10);
+            
+            $this->pdf->Ln(0);
+            
+            $this->pdf->Cell(2);
+            $this->pdf->Cell(38,3,'Telefono/Celular: ','',0,'L',0);
+            $this->pdf->SetFont('Courier','B',9); //letra - sin negrilla - tamaño
+            $this->pdf->Cell(51,3,'+591 62701312', 'R',1,'L',0);  
+            
+            //COORDENDAS PARA MOSTRA EL EMPLEADO QUE ATENDIO EN LA VENTA
+            $this->pdf->Cell(2); // Ajustar el espacio en blanco si es necesario
+            $this->pdf->SetFont('Courier', 'B', 10);
+            // Ajustar la coordenada X (posición horizontal)
+            $this->pdf->SetXY(110, 35);
+            $this->pdf->Cell(89, 3, utf8_decode('CATEGORIA: '.$nombrecategoria), '', 2, 'L', 0);
+            $this->pdf->SetFont('Courier', 'B', 10);
+            // Ajustar la coordenada X para el valor de fecha
+            $this->pdf->SetXY(110, 40);
+            $this->pdf->Cell(89, 0,utf8_decode('PRODUCTO: '.$nombreproducto), '', 2, 'L', 0);
+
+            $this->pdf->Ln(10);
+
+            $this->pdf->SetFont('Courier','B',10);
+            $this->pdf->SetFillColor(238,208,157);
+            $this->pdf->SetTextColor(0,0,0);
+            $this->pdf->SetDrawColor(0,0,0);
+            $this->pdf->Cell(63,5,'COMPROBANTE','TBLR',0,'C',1);
+            $this->pdf->Cell(24,5,'CANTIDAD','TBLR',0,'C',1);
+            $this->pdf->Cell(24,5,'DESCUENTO','TBLR',0,'C',1);
+            $this->pdf->Cell(28,5,'IMPORTE Bs.','TBLR',0,'C',1);
+            $this->pdf->Cell(41,5,'FECHAS','TBLR',0,'C',1);
+            //$this->pdf->Cell(22,5,'IMPORTE','TBLR',0,'C',1);
+
+            $this->pdf->Ln(5);
+            $this->pdf->SetTextColor(0,0,0);
+            $this->pdf->SetFont('Courier','B',10);
+            
+            foreach ($datosVentas as $historia) {
+                $numero = $historia->idVenta;
+                $numeroComoCadena = strval($numero);
+                //$longitud = strlen($numeroComoCadena);
+                if(strlen($numeroComoCadena) < 8){
+                    $numeroComoCadena = str_pad($numeroComoCadena,8,'0', STR_PAD_LEFT);
+                }
+                $this->pdf->SetFillColor(255,255,255);
+                $this->pdf->Cell(63,5,$numeroComoCadena,'TBLR',0,'C',0);
+                $this->pdf->Cell(24,5,$historia->cantidad_vendida,'TBLR',0,'C',0);
+                $this->pdf->Cell(24,5,intval($historia->detalle_descuento).' %','TBLR',0,'R',0);
+                $this->pdf->Cell(28,5,number_format($historia->importe_total, 2,',','.'),'TBLR',0,'R',0);//DIVIDIR CADA MIL CON UN .
+                $this->pdf->Cell(41,5,$historia->fechaVenta,'TBLR',0,'C',0);
+                $this->pdf->Ln(5);
+            }
+
+            $this->pdf->Ln(5);
+            $this->pdf->Cell(1);
+            $this->pdf->Cell(87,5,'TOTAL Bs.','TBL',0,'C',0);
+            $this->pdf->Cell(52,5,$total,'TBR',0,'C',0);
+
+            $this->pdf->Ln(15);
+
+            $this->pdf->Cell(2); //celda en blanco 
+            $this->pdf->Cell(89,3,strtoupper(utf8_decode('Son: '.$letra.' '.$fraccion.' Bolivianos.')),'',2,'L',0);
+            
+            //$this->pdf->Output("reporte".$idUsuario.".pdf","I");
+            $this->pdf->Output("reporte.pdf","I");
         }
 
     }

@@ -6,16 +6,16 @@
       <br>
       <a href="<?php echo base_url(); ?>index.php/administration/categoria/agregar">
         <button type="button" class="btn btn-primary" style="color">
-          Nueva Categoria
+          Nuevo
         </button>
       </a>
       <a href="<?php echo base_url(); ?>index.php/administration/categoria/deshabilitados">
         <button type="button" class="btn btn-warning">
-          Categoria Deshalibitadas
+          Deshalibitadas
         </button>
       </a>
       <br> <br>
-      <h2 class="titulos_centro" > CATEGORIAS </h2>
+      <h1 class="titulos_centro" style="font-weight: 700;"> Categorías </h1>
       <div class="table-responsive">
         <table class="table" id="my-table"> <!-- FONDO A LA TABLA -->
             <tr class="header-row" id="header-row">

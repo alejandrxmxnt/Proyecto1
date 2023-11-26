@@ -56,7 +56,7 @@
 <?php
                 echo form_open_multipart('administration/usuario/deshabilitarbd');
             ?>
-
+              
               <input type="hidden" value="<?php echo $row->id; ?>" name="idusuario">
               <button type="submit" class="btn btn-danger">
               <i class="fas fa-trash"></i>

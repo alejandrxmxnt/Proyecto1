@@ -17,7 +17,7 @@
       </a>
       -->
       <br> <br>
-      <h2 class="titulos_centro" > CATEGORIAS DESHABILITADAS </h2>
+      <h2 class="titulos_centro" style="font-weight: 700;"> Categorías Deshabilitadas </h2>
       <table class="table" id="my-table"> <!-- FONDO A LA TABLA -->
           <tr>
             <th>#</th>

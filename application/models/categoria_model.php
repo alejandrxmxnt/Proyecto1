@@ -9,6 +9,16 @@
             return $this->db->get(); 
         } 
 
+        public function listacategorias2($idcategoria)
+        { 
+            $query="SELECT * FROM categoria WHERE id NOT IN ('". $idcategoria ."') AND estado = 1";
+            return $this->db->query($query);
+            /*$this->db->select('*');
+            $this->db->from('categoria');
+            $this->db->where('estado','1');
+            return $this->db->get(); */
+        }
+
         public function listacategoriasProducto($idproducto)
         { 
             $query = "SELECT P.id AS IdProducto, P.nombre AS nombreProducto, C.id AS IdCategoria, C.nombre AS nombreCategoria

@@ -18,7 +18,7 @@ class Autocomplete_model extends CI_Model{
                 //Realice un bucle en los registros recuparados e inicialice la matriz $response con el valor y la clave de etiqueta
                 $response[] = array( //retorna la matriz de respuesta
                     "value" => $row->id,
-                    "label" => $row->ciNit.' - '.$row->nombre.' '.$row->primerApellido.''.$row->razonSocial
+                    "label" => $row->nombre.' '.$row->primerApellido.' - '. $row->ciNit
                 );
             }
         }

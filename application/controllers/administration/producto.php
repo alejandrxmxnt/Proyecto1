@@ -275,6 +275,7 @@
                     //variable de transferencia de informacion 
                     $data['infoproducto']=$this->producto_model->recuperarproductos($idproducto); //asi hago llegar el idcliente al modelo
                     $data['listaCategorias'] = $this->categoria_model->listacategoriasProducto($idproducto);
+                    $data['lista'] = $this->categoria_model->listacategorias();
                     //cargar la vista
                     $this->load->view('view_administration/admidesing/productoFormHeader');
                     $this->load->view('view_administration/admidesing/menuSuperior');
