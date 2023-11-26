@@ -174,7 +174,7 @@
                     //PARA SACAR LA LISTA DE VENTAS DE ESE USUARIO
                     $idEmpleado = $this->session->userdata('id');
                     //Vista de reportes para el empleado
-                    $listas = $this->reporte_model->ventashistoriaRecaudacionporcategoria2();
+                    $listas = $this->reporte_model->ventashistoriaRecaudacionporcategoria2($idEmpleado);
                     $datas['fecha'] = $listas;
 
                     $this->load->view('view_administration/admidesing/headboard');

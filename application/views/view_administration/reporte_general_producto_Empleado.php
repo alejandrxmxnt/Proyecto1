@@ -88,8 +88,9 @@
                               <table id="datatable" class="table table-striped table-bordered jambo_table bulk_action " style="width:100%" id="my-table">
                                       <tr class="headings table"  >
                                           <th>#</th>
-                                          <th>CATEGORIA</th>
+                                          <th>CATEGORÍA</th>
                                           <th>PRODUCTO</th>
+                                          <th>CANTIDAD</th>
                                       </tr>
                                       <?php
                                       $indice = 1;
@@ -102,7 +103,7 @@
                                               <td><?php echo $row->producto; ?></td>
                                               <!--
                                               <td><?php // echo $row->total_cantidad; ?></td>  
-                                      -->                                           
+                                      -->      <td><?php echo $row->total_cantidad; ?></td>                                     
                                           </tr>
                                       <?php
                                       $indice++;

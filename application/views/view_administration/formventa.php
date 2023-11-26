@@ -436,6 +436,8 @@ $(document).on("input", ".descuento", function() {
     calcularTotal();
 });
 
+
+
 //METODO PARA CARGAR LA TABLA 
 $("#btn-agregar").on("click", function() { //accion de agregado
     

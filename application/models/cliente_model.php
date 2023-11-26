@@ -46,4 +46,13 @@
             $this->db->where('estado','0');
             return $this->db->get(); 
         }
+
+        public function check_cinit_unique($cinit){
+            $query = "SELECT COUNT(C.ciNit)
+            FROM cliente C
+            WHERE C.estado = 1 AND C.ciNit = '". $cinit ."'";
+            //return $query->num_rows() > 0;
+            //return $this->db->query($query);
+            return $query;
+        }
     }

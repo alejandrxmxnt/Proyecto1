@@ -219,9 +219,10 @@
             return $this->db->query($query);
         }
 
-        public function ventashistoriaRecaudacionporcategoria2() //select
+        public function ventashistoriaRecaudacionporcategoria2($idUsuario) //select
         {
             $query=" SELECT
+            V.id AS IDventa,
             C.nombre AS categoria,
             P.nombre AS producto,
             SUM(D.cantidad) AS total_cantidad,
@@ -235,11 +236,11 @@
             JOIN
                 categoria C ON P.idCategoria = C.id
             WHERE 
-                V.estado = 1
+                V.estado = 1 AND V.idUsuario='". $idUsuario ."'
             GROUP BY
                 C.nombre, P.nombre
             ORDER BY
-                total_cantidad DESC";
+                recaudacion_total DESC";
             return $this->db->query($query);
         }
 

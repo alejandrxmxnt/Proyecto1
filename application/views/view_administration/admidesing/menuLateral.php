@@ -14,7 +14,7 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url();?>index.php/customer/catalogo/index" target="_blank"
                                 aria-expanded="false">
                                 <i class="far fa-image" aria-hidden="true"></i>
-                                <span class="hide-menu">Catalogo</span>
+                                <span class="hide-menu">Catálogo</span>
                             </a>
                         </li>
                         <!-- User Profile-->
@@ -40,18 +40,19 @@
                                 <span class="hide-menu">Reportes</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url();?>index.php/administration/categoria/index"
-                                aria-expanded="false">
-                                <i class="fas fa-tags" aria-hidden="true"></i>
-                                <span class="hide-menu">Categorias</span>
-                            </a>
-                        </li>
+                        
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url();?>index.php/administration/producto/index"
                                 aria-expanded="false">
                                 <i class="fas fa-boxes" aria-hidden="true"></i>
                                 <span class="hide-menu">Productos</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url();?>index.php/administration/categoria/index"
+                                aria-expanded="false">
+                                <i class="fas fa-tags" aria-hidden="true"></i>
+                                <span class="hide-menu">Categorias</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -73,7 +74,7 @@
                         <li class="text-center p-20 upgrade-btn">
                             <a href="<?php echo base_url();?>index.php/administration/usuarios/logout"
                                 class="btn d-grid btn-danger text-white">
-                                Salir.</a>
+                                Cerrar Sesión</a>
                         </li>
                     </ul>
 

@@ -9,7 +9,7 @@ font-weight: bold;"> Lista de Reportes </h2>
         <div class="x_panel" style="background-color: rgba(44, 43, 43, 0.596);  border-radius: 15px;">
             <br>
             <div class="x_content">
-              <div class="row" style="align-content: center;">
+              <div class="row" style="justify-content: center;">
                   <!-- REPORTES -->  
                   <!-- Cantidad Ventas -->
                   <div class="col-xl-5 col-md-6 mb-4">

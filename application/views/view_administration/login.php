@@ -47,8 +47,9 @@
 <?php
 echo form_close();
 ?>
-						
+					<!--	
 						<div class="auth-option text-center pt-5"> Cambiar Credenciales: <a class="text-link" href="signup.html" >Actualizar</a>.</div>
+-->
 					</div><!--//auth-form-container-->	
 
 			    </div><!--//auth-body-->
@@ -56,7 +57,7 @@ echo form_close();
 			    <footer class="app-auth-footer">
 				    <div class="container text-center py-3">
 				         <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
-			        <small class="copyright">Muebleria Lara. <i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="app-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+			        <small class="copyright">Muebleria Lara. </small>
 				       
 				    </div>
 			    </footer><!--//app-auth-footer-->	
@@ -79,7 +80,7 @@ echo form_close();
 				    <div class="h-100"></div>
 				    <div class="overlay-content p-3 p-lg-4 rounded">
 					    <h5 class="mb-3 overlay-title">Muebleria Lara.</h5>
-					    <div>Tienda de comercio de muebles. Mira nuestros productos, conoce mas de notros. <a href="https://themes.3rdwavemedia.com/bootstrap-templates/admin-dashboard/portal-free-bootstrap-admin-dashboard-template-for-developers/">visitanos</a>.</div>
+					    <div>Tienda de comercio de muebles. Mira nuestros productos, conoce mas de notros. <a href="<?php echo base_url();?>index.php/customer/catalogo/index">visitanos</a>.</div>
 				    </div>
 				</div>
 		    </div><!--//auth-background-overlay-->
